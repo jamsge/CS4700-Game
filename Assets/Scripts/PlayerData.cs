@@ -8,6 +8,7 @@ public class PlayerData : ScriptableObject
     public int health;
     public event Action<int> onPlayerHealthSet;
     public event Action onPlayerHit;
+    public event Action onPlayerDeath;
 
     // Resets health value to base health when game is started
     private void OnEnable(){
@@ -24,5 +25,8 @@ public class PlayerData : ScriptableObject
     public void takeHit(){
         this.health--;
         onPlayerHit?.Invoke();
+        if (this.health <= 0){
+            onPlayerDeath?.Invoke();
+        }
     }
 }
