@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] public PlayerData playerData;
-    [SerializeField] public float maxSpeed = 10f;
+    [SerializeField] public float sprintMaxSpeed = 10f;
+    [SerializeField] public float defaultMaxSpeed = 5f;
+    private float maxSpeed;
     private float jumpHeight = 7f;
 
     float moveDirection = 0;
@@ -20,6 +22,7 @@ public class PlayerMovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxSpeed = defaultMaxSpeed;
         r2d = GetComponent<Rigidbody2D>();
         t = GetComponent<Transform>();
         g = GetComponentInChildren<BoxCollider2D>();
@@ -36,6 +39,16 @@ public class PlayerMovementController : MonoBehaviour
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
         } else {
             moveDirection = 0;
+        }
+
+        //sprint
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            maxSpeed = sprintMaxSpeed;
+        }
+        else
+        {
+            maxSpeed = defaultMaxSpeed;
         }
 
         if (moveDirection != 0)
