@@ -8,6 +8,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public PlayerData playerData;
     [SerializeField] public float sprintMaxSpeed = 10f;
     [SerializeField] public float defaultMaxSpeed = 5f;
+    [SerializeField] public float dashSpeed = 20f;
+    [SerializeField] public float dashDistance = 2f;
     private float maxSpeed;
     private float jumpHeight = 7f;
 
@@ -18,6 +20,7 @@ public class PlayerMovementController : MonoBehaviour
     Rigidbody2D r2d;
     Transform t;
     Transform ct;
+    bool dashing = false;
     
     // Start is called before the first frame update
     void Start()
@@ -51,6 +54,12 @@ public class PlayerMovementController : MonoBehaviour
             maxSpeed = defaultMaxSpeed;
         }
 
+        //dash
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            StartCoroutine(Dash());
+        }
+
         if (moveDirection != 0)
         {
             if (moveDirection > 0)
@@ -76,7 +85,10 @@ public class PlayerMovementController : MonoBehaviour
 
     void FixedUpdate()
     {
-        r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
+        if (!dashing) // check whether currently in a dash
+        {
+            r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
+        }
 
         Bounds colliderBounds = mainCollider.bounds;
         float colliderRadius = mainCollider.size.x * 0.4f * Mathf.Abs(transform.localScale.x);
@@ -94,5 +106,16 @@ public class PlayerMovementController : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator Dash()
+    {
+        float dashTime = dashDistance / 10; //dashDistance determines how long this coroutine waits before returning to base velocity
+        Vector2 oldVelocity = r2d.velocity;
+        r2d.velocity = r2d.velocity.normalized * dashSpeed;
+        dashing = true;
+        yield return new WaitForSeconds(dashTime);
+        r2d.velocity = oldVelocity;
+        dashing = false;
     }
 }
