@@ -11,6 +11,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public float dashSpeed = 20f;
     [SerializeField] public float dashDistance = 2f;
     [SerializeField] public float dashCooldown = 1f;
+    public Camera cam;
     private float maxSpeed;
     private float jumpHeight = 7f;
     private bool dashOnCooldown = false;
@@ -32,7 +33,7 @@ public class PlayerMovementController : MonoBehaviour
         t = GetComponent<Transform>();
         g = GetComponentInChildren<BoxCollider2D>();
         mainCollider = GetComponent<BoxCollider2D>();
-        ct = Camera.main.GetComponent<Transform>();
+        ct = cam.GetComponent<Transform>();
         print(g);
     }
 
@@ -67,10 +68,12 @@ public class PlayerMovementController : MonoBehaviour
             if (moveDirection > 0)
             {
                 t.localScale = new Vector3(Mathf.Abs(t.localScale.x), t.localScale.y, transform.localScale.z);
+                t.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
             if (moveDirection < 0)
             {
                 t.localScale = new Vector3(-Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
+                t.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             }
         }
 
@@ -79,10 +82,10 @@ public class PlayerMovementController : MonoBehaviour
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         }
 
-        if (t.position.x > ct.position.x){
+/*         if (t.position.x > ct.position.x){
             ct.position = new Vector3(t.position.x, ct.position.y, ct.position.z);
-        }
-
+        } */
+        ct.position = new Vector3(t.position.x, t.position.y, -10f);
     }
 
     void FixedUpdate()
