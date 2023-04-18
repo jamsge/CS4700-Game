@@ -10,8 +10,10 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public float defaultMaxSpeed = 5f;
     [SerializeField] public float dashSpeed = 20f;
     [SerializeField] public float dashDistance = 2f;
+    [SerializeField] public float dashCooldown = 1f;
     private float maxSpeed;
     private float jumpHeight = 7f;
+    private bool dashOnCooldown = false;
 
     float moveDirection = 0;
     bool isGrounded = true;
@@ -55,7 +57,7 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         //dash
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !dashOnCooldown)
         {
             StartCoroutine(Dash());
         }
@@ -117,5 +119,8 @@ public class PlayerMovementController : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
         r2d.velocity = oldVelocity;
         dashing = false;
+        dashOnCooldown = true;
+        yield return new WaitForSeconds(dashCooldown);
+        dashOnCooldown = false;
     }
 }
