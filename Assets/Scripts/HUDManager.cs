@@ -9,6 +9,7 @@ public class HUDManager : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI currentAmmoText;
     public TextMeshProUGUI maxAmmoText;
+    public TextMeshProUGUI weaponNameText;
 
 
     void Start(){
@@ -34,5 +35,6 @@ public class HUDManager : MonoBehaviour
     {
         currentAmmoText.text = WeaponManager.instance.currentWeapon.GetCurrentAmmo()+"";
         maxAmmoText.text = "/ " + WeaponManager.instance.currentWeapon.GetMaxAmmo();
+        weaponNameText.text = WeaponManager.instance.currentWeapon.GetWeaponName();
     }
 }
