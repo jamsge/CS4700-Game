@@ -5,12 +5,14 @@ using System;
 
 public class WeaponManager : MonoBehaviour
 {
+    public PlayerData playerData;
     public static WeaponManager instance;
     public Weapon currentWeapon; 
     //public float maxAmmo = 0; //moved to weapon class
     //public float currentAmmo = 0;
     public Weapon[] weapons;
     public GameObject player;
+    public event Action onWeaponSwitch;
 
     void Awake()
     {
@@ -24,14 +26,13 @@ public class WeaponManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-    
+
     void Start()
     {
         weapons = new Weapon[5];
         player = GameObject.Find("Player");
         weapons[0] = new Flamethrower();
         currentWeapon = weapons[0]; 
-        print(Array.IndexOf(weapons, currentWeapon));
     }
 
     void Update()
@@ -46,11 +47,12 @@ public class WeaponManager : MonoBehaviour
 
     void SwitchWeapon(float input)
     {
+        onWeaponSwitch?.Invoke();
         int currentWeaponIndex = Array.IndexOf(weapons, currentWeapon);
         if (input > 0)
         {
             currentWeaponIndex -= 1;
-            if (currentWeaponIndex >= 0)
+            if (currentWeaponIndex >= 0 && (weapons[currentWeaponIndex] != null))
             {
                 currentWeapon = weapons[currentWeaponIndex];
             }
@@ -58,7 +60,7 @@ public class WeaponManager : MonoBehaviour
         else if (input < 0)
         {
             currentWeaponIndex += 1;
-            if (currentWeaponIndex <= 4)
+            if (currentWeaponIndex <= 4 && (weapons[currentWeaponIndex] != null))
             {
                 currentWeapon = weapons[currentWeaponIndex];
             }

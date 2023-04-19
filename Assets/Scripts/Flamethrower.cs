@@ -27,6 +27,11 @@ public class Flamethrower : Weapon
         this.currentAmmo = ammo;
     }
 
+    public int GetCurrentAmmo()
+    {
+        return this.currentAmmo;
+    }
+
     public string GetWeaponName()
     {
         return this.weaponName;
