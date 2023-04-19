@@ -10,12 +10,12 @@ public class WeaponManager : MonoBehaviour
     public Weapon currentWeapon; 
     //public float maxAmmo = 0; //moved to weapon class
     //public float currentAmmo = 0;
-    public Weapon[] weapons;
+    public Weapon[] weapons; //keep weapon loadout as an array
     public GameObject player;
     public event Action onWeaponSwitch;
 
     void Awake()
-    {
+    {   //This makes sure there is always one instance of WeaponManager
         if (instance == null)
         {
             instance = this;
@@ -29,6 +29,7 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
+        //Temporary until we make weapon inventory and more weapons
         weapons = new Weapon[5];
         player = GameObject.Find("Player");
         weapons[0] = new Flamethrower();
@@ -37,8 +38,8 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
-        player = GameObject.Find("Player");
-        float input = Input.GetAxis("Mouse ScrollWheel");
+        player = GameObject.Find("Player"); //player's position might be needed when using a weapon
+        float input = Input.GetAxis("Mouse ScrollWheel");  //switch weapons with scroll
         if (input != 0)
         {
             SwitchWeapon(input);

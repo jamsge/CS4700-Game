@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Base weapon: Flamethrower
+other weapon classes might look pretty much the same with
+only the UseWeapon method different
+*/
 public class Flamethrower : Weapon
 {
     public string weaponName;
@@ -12,9 +17,9 @@ public class Flamethrower : Weapon
         this.weaponName = "Flamethrower";
         this.currentAmmo = this.MAX_AMMO;
     } 
-    public IEnumerator UseWeapon()
+    public IEnumerator UseWeapon(Vector2 playerPosition)
     {
-        return null;
+        return null; //TBA
     }
 
     public int GetMaxAmmo()
