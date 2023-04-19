@@ -9,11 +9,13 @@ public class PlayerCombatController : MonoBehaviour
     Transform t;
     int layerMask;
     bool meleeOnCooldown = false;
+
     void Start()
     {
         t = GetComponent<Transform>();
         layerMask = 1 << 3; //Enemy layer
     }
+    
     void Update()
     {
         Debug.DrawRay(t.position, t.TransformDirection(Vector3.right * meleeDistance), Color.white); //debug - shows melee attack distance

@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 368702721}
   - component: {fileID: 368702720}
   - component: {fileID: 368702719}
+  - component: {fileID: 368702724}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -387,6 +388,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368702724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368702718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9736b5658f715f34db2c1f05874e9af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeCooldown: 0.5
+  meleeDistance: 1
 --- !u!1 &1034404911
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +414,7 @@ GameObject:
   - component: {fileID: 1034404912}
   - component: {fileID: 1034404915}
   - component: {fileID: 1034404914}
+  - component: {fileID: 1034404916}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
@@ -520,6 +536,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1034404916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034404911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55c3ebab924ff341ab5bce5b6551a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!1 &1415918848
 GameObject:
   m_ObjectHideFlags: 0
