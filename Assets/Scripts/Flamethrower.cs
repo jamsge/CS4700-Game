@@ -17,9 +17,11 @@ public class Flamethrower : Weapon
         this.weaponName = "Flamethrower";
         this.currentAmmo = this.MAX_AMMO;
     } 
-    public IEnumerator UseWeapon(Vector2 playerPosition)
+    public void UseWeapon(Vector2 playerPosition)
     {
-        return null; //TBA
+        // Used when holding left mouse button
+        // deals damage OVER TIME (some damage every interval)
+        // stops when button released
     }
 
     public int GetMaxAmmo()

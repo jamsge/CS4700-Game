@@ -6,7 +6,7 @@ Interface for weapon objects
 */
 public interface Weapon
 {
-    IEnumerator UseWeapon(Vector2 playerPosition);
+    void UseWeapon(Vector2 playerPosition);
     int GetMaxAmmo();
     void SetCurrentAmmo(int ammo);
     int GetCurrentAmmo();

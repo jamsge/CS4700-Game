@@ -43,7 +43,8 @@ public class WeaponManager : MonoBehaviour
         if (input != 0)
         {
             SwitchWeapon(input);
-        }   
+        }
+        UseWeapon(); //keeps calling UseWeapon, input will be checked in each weapon's class   
     }
 
     void SwitchWeapon(float input)
@@ -66,5 +67,9 @@ public class WeaponManager : MonoBehaviour
                 currentWeapon = weapons[currentWeaponIndex];
             }
         }
+    }
+
+    void UseWeapon(){
+        currentWeapon.UseWeapon(player.transform.position);
     }
 }
