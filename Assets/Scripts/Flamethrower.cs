@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class Flamethrower : Weapon
 {
-    public string weaponID;
-    public int maxAmmo;
-    public GameObject player;
+    public string weaponName;
+    public readonly int MAX_AMMO = 100;
+    public int currentAmmo;
+
     public Flamethrower(){
-        this.weaponID = "ft";
-        this.maxAmmo = 100;
+        this.weaponName = "Flamethrower";
+        this.currentAmmo = this.MAX_AMMO;
     } 
     public IEnumerator UseWeapon()
     {
         return null;
+    }
+
+    public int GetMaxAmmo()
+    {
+        return this.MAX_AMMO;
+    }
+
+    public void SetCurrentAmmo(int ammo)
+    {
+        this.currentAmmo = ammo;
+    }
+
+    public string GetWeaponName()
+    {
+        return this.weaponName;
     }
 }

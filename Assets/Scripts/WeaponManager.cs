@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public string currentWeapon = "ft"; //Flamethrower weapon code
-    public float maxAmmo = 100; //Can be changed when weapon type changes
-    public float currentAmmo = 100; 
+    public Weapon currentWeapon; 
+    //public float maxAmmo = 0; //moved to weapon class
+    //public float currentAmmo = 0;
+    public Weapon[] weapons;
+    public GameObject player;
+
     void Start()
     {
-        
+        weapons = new Weapon[5];
+        player = GameObject.Find("Player");
+        weapons[0] = new Flamethrower();
+        currentWeapon = weapons[0]; 
     }
 
     void Update()
     {
-        switch (currentWeapon)
+        if (Input.GetAxis("Mouse ScrollWheel") >= 0.1)
         {
-            case "ft":
-                maxAmmo = 100;
-                break;
-            default:
-                maxAmmo = 0;
-                break;
-        }
+            SwitchWeapon();
+        }   
+        player = GameObject.Find("Player");
     }
 
     void SwitchWeapon()
     {
-
+        print("switching"); //debug
     }
 }
