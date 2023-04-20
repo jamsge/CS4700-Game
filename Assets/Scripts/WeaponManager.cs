@@ -14,6 +14,12 @@ public class WeaponManager : MonoBehaviour
     public GameObject player;
     public event Action onWeaponSwitch;
 
+    //Weapon damage and range - can be modified in unity
+    //FLAMETHROWER
+    public float flamethrowerDamage;
+    public float flamethrowerRange;
+    //more weapons tba 
+
     void Awake()
     {   //This makes sure there is always one instance of WeaponManager
         if (instance == null)
@@ -62,7 +68,7 @@ public class WeaponManager : MonoBehaviour
         else if (input < 0)
         {
             currentWeaponIndex += 1;
-            if (currentWeaponIndex <= 4 && (weapons[currentWeaponIndex] != null))
+            if (currentWeaponIndex <= weapons.Count && (weapons[currentWeaponIndex] != null))
             {
                 currentWeapon = weapons[currentWeaponIndex];
             }
@@ -70,6 +76,6 @@ public class WeaponManager : MonoBehaviour
     }
 
     void UseWeapon(){
-        currentWeapon.UseWeapon(player.transform.position);
+        currentWeapon.UseWeapon(player.transform);
     }
 }

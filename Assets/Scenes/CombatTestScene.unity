@@ -431,7 +431,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7ba8223339842469753e72a08ded1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
   player: {fileID: 0}
+  flamethrowerDamage: 0
+  flamethrowerRange: 3
 --- !u!4 &721958682
 Transform:
   m_ObjectHideFlags: 0
