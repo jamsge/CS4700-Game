@@ -19,6 +19,7 @@ public class FlamethrowerBehavior : MonoBehaviour
         public float damage;
         public float range;
         public int cooldown; //'cooldown' is the interval of time when flamethrower doesn't deal damage
+        public int ammoUsage;
 
         private bool onCooldown = false;
 
@@ -28,6 +29,7 @@ public class FlamethrowerBehavior : MonoBehaviour
             this.damage = WeaponManager.instance.flamethrowerDamage; //get weapon damage from WeaponManager
             this.range = WeaponManager.instance.flamethrowerRange; //get range from WeaponManager
             this.cooldown = WeaponManager.instance.flamethrowerCooldown; //get cooldown from WeaponManager
+            this.ammoUsage = WeaponManager.instance.flamethrowerAmmoUsage;
         } 
         public void UseWeapon(Transform playerTransform)
         {
@@ -40,12 +42,9 @@ public class FlamethrowerBehavior : MonoBehaviour
                 WeaponManager.instance.ftVisualization.GetComponent<Renderer>().enabled = true; //debug
                 //cast a circle from in front of the player while button is being held down
                 RaycastHit2D hit = Physics2D.CircleCast(new Vector2(playerTransform.position.x + 1, playerTransform.position.y), 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
-                if (hit)
+                if (!onCooldown)
                 {
-                    if (!onCooldown)
-                    {
-                        WeaponManager.instance.StartCoroutine(DealDamage(hit));
-                    }
+                    WeaponManager.instance.StartCoroutine(DealDamage(hit));
                 }
             }
             else
@@ -58,8 +57,12 @@ public class FlamethrowerBehavior : MonoBehaviour
         private IEnumerator DealDamage(RaycastHit2D hit)
         {
             onCooldown = true;
-            hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
-            Debug.Log("HIT"); //debug
+            currentAmmo -= ammoUsage;
+            if (hit)
+            {
+                hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                Debug.Log("HIT"); //debug
+            }
             yield return new WaitForSeconds(cooldown);
             onCooldown = false;
         }

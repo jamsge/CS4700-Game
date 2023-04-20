@@ -15,12 +15,13 @@ public class WeaponManager : MonoBehaviour
     public event Action onWeaponSwitch;
     public event Action onWeaponUse;
 
-    //Weapon damage and range - can be modified in unity
+    //Weapon stats - can be modified in unity
     //FLAMETHROWER
     [Header("Flamethrower Stats")]
-    public float flamethrowerDamage;
+    public float flamethrowerDamage = 3;
     public float flamethrowerRange;
     public int flamethrowerCooldown = 1;
+    public int flamethrowerAmmoUsage = 10;
     //visualizng flamethrower use for debug purposes
     //temporarily create a non-physical circle object in front of player when flamethrower is used
     public GameObject ftVisualization;
