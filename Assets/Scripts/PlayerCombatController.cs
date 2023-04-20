@@ -18,7 +18,7 @@ public class PlayerCombatController : MonoBehaviour
     
     void Update()
     {
-        Debug.DrawRay(t.position, t.TransformDirection(Vector3.right * meleeDistance), Color.white); //debug - shows melee attack distance
+        Debug.DrawRay(t.position, t.TransformDirection(Vector3.right * meleeDistance), Color.white); //debug - roughly visualizes melee attack distance
         if (Input.GetKeyDown(KeyCode.Q) && !meleeOnCooldown)
         {
             StartCoroutine(MeleeAttack());
@@ -28,7 +28,8 @@ public class PlayerCombatController : MonoBehaviour
     IEnumerator MeleeAttack()
     {
         meleeOnCooldown = true;
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(t.position.x, t.position.y), t.TransformDirection(Vector3.right), meleeDistance, layerMask);
+        //RaycastHit2D hit = Physics2D.Raycast(new Vector2(t.position.x, t.position.y), t.TransformDirection(Vector3.right), meleeDistance, layerMask);
+        RaycastHit2D hit = Physics2D.CircleCast(new Vector2(t.position.x, t.position.y), 1f, t.TransformDirection(Vector3.right), meleeDistance/2, layerMask);
         print("hitting"); //debug
         if (hit)
         {
