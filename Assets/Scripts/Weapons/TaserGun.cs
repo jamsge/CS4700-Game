@@ -13,7 +13,8 @@ public class TaserGun : Weapon
     public int currentAmmo;
     public float damage;
     public float range;
-    public float duration;
+    public float cooldown;
+    public float stunDuration;
     public int ammoUsage;
 
     private bool onCooldown = false;
@@ -24,11 +25,30 @@ public class TaserGun : Weapon
         this.currentAmmo = this.MAX_AMMO;
         this.damage = WeaponManager.instance.taserGunDamage;
         this.range = WeaponManager.instance.taserGunRange;
-        this.duration = WeaponManager.instance.taserGunDuration;
+        this.stunDuration = WeaponManager.instance.taserGunStunDuration;
         this.ammoUsage = WeaponManager.instance.taserGunAmmoUsage;
     }
 
-    public void UseWeapon(Transform playerTransform){} //TBA
+    public void UseWeapon(Transform playerTransform)
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (!onCooldown))
+        {
+            //cast a long ray
+            RaycastHit2D hit = Physics2D.Raycast(playerTransform.position, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
+            if (hit)
+            {
+                //implement enemy stun
+                WeaponManager.instance.StartCoroutine(PutOnCooldown());
+            }
+        }
+    }
+    private IEnumerator PutOnCooldown()
+    {
+        onCooldown = true;
+        yield return new WaitForSeconds(cooldown);
+        onCooldown = false;
+    }
+
 
     public int GetMaxAmmo()
     {
