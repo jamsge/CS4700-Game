@@ -18,6 +18,7 @@ public class WeaponManager : MonoBehaviour
     //FLAMETHROWER
     public float flamethrowerDamage;
     public float flamethrowerRange;
+    public int flamethrowerCooldown = 1;
     //more weapons tba 
 
     void Awake()
@@ -36,9 +37,9 @@ public class WeaponManager : MonoBehaviour
     void Start()
     {
         //Temporary until we make weapon inventory and more weapons
-        weapons = new List<Weapon>();
+        weapons = new List<Weapon>(5);
         player = GameObject.Find("Player");
-        weapons.Add(new Flamethrower());
+        weapons.Add(new FlamethrowerBehavior.Flamethrower());
         currentWeapon = weapons[0]; 
     }
 
@@ -68,7 +69,7 @@ public class WeaponManager : MonoBehaviour
         else if (input < 0)
         {
             currentWeaponIndex += 1;
-            if (currentWeaponIndex <= weapons.Count && (weapons[currentWeaponIndex] != null))
+            if (currentWeaponIndex < weapons.Count && (weapons[currentWeaponIndex] != null))
             {
                 currentWeapon = weapons[currentWeaponIndex];
             }
