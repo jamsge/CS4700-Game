@@ -34,7 +34,7 @@ public class FlamethrowerBehavior : MonoBehaviour
             // Used when holding left mouse button
             // deals damage OVER TIME (some damage every interval)
             // stops when button released
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0) && (currentAmmo > 0))
             {
                 Debug.Log("using flamethrower"); //debug
                 WeaponManager.instance.ftVisualization.GetComponent<Renderer>().enabled = true; //debug

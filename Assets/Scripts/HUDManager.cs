@@ -17,6 +17,7 @@ public class HUDManager : MonoBehaviour
         playerData.onPlayerHealthSet += updateHealth;
         playerData.onPlayerHit += updateHealth;
         WeaponManager.instance.onWeaponSwitch += updateWeaponData;
+        WeaponManager.instance.onWeaponUse += updateWeaponData;
 
         // Initialize HUD text values
         updateHealth(playerData.health);

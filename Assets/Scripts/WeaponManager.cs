@@ -13,6 +13,7 @@ public class WeaponManager : MonoBehaviour
     public List<Weapon> weapons; //keep weapon loadout as an array
     public GameObject player;
     public event Action onWeaponSwitch;
+    public event Action onWeaponUse;
 
     //Weapon damage and range - can be modified in unity
     //FLAMETHROWER
@@ -90,5 +91,6 @@ public class WeaponManager : MonoBehaviour
 
     void UseWeapon(){
         currentWeapon.UseWeapon(player.transform);
+        onWeaponUse?.Invoke();
     }
 }
