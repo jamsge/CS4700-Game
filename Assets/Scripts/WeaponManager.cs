@@ -34,6 +34,11 @@ public class WeaponManager : MonoBehaviour
 
     //more weapons tba 
 
+    //FIRE AXE
+    [Header("Fire Axe Stats")]
+    public float fireAxeAttackSpeed = 0;
+    public float fireAxeDamage = 0;
+
     void Awake()
     {   //This makes sure there is always one instance of WeaponManager
         if (instance == null)
