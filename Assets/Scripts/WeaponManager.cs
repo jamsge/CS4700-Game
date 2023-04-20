@@ -38,6 +38,8 @@ public class WeaponManager : MonoBehaviour
     [Header("Fire Axe Stats")]
     public float fireAxeAttackSpeed = 0;
     public float fireAxeDamage = 0;
+    public float fireAxeRange = 0;
+    public float fireAxeAttackRadius = 1.5f;
 
     void Awake()
     {   //This makes sure there is always one instance of WeaponManager
@@ -117,6 +119,10 @@ public class WeaponManager : MonoBehaviour
         if (flamethrower && (Flamethrower.instanceCount == 0))
         {
             weapons.Add(new Flamethrower());
+        }
+        if (fireAxe && (FireAxe.instanceCount == 0))
+        {
+            weapons.Add(new FireAxe());
         }
         //more tba
     }

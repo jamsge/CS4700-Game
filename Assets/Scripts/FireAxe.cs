@@ -8,6 +8,8 @@ public class FireAxe : Weapon
     public string weaponName;
     public float attackSpeed;
     public float damage;
+    public float range;
+    public float attackRadius;
     
     private bool onCooldown = false;
 
@@ -16,10 +18,32 @@ public class FireAxe : Weapon
         this.weaponName = "Fire Axe";
         this.attackSpeed = WeaponManager.instance.fireAxeAttackSpeed;
         this.damage = WeaponManager.instance.fireAxeDamage;
+        this.range = WeaponManager.instance.fireAxeRange;
+        this.attackRadius = WeaponManager.instance.fireAxeAttackRadius;
         instanceCount += 1;
     }
 
-    public void UseWeapon(Transform playerTransform){}
+    public void UseWeapon(Transform playerTransform)
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (!onCooldown))
+        {
+            WeaponManager.instance.StartCoroutine(Use(playerTransform));
+        }
+    }
+    private IEnumerator Use(Transform t)
+    {
+        onCooldown = true;
+
+        //now only works on enemies, need to add obstacle layer
+        RaycastHit2D hit = Physics2D.CircleCast(new Vector2(t.position.x, t.position.y), attackRadius, t.TransformDirection(Vector2.right), range, 1 << 3);
+        if (hit)
+        {
+            hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+            Debug.Log("HIT"); //debug
+        }
+        yield return new WaitForSeconds(10 / attackSpeed); //higher attack speed => lower cooldown, this might be changed later
+        onCooldown = false;
+    }
 
     public string GetWeaponName()
     {
