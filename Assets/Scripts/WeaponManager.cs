@@ -10,7 +10,7 @@ public class WeaponManager : MonoBehaviour
     public Weapon currentWeapon; 
     //public float maxAmmo = 0; //moved to weapon class
     //public float currentAmmo = 0;
-    public Weapon[] weapons; //keep weapon loadout as an array
+    public List<Weapon> weapons; //keep weapon loadout as an array
     public GameObject player;
     public event Action onWeaponSwitch;
 
@@ -30,9 +30,9 @@ public class WeaponManager : MonoBehaviour
     void Start()
     {
         //Temporary until we make weapon inventory and more weapons
-        weapons = new Weapon[5];
+        weapons = new List<Weapon>();
         player = GameObject.Find("Player");
-        weapons[0] = new Flamethrower();
+        weapons.Add(new Flamethrower());
         currentWeapon = weapons[0]; 
     }
 
@@ -50,7 +50,7 @@ public class WeaponManager : MonoBehaviour
     void SwitchWeapon(float input)
     {
         onWeaponSwitch?.Invoke();
-        int currentWeaponIndex = Array.IndexOf(weapons, currentWeapon);
+        int currentWeaponIndex = weapons.IndexOf(currentWeapon);
         if (input > 0)
         {
             currentWeaponIndex -= 1;
