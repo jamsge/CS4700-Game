@@ -41,6 +41,12 @@ public class WeaponManager : MonoBehaviour
     public float fireAxeRange = 0;
     public float fireAxeAttackRadius = 1.5f;
 
+    [Header("Taser Gun Stats")]
+    public float taserGunDamage;
+    public float taserGunRange;
+    public float taserGunDuration;
+    public int taserGunAmmoUsage;
+
     void Awake()
     {   //This makes sure there is always one instance of WeaponManager
         if (instance == null)
