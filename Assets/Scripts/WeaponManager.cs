@@ -49,7 +49,7 @@ public class WeaponManager : MonoBehaviour
         //Temporary until we make weapon inventory and more weapons
         weapons = new List<Weapon>(5);
         player = GameObject.Find("Player");
-        weapons.Add(new FlamethrowerBehavior.Flamethrower());
+        weapons.Add(new Flamethrower());
         currentWeapon = weapons[0]; 
     }
 

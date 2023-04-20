@@ -8,8 +8,7 @@ Base weapon: Flamethrower
 other weapon classes might look pretty much the same with
 only the UseWeapon method different
 */
-public class FlamethrowerBehavior : MonoBehaviour
-{
+
     public class Flamethrower : Weapon
     {
         //weapon stats
@@ -87,4 +86,4 @@ public class FlamethrowerBehavior : MonoBehaviour
             return this.weaponName;
         }
     }
-}
+
