@@ -82,9 +82,7 @@ public class PlayerMovementController : MonoBehaviour
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         }
 
-/*         if (t.position.x > ct.position.x){
-            ct.position = new Vector3(t.position.x, ct.position.y, ct.position.z);
-        } */
+        //keep camera focued on player
         ct.position = new Vector3(t.position.x, t.position.y, -10f);
     }
 
