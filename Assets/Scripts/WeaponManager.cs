@@ -16,9 +16,14 @@ public class WeaponManager : MonoBehaviour
 
     //Weapon damage and range - can be modified in unity
     //FLAMETHROWER
+    [Header("Flamethrower Stats")]
     public float flamethrowerDamage;
     public float flamethrowerRange;
     public int flamethrowerCooldown = 1;
+    //visualizng flamethrower use for debug purposes
+    //temporarily create a non-physical circle object in front of player when flamethrower is used
+    public GameObject ftVisualization;
+
     //more weapons tba 
 
     void Awake()
@@ -36,6 +41,9 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
+        //debug
+        ftVisualization.GetComponent<Renderer>().enabled = false;
+
         //Temporary until we make weapon inventory and more weapons
         weapons = new List<Weapon>(5);
         player = GameObject.Find("Player");
@@ -45,6 +53,10 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
+        //debug
+        ftVisualization.transform.localScale = new Vector3(flamethrowerRange, 1f, 1f);
+        ftVisualization.transform.position = player.transform.position + player.transform.TransformDirection(new Vector3(flamethrowerRange / 2, 0, 0));
+
         player = GameObject.Find("Player"); //player's position might be needed when using a weapon
         float input = Input.GetAxis("Mouse ScrollWheel");  //switch weapons with scroll
         if (input != 0)

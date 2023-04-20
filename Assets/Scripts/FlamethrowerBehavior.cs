@@ -37,16 +37,20 @@ public class FlamethrowerBehavior : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 Debug.Log("using flamethrower"); //debug
+                WeaponManager.instance.ftVisualization.GetComponent<Renderer>().enabled = true; //debug
                 //cast a circle from in front of the player while button is being held down
                 RaycastHit2D hit = Physics2D.CircleCast(new Vector2(playerTransform.position.x + 1, playerTransform.position.y), 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
                 if (hit)
                 {
-                    Debug.Log(hit.collider.gameObject); //debug
                     if (!onCooldown)
                     {
                         WeaponManager.instance.StartCoroutine(DealDamage(hit));
                     }
                 }
+            }
+            else
+            {
+                WeaponManager.instance.ftVisualization.GetComponent<Renderer>().enabled = false; //debug
             }
         }
 
