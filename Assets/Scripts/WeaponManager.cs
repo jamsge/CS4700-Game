@@ -15,6 +15,12 @@ public class WeaponManager : MonoBehaviour
     public event Action onWeaponSwitch;
     public event Action onWeaponUse;
 
+    [Header("Weapon Avaiability")]
+    public bool flamethrower = true;
+    public bool fireAxe;
+    public bool waterCannon;
+    public bool taserGun;
+
     //Weapon stats - can be modified in unity
     //FLAMETHROWER
     [Header("Flamethrower Stats")]
@@ -49,12 +55,15 @@ public class WeaponManager : MonoBehaviour
         //Temporary until we make weapon inventory and more weapons
         weapons = new List<Weapon>(5);
         player = GameObject.Find("Player");
-        weapons.Add(new Flamethrower());
-        currentWeapon = weapons[0]; 
+
+        CheckWeaponAvailability();
+        currentWeapon = weapons[0];
     }
 
     void Update()
     {
+        //check available weapons
+        CheckWeaponAvailability();
         //debug
         ftVisualization.transform.localScale = new Vector3(flamethrowerRange, 1f, 1f);
         ftVisualization.transform.position = player.transform.position + player.transform.TransformDirection(new Vector3(flamethrowerRange / 2, 0, 0));
@@ -91,7 +100,19 @@ public class WeaponManager : MonoBehaviour
     }
 
     void UseWeapon(){
-        currentWeapon.UseWeapon(player.transform);
-        onWeaponUse?.Invoke();
+        if (currentWeapon != null)
+        {
+            currentWeapon.UseWeapon(player.transform);
+            onWeaponUse?.Invoke();
+        }
+    }
+
+    void CheckWeaponAvailability()
+    {
+        if (flamethrower && (Flamethrower.instanceCount == 0))
+        {
+            weapons.Add(new Flamethrower());
+        }
+        //more tba
     }
 }

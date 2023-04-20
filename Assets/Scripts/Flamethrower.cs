@@ -11,6 +11,9 @@ only the UseWeapon method different
 
     public class Flamethrower : Weapon
     {
+        //make sure never more than 1
+        public static int instanceCount = 0;
+        
         //weapon stats
         public string weaponName;
         public readonly int MAX_AMMO = 100;
@@ -29,6 +32,7 @@ only the UseWeapon method different
             this.range = WeaponManager.instance.flamethrowerRange; //get range from WeaponManager
             this.cooldown = WeaponManager.instance.flamethrowerCooldown; //get cooldown from WeaponManager
             this.ammoUsage = WeaponManager.instance.flamethrowerAmmoUsage;
+            instanceCount += 1;
         } 
         public void UseWeapon(Transform playerTransform)
         {
