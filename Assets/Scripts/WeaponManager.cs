@@ -10,7 +10,7 @@ public class WeaponManager : MonoBehaviour
     public Weapon currentWeapon; 
     //public float maxAmmo = 0; //moved to weapon class
     //public float currentAmmo = 0;
-    public List<Weapon> weapons; //keep weapon loadout as an array
+    public List<Weapon> weapons; //keep weapon loadout as a list
     public GameObject player;
     public event Action onWeaponSwitch;
     public event Action onWeaponUse;
@@ -88,9 +88,10 @@ public class WeaponManager : MonoBehaviour
         {
             SwitchWeapon(input);
         }
-        UseWeapon(); //keeps calling UseWeapon, input will be checked in each weapon's class   
+        UseWeapon(); //keeps calling UseWeapon, input will be checked in each weapon's class as it might differ among different weapons
     }
 
+    //Switch weapons with scroll
     void SwitchWeapon(float input)
     {
         onWeaponSwitch?.Invoke();
@@ -113,6 +114,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    //This method calls the current weapon's UseWeapon method
     void UseWeapon(){
         if (currentWeapon != null)
         {
@@ -121,6 +123,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    //Checks whether weapons are already available, if yes, adds them to weapon list
     void CheckWeaponAvailability()
     {
         if (flamethrower && (Flamethrower.instanceCount == 0))
