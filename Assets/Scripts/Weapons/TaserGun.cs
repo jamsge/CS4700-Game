@@ -42,6 +42,7 @@ public class TaserGun : Weapon
 
                 Debug.Log("HIT"); //debug
                 hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                WeaponManager.instance.StartCoroutine(StunEnemy(hit)); //tba
                 WeaponManager.instance.StartCoroutine(PutOnCooldown());
             }
         }
@@ -51,6 +52,14 @@ public class TaserGun : Weapon
         onCooldown = true;
         yield return new WaitForSeconds(cooldown);
         onCooldown = false;
+    }
+
+    private IEnumerator StunEnemy(RaycastHit2D hit)
+    {
+        Rigidbody2D enemyRB = hit.collider.gameObject.GetComponent<Rigidbody2D>();
+        enemyRB.constraints = RigidbodyConstraints2D.FreezeAll; //freeze enemy position and rotation (only movement for now)
+        yield return new WaitForSeconds(stunDuration);
+        enemyRB.constraints = RigidbodyConstraints2D.None;
     }
 
 
