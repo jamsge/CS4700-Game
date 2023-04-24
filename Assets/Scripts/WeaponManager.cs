@@ -28,9 +28,6 @@ public class WeaponManager : MonoBehaviour
     public float flamethrowerRange;
     public int flamethrowerCooldown = 1;
     public int flamethrowerAmmoUsage = 10;
-    //visualizng flamethrower use for debug purposes
-    //temporarily create a non-physical circle object in front of player when flamethrower is used
-    public GameObject ftVisualization;
 
     //more weapons tba 
 
@@ -48,6 +45,8 @@ public class WeaponManager : MonoBehaviour
     public float taserGunCooldown;
     public int taserGunAmmoUsage = 1;
 
+    Transform playerT; //player's transform
+
     void Awake()
     {   //This makes sure there is always one instance of WeaponManager
         if (instance == null)
@@ -63,13 +62,11 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
-        //debug
-        ftVisualization.GetComponent<Renderer>().enabled = false;
-
         //Temporary until we make weapon inventory and more weapons
         weapons = new List<Weapon>(5);
         player = GameObject.Find("Player");
 
+        playerT = player.GetComponent<Transform>();
         CheckWeaponAvailability();
         currentWeapon = weapons[0];
     }
@@ -78,9 +75,6 @@ public class WeaponManager : MonoBehaviour
     {
         //check available weapons
         CheckWeaponAvailability();
-        //debug
-        ftVisualization.transform.localScale = new Vector3(flamethrowerRange, 1f, 1f);
-        ftVisualization.transform.position = player.transform.position + player.transform.TransformDirection(new Vector3(flamethrowerRange / 2, 0, 0));
 
         player = GameObject.Find("Player"); //player's position might be needed when using a weapon
         float input = Input.GetAxis("Mouse ScrollWheel");  //switch weapons with scroll
@@ -118,7 +112,7 @@ public class WeaponManager : MonoBehaviour
     void UseWeapon(){
         if (currentWeapon != null)
         {
-            currentWeapon.UseWeapon(player.transform);
+            currentWeapon.UseWeapon(playerT);
             onWeaponUse?.Invoke();
         }
     }
@@ -135,5 +129,21 @@ public class WeaponManager : MonoBehaviour
             weapons.Add(new FireAxe());
         }
         //more tba
+    }
+
+
+
+    //Gizmos for visualization
+    void OnDrawGizmos()
+    {
+        //flamethrower hitbox (approximate)
+        if (currentWeapon.GetWeaponName() == "Flamethrower")
+        {
+            float posX = playerT.position.x;
+            float posY = playerT.position.y;
+            float posZ = playerT.position.z;
+            Gizmos.DrawWireCube(playerT.position + playerT.TransformDirection(flamethrowerRange/2, 0, 0), new Vector3(flamethrowerRange, 1, 1));
+        }
+        
     }
 }
