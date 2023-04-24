@@ -27,6 +27,7 @@ public class TaserGun : Weapon
         this.range = WeaponManager.instance.taserGunRange;
         this.stunDuration = WeaponManager.instance.taserGunStunDuration;
         this.ammoUsage = WeaponManager.instance.taserGunAmmoUsage;
+        instanceCount += 1;
     }
 
     public void UseWeapon(Transform playerTransform)

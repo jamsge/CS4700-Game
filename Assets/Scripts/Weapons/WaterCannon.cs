@@ -43,12 +43,14 @@ public class WaterCannon : Weapon
             RaycastHit2D hit = Physics2D.CircleCast(playerTransform.position + Vector3.right, 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
             if (hit)
             {
-                //add damage and ammo use
-
+                //damage and ammo use
+                hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                currentAmmo -= ammoUsage;
                 //knock back enemy
                 Rigidbody2D enemyRB = hit.collider.gameObject.GetComponent<Rigidbody2D>();
                 Vector3 knockbackDirection = playerTransform.TransformDirection(Vector3.right);
                 enemyRB.velocity = knockbackDirection * knockbackStrength;
+                //put on cooldown
                 WeaponManager.instance.StartCoroutine(PutOnCooldown());
             }
         }

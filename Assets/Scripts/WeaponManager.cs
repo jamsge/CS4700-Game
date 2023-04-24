@@ -93,7 +93,6 @@ public class WeaponManager : MonoBehaviour
     //Switch weapons with scroll
     void SwitchWeapon(float input)
     {
-        onWeaponSwitch?.Invoke();
         int currentWeaponIndex = weapons.IndexOf(currentWeapon);
         if (input > 0)
         {
@@ -111,6 +110,7 @@ public class WeaponManager : MonoBehaviour
                 currentWeapon = weapons[currentWeaponIndex];
             }
         }
+        onWeaponSwitch?.Invoke();
     }
 
     //This method calls the current weapon's UseWeapon method
