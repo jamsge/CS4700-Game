@@ -55,9 +55,11 @@ only the UseWeapon method different
         private IEnumerator DealDamage(RaycastHit2D hit)
         {
             onCooldown = true;
+            //ammo usage 
             currentAmmo -= ammoUsage;
             if (hit)
             {
+                //deal damage
                 hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
                 Debug.Log("HIT"); //debug
             }

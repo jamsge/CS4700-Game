@@ -39,11 +39,12 @@ public class TaserGun : Weapon
             RaycastHit2D hit = Physics2D.Raycast(playerTransform.position, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
             if (hit)
             {
-                //implement enemy stun
-
                 Debug.Log("HIT"); //debug
+                // deal damage
                 hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                //stun enemy
                 WeaponManager.instance.StartCoroutine(StunEnemy(hit)); //tba
+                // put on cooldonw
                 WeaponManager.instance.StartCoroutine(PutOnCooldown());
             }
         }
@@ -55,6 +56,7 @@ public class TaserGun : Weapon
         onCooldown = false;
     }
 
+    //enemy stun
     private IEnumerator StunEnemy(RaycastHit2D hit)
     {
         Rigidbody2D enemyRB = hit.collider.gameObject.GetComponent<Rigidbody2D>();

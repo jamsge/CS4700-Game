@@ -43,6 +43,7 @@ public class WaterCannon : Weapon
             RaycastHit2D hit = Physics2D.CircleCast(playerTransform.position + Vector3.right, 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
             if (hit)
             {
+                Debug.Log("HIT"); //debug
                 //damage and ammo use
                 hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
                 currentAmmo -= ammoUsage;
