@@ -35,7 +35,6 @@ public class WeaponManager : MonoBehaviour
     [Header("Fire Axe Stats")]
     public float fireAxeAttackSpeed = 0;
     public float fireAxeDamage = 0;
-    public float fireAxeRange = 0;
     public float fireAxeAttackRadius = 1.5f;
 
     [Header("Taser Gun Stats")]
@@ -139,11 +138,12 @@ public class WeaponManager : MonoBehaviour
         //flamethrower hitbox (approximate)
         if (currentWeapon.GetWeaponName() == "Flamethrower")
         {
-            float posX = playerT.position.x;
-            float posY = playerT.position.y;
-            float posZ = playerT.position.z;
             Gizmos.DrawWireCube(playerT.position + playerT.TransformDirection(flamethrowerRange/2, 0, 0), new Vector3(flamethrowerRange, 1, 1));
         }
-        
+        //fireaxe hitbox (approximate)
+        else if (currentWeapon.GetWeaponName() == "Fire Axe")
+        {
+            Gizmos.DrawWireSphere(playerT.position, fireAxeAttackRadius);
+        }
     }
 }
