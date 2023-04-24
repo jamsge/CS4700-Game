@@ -164,5 +164,10 @@ public class WeaponManager : MonoBehaviour
         {
             Gizmos.DrawLine(playerT.position, playerT.position + playerT.TransformDirection(taserGunRange,0,0));
         }
+        //water cannon hitbox (approximate)
+        else if (currentWeapon.GetWeaponName() == "Water Cannon")
+        {
+            Gizmos.DrawWireCube(playerT.position + playerT.TransformDirection(waterCannonRange/2, 0, 0), new Vector3(waterCannonRange, 1, 1));
+        }
     }
 }
