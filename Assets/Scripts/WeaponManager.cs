@@ -48,7 +48,7 @@ public class WeaponManager : MonoBehaviour
     [Header("Water Cannon Stats")]
     public float waterCannonDamage;
     public float waterCannonRange;
-    //add knockback strenght
+    public float waterCannonKnockbackStrenght;
     public int waterCannonCooldown;
     public int waterCannonAmmoUsage;
 
@@ -136,6 +136,10 @@ public class WeaponManager : MonoBehaviour
         if (taserGun && (TaserGun.instanceCount == 0))
         {
             weapons.Add(new TaserGun());
+        }
+        if (waterCannon && (WaterCannon.instanceCount == 0))
+        {
+            weapons.Add(new WaterCannon());
         }
         //more tba
     }

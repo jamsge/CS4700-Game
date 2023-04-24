@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaterCannon : Weapon
 {
+    public static int instanceCount = 0;
     /*
     stats:
     - damage
@@ -14,12 +15,14 @@ public class WaterCannon : Weapon
     */
     private float damage;
     private float range;
-    //add knockback strength
+    private float knockbackStrength;
     private int cooldown;
     private int ammoUsage;
     private int currentAmmo;
     private readonly int MAX_AMMO = 10; //tbd
     private string weaponName;
+
+    private bool onCooldown = false;
 
     public WaterCannon()
     {
@@ -28,10 +31,35 @@ public class WaterCannon : Weapon
         this.range = WeaponManager.instance.waterCannonRange;
         this.cooldown = WeaponManager.instance.waterCannonCooldown;
         this.ammoUsage = WeaponManager.instance.waterCannonAmmoUsage;
+        this.knockbackStrength = WeaponManager.instance.waterCannonKnockbackStrenght;
         this.weaponName = "Water Cannon";
+        instanceCount += 1;
     }
 
-    public void UseWeapon(Transform playerTransform){} //tba
+    public void UseWeapon(Transform playerTransform)
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !onCooldown)
+        {
+            RaycastHit2D hit = Physics2D.CircleCast(playerTransform.position + Vector3.right, 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
+            if (hit)
+            {
+                //add damage and ammo use
+
+                //knock back enemy
+                Rigidbody2D enemyRB = hit.collider.gameObject.GetComponent<Rigidbody2D>();
+                Vector3 knockbackDirection = playerTransform.TransformDirection(Vector3.right);
+                enemyRB.velocity = knockbackDirection * knockbackStrength;
+                WeaponManager.instance.StartCoroutine(PutOnCooldown());
+            }
+        }
+    }
+
+    private IEnumerator PutOnCooldown()
+    {
+        onCooldown = true;
+        yield return new WaitForSeconds(cooldown);
+        onCooldown = false;
+    } 
 
     public int GetMaxAmmo()
     {
