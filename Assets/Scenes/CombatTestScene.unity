@@ -449,9 +449,9 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
   player: {fileID: 368702718}
   flamethrower: 1
-  fireAxe: 1
-  waterCannon: 0
-  taserGun: 1
+  fireAxe: 0
+  waterCannon: 1
+  taserGun: 0
   flamethrowerDamage: 3
   flamethrowerRange: 3
   flamethrowerCooldown: 1
@@ -461,9 +461,14 @@ MonoBehaviour:
   fireAxeAttackRadius: 1
   taserGunDamage: 1
   taserGunRange: 5
-  taserGunStunDuration: 0
-  taserGunCooldown: 0
+  taserGunStunDuration: 2
+  taserGunCooldown: 3
   taserGunAmmoUsage: 1
+  waterCannonDamage: 0
+  waterCannonRange: 5
+  waterCannonKnockbackStrenght: 5
+  waterCannonCooldown: 3
+  waterCannonAmmoUsage: 0
 --- !u!1 &1034404911
 GameObject:
   m_ObjectHideFlags: 0
