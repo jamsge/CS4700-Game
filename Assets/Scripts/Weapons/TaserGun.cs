@@ -8,14 +8,14 @@ public class TaserGun : Weapon
     public static int instanceCount = 0;
 
     //weapon stats
-    public string weaponName;
-    public readonly int MAX_AMMO = 5;
-    public int currentAmmo;
-    public float damage;
-    public float range;
-    public float cooldown;
-    public float stunDuration;
-    public int ammoUsage;
+    private string weaponName;
+    private readonly int MAX_AMMO = 5;
+    private int currentAmmo;
+    private float damage;
+    private float range;
+    private float cooldown;
+    private float stunDuration;
+    private int ammoUsage;
 
     private bool onCooldown = false;
 

@@ -15,13 +15,13 @@ only the UseWeapon method different
         public static int instanceCount = 0;
         
         //weapon stats
-        public string weaponName;
-        public readonly int MAX_AMMO = 100;
-        public int currentAmmo;
-        public float damage;
-        public float range;
-        public int cooldown; //'cooldown' is the interval of time when flamethrower doesn't deal damage
-        public int ammoUsage;
+        private string weaponName;
+        private readonly int MAX_AMMO = 100;
+        private int currentAmmo;
+        private float damage;
+        private float range;
+        private int cooldown; //'cooldown' is the interval of time when flamethrower doesn't deal damage
+        private int ammoUsage;
 
         private bool onCooldown = false;
 

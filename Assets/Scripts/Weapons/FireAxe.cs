@@ -5,10 +5,11 @@ using UnityEngine;
 public class FireAxe : Weapon
 {
     public static int instanceCount = 0;
-    public string weaponName;
-    public float attackSpeed;
-    public float damage;
-    public float attackRadius;
+
+    private string weaponName;
+    private float attackSpeed;
+    private float damage;
+    private float attackRadius;
     
     private bool onCooldown = false;
 

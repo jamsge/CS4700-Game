@@ -14,6 +14,7 @@ public class WeaponManager : MonoBehaviour
     public GameObject player;
     public event Action onWeaponSwitch;
     public event Action onWeaponUse;
+    Transform playerT; //player's transform
 
     [Header("Weapon Avaiability")]
     public bool flamethrower = true;
@@ -44,7 +45,12 @@ public class WeaponManager : MonoBehaviour
     public float taserGunCooldown;
     public int taserGunAmmoUsage = 1;
 
-    Transform playerT; //player's transform
+    [Header("Water Cannon Stats")]
+    public float waterCannonDamage;
+    public float waterCannonRange;
+    //add knockback strenght
+    public int waterCannonCooldown;
+    public int waterCannonAmmoUsage;
 
     void Awake()
     {   //This makes sure there is always one instance of WeaponManager
