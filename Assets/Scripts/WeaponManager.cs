@@ -127,6 +127,10 @@ public class WeaponManager : MonoBehaviour
         {
             weapons.Add(new FireAxe());
         }
+        if (taserGun && (TaserGun.instanceCount == 0))
+        {
+            weapons.Add(new TaserGun());
+        }
         //more tba
     }
 
@@ -140,10 +144,15 @@ public class WeaponManager : MonoBehaviour
         {
             Gizmos.DrawWireCube(playerT.position + playerT.TransformDirection(flamethrowerRange/2, 0, 0), new Vector3(flamethrowerRange, 1, 1));
         }
-        //fireaxe hitbox (approximate)
+        //fireaxe hitbox
         else if (currentWeapon.GetWeaponName() == "Fire Axe")
         {
             Gizmos.DrawWireSphere(playerT.position, fireAxeAttackRadius);
+        }
+        //taser gun hitbox(approximate)
+        else if (currentWeapon.GetWeaponName() == "Taser Gun")
+        {
+            Gizmos.DrawLine(playerT.position, playerT.position + playerT.TransformDirection(taserGunRange,0,0));
         }
     }
 }

@@ -33,11 +33,15 @@ public class TaserGun : Weapon
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && (!onCooldown))
         {
+            currentAmmo -= ammoUsage;
             //cast a long ray
             RaycastHit2D hit = Physics2D.Raycast(playerTransform.position, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
             if (hit)
             {
                 //implement enemy stun
+
+                Debug.Log("HIT"); //debug
+                hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
                 WeaponManager.instance.StartCoroutine(PutOnCooldown());
             }
         }

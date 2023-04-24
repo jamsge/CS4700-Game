@@ -451,17 +451,16 @@ MonoBehaviour:
   flamethrower: 1
   fireAxe: 1
   waterCannon: 0
-  taserGun: 0
+  taserGun: 1
   flamethrowerDamage: 3
   flamethrowerRange: 3
   flamethrowerCooldown: 1
   flamethrowerAmmoUsage: 10
   fireAxeAttackSpeed: 5
   fireAxeDamage: 3
-  fireAxeRange: 1
   fireAxeAttackRadius: 1
-  taserGunDamage: 0
-  taserGunRange: 0
+  taserGunDamage: 1
+  taserGunRange: 5
   taserGunStunDuration: 0
   taserGunCooldown: 0
   taserGunAmmoUsage: 1
