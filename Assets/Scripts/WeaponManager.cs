@@ -14,6 +14,7 @@ public class WeaponManager : MonoBehaviour
     public GameObject player;
     public event Action onWeaponSwitch;
     public event Action onWeaponUse;
+    Transform playerT; //player's transform
 
     [Header("Weapon Avaiability")]
     public bool flamethrower = true;
@@ -28,9 +29,6 @@ public class WeaponManager : MonoBehaviour
     public float flamethrowerRange;
     public int flamethrowerCooldown = 1;
     public int flamethrowerAmmoUsage = 10;
-    //visualizng flamethrower use for debug purposes
-    //temporarily create a non-physical circle object in front of player when flamethrower is used
-    public GameObject ftVisualization;
 
     //more weapons tba 
 
@@ -38,7 +36,6 @@ public class WeaponManager : MonoBehaviour
     [Header("Fire Axe Stats")]
     public float fireAxeAttackSpeed = 0;
     public float fireAxeDamage = 0;
-    public float fireAxeRange = 0;
     public float fireAxeAttackRadius = 1.5f;
 
     [Header("Taser Gun Stats")]
@@ -47,6 +44,13 @@ public class WeaponManager : MonoBehaviour
     public float taserGunStunDuration;
     public float taserGunCooldown;
     public int taserGunAmmoUsage = 1;
+
+    [Header("Water Cannon Stats")]
+    public float waterCannonDamage;
+    public float waterCannonRange;
+    public float waterCannonKnockbackStrenght;
+    public int waterCannonCooldown;
+    public int waterCannonAmmoUsage;
 
     void Awake()
     {   //This makes sure there is always one instance of WeaponManager
@@ -63,13 +67,11 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
-        //debug
-        ftVisualization.GetComponent<Renderer>().enabled = false;
-
         //Temporary until we make weapon inventory and more weapons
         weapons = new List<Weapon>(5);
         player = GameObject.Find("Player");
 
+        playerT = player.GetComponent<Transform>();
         CheckWeaponAvailability();
         currentWeapon = weapons[0];
     }
@@ -78,9 +80,6 @@ public class WeaponManager : MonoBehaviour
     {
         //check available weapons
         CheckWeaponAvailability();
-        //debug
-        ftVisualization.transform.localScale = new Vector3(flamethrowerRange, 1f, 1f);
-        ftVisualization.transform.position = player.transform.position + player.transform.TransformDirection(new Vector3(flamethrowerRange / 2, 0, 0));
 
         player = GameObject.Find("Player"); //player's position might be needed when using a weapon
         float input = Input.GetAxis("Mouse ScrollWheel");  //switch weapons with scroll
@@ -94,7 +93,6 @@ public class WeaponManager : MonoBehaviour
     //Switch weapons with scroll
     void SwitchWeapon(float input)
     {
-        onWeaponSwitch?.Invoke();
         int currentWeaponIndex = weapons.IndexOf(currentWeapon);
         if (input > 0)
         {
@@ -112,13 +110,14 @@ public class WeaponManager : MonoBehaviour
                 currentWeapon = weapons[currentWeaponIndex];
             }
         }
+        onWeaponSwitch?.Invoke();
     }
 
     //This method calls the current weapon's UseWeapon method
     void UseWeapon(){
         if (currentWeapon != null)
         {
-            currentWeapon.UseWeapon(player.transform);
+            currentWeapon.UseWeapon(playerT);
             onWeaponUse?.Invoke();
         }
     }
@@ -134,6 +133,41 @@ public class WeaponManager : MonoBehaviour
         {
             weapons.Add(new FireAxe());
         }
+        if (taserGun && (TaserGun.instanceCount == 0))
+        {
+            weapons.Add(new TaserGun());
+        }
+        if (waterCannon && (WaterCannon.instanceCount == 0))
+        {
+            weapons.Add(new WaterCannon());
+        }
         //more tba
+    }
+
+
+
+    //Gizmos for visualization
+    void OnDrawGizmos()
+    {
+        //flamethrower hitbox (approximate)
+        if (currentWeapon.GetWeaponName() == "Flamethrower")
+        {
+            Gizmos.DrawWireCube(playerT.position + playerT.TransformDirection(flamethrowerRange/2, 0, 0), new Vector3(flamethrowerRange, 1, 1));
+        }
+        //fireaxe hitbox
+        else if (currentWeapon.GetWeaponName() == "Fire Axe")
+        {
+            Gizmos.DrawWireSphere(playerT.position, fireAxeAttackRadius);
+        }
+        //taser gun hitbox(approximate)
+        else if (currentWeapon.GetWeaponName() == "Taser Gun")
+        {
+            Gizmos.DrawLine(playerT.position, playerT.position + playerT.TransformDirection(taserGunRange,0,0));
+        }
+        //water cannon hitbox (approximate)
+        else if (currentWeapon.GetWeaponName() == "Water Cannon")
+        {
+            Gizmos.DrawWireCube(playerT.position + playerT.TransformDirection(waterCannonRange/2, 0, 0), new Vector3(waterCannonRange, 1, 1));
+        }
     }
 }

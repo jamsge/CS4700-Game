@@ -15,13 +15,13 @@ only the UseWeapon method different
         public static int instanceCount = 0;
         
         //weapon stats
-        public string weaponName;
-        public readonly int MAX_AMMO = 100;
-        public int currentAmmo;
-        public float damage;
-        public float range;
-        public int cooldown; //'cooldown' is the interval of time when flamethrower doesn't deal damage
-        public int ammoUsage;
+        private string weaponName;
+        private readonly int MAX_AMMO = 100;
+        private int currentAmmo;
+        private float damage;
+        private float range;
+        private int cooldown; //'cooldown' is the interval of time when flamethrower doesn't deal damage
+        private int ammoUsage;
 
         private bool onCooldown = false;
 
@@ -42,7 +42,6 @@ only the UseWeapon method different
             if (Input.GetKey(KeyCode.Mouse0) && (currentAmmo > 0))
             {
                 Debug.Log("using flamethrower"); //debug
-                WeaponManager.instance.ftVisualization.GetComponent<Renderer>().enabled = true; //debug
                 //cast a circle from in front of the player while button is being held down
                 RaycastHit2D hit = Physics2D.CircleCast(new Vector2(playerTransform.position.x + 1, playerTransform.position.y), 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
                 if (!onCooldown)
@@ -50,19 +49,17 @@ only the UseWeapon method different
                     WeaponManager.instance.StartCoroutine(DealDamage(hit));
                 }
             }
-            else
-            {
-                WeaponManager.instance.ftVisualization.GetComponent<Renderer>().enabled = false; //debug
-            }
         }
 
         //deal damage then wait till damaging again
         private IEnumerator DealDamage(RaycastHit2D hit)
         {
             onCooldown = true;
+            //ammo usage 
             currentAmmo -= ammoUsage;
             if (hit)
             {
+                //deal damage
                 hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
                 Debug.Log("HIT"); //debug
             }
