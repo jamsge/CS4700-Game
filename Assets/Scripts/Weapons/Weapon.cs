@@ -11,4 +11,5 @@ public interface Weapon
     void SetCurrentAmmo(int ammo);
     int GetCurrentAmmo();
     string GetWeaponName();
+    void Upgrade();
 }

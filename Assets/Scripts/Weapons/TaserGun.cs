@@ -85,4 +85,6 @@ public class TaserGun : Weapon
     {
         return this.weaponName;
     }
+
+    public void Upgrade(){}
 }

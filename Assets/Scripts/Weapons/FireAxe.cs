@@ -67,4 +67,6 @@ public class FireAxe : Weapon
         //Not implemented
         return 0;
     }
+
+    public void Upgrade(){}
 }
