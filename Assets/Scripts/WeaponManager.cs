@@ -196,7 +196,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    //Upgrade weapon - find weapon by name
+    //Upgrade weapon - find weapon by name - Has to be called from shop script where upgrades are obtained
     public void UpgradeWeapon(string weaponName)
     {
         foreach (Weapon w in weapons)

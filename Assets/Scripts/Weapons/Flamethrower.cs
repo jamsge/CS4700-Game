@@ -89,7 +89,10 @@ only the UseWeapon method different
 
         public void Upgrade()
         {
-            
+            this.damage = WeaponManager.instance.flamethrowerDamageU;
+            this.ammoUsage = WeaponManager.instance.flamethrowerAmmoUsageU;
+            this.cooldown = WeaponManager.instance.flamethrowerCooldownU;
+            this.range = WeaponManager.instance.flamethrowerRangeU;
         }
     }
 

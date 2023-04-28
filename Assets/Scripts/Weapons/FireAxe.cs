@@ -68,5 +68,10 @@ public class FireAxe : Weapon
         return 0;
     }
 
-    public void Upgrade(){}
+    public void Upgrade()
+    {
+        this.attackRadius = WeaponManager.instance.fireAxeAttackRadiusU;
+        this.damage = WeaponManager.instance.fireAxeDamageU;
+        this.attackSpeed = WeaponManager.instance.fireAxeAttackSpeedU;
+    }
 }

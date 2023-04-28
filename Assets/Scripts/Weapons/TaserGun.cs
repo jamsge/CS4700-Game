@@ -86,5 +86,11 @@ public class TaserGun : Weapon
         return this.weaponName;
     }
 
-    public void Upgrade(){}
+    public void Upgrade()
+    {
+        this.damage = WeaponManager.instance.taserGunDamageU;
+        this.range = WeaponManager.instance.taserGunRangeU;
+        this.stunDuration = WeaponManager.instance.taserGunStunDurationU;
+        this.ammoUsage = WeaponManager.instance.taserGunAmmoUsageU;
+    }
 }
