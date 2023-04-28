@@ -50,11 +50,31 @@ public class WeaponManager : MonoBehaviour
     public int waterCannonCooldown;
     public int waterCannonAmmoUsage;
 
-    [SerializeField] struct FlamethrowerUpgrades
-    {
-        //RESTRUCTURE STATS IN GENERAL
-    }
-    
+    //UPGRADE STATS
+    [Header("Flamethrower Upgraded Stats")]
+    public float flamethrowerDamageU;
+    public float flamethrowerRangeU;
+    public int flamethrowerCooldownU;
+    public int flamethrowerAmmoUsageU;
+
+    [Header("Fire Axe Upgraded Stats")]
+    public float fireAxeAttackSpeedU;
+    public float fireAxeDamageU;
+    public float fireAxeAttackRadiusU;
+
+    [Header("Taser Gun Upgraded Stats")]
+    public float taserGunDamageU;
+    public float taserGunRangeU;
+    public float taserGunStunDurationU;
+    public float taserGunCooldownU;
+    public int taserGunAmmoUsageU;
+
+    [Header("Water Cannon Upgraded Stats")]
+    public float waterCannonDamageU;
+    public float waterCannonRangeU;
+    public float waterCannonKnockbackStrengthU;
+    public int waterCannonCooldownU;
+    public int waterCannonAmmoUsageU; 
 
     void Awake()
     {   //This makes sure there is always one instance of WeaponManager

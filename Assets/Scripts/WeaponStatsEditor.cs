@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(WeaponManager))]
 public class WeaponStatsEditor : Editor
@@ -40,28 +41,44 @@ public class WeaponStatsEditor : Editor
 
     void DisplayBaseInfo()
     {
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerDamage"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerRange"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerCooldown"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerAmmoUsage"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeAttackSpeed"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeDamage"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeAttackRadius"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunDamage"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunRange"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunStunDuration"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunCooldown"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunAmmoUsage"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonDamage"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonRange"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerDamage"), new GUIContent("Damage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerRange"), new GUIContent("Range"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerCooldown"), new GUIContent("Cooldown"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerAmmoUsage"), new GUIContent("Ammo Usage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeAttackSpeed"), new GUIContent("Attack Speed"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeDamage"), new GUIContent("Damage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeAttackRadius"), new GUIContent("Attack Radius"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunDamage"), new GUIContent("Damage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunRange"), new GUIContent("Range"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunStunDuration"), new GUIContent("Stun Duration"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunCooldown"), new GUIContent("Cooldown"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunAmmoUsage"), new GUIContent("Ammo Usage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonDamage"), new GUIContent("Damage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonRange"), new GUIContent("Range"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonKnockbackStrength"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonCooldown"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonAmmoUsage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonCooldown"), new GUIContent("Cooldown"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonAmmoUsage"), new GUIContent("Ammo Usage"));
     }
 
     void DisplayUpgradedInfo()
     {
-        //tba
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerDamageU"), new GUIContent("Damage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerRangeU"), new GUIContent("Range"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerCooldownU"), new GUIContent("Cooldown"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerAmmoUsageU"), new GUIContent("Ammo Usage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeAttackSpeedU"), new GUIContent("Attack Speed"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeDamageU"), new GUIContent("Damage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeAttackRadiusU"), new GUIContent("Attack Radius"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunDamageU"), new GUIContent("Damage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunRangeU"), new GUIContent("Range"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunStunDurationU"), new GUIContent("Stun Duration"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunCooldownU"), new GUIContent("Cooldown"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunAmmoUsageU"), new GUIContent("Ammo Usage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonDamageU"), new GUIContent("Damage"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonRangeU"), new GUIContent("Range"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonKnockbackStrengthU"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonCooldownU"), new GUIContent("Cooldown"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonAmmoUsageU"), new GUIContent("Ammo Usage"));
     }
     
 }

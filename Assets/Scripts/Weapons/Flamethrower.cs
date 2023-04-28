@@ -87,6 +87,9 @@ only the UseWeapon method different
             return this.weaponName;
         }
 
-        public void Upgrade(){}
+        public void Upgrade()
+        {
+            
+        }
     }
 
