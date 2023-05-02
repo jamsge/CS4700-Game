@@ -466,7 +466,7 @@ MonoBehaviour:
   taserGunAmmoUsage: 1
   waterCannonDamage: 0
   waterCannonRange: 5
-  waterCannonKnockbackStrenght: 5
+  waterCannonKnockbackStrength: 0
   waterCannonCooldown: 3
   waterCannonAmmoUsage: 0
 --- !u!1 &1034404911

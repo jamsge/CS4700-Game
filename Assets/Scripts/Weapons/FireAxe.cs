@@ -67,4 +67,21 @@ public class FireAxe : Weapon
         //Not implemented
         return 0;
     }
+
+    public void Upgrade()
+    {
+        this.attackRadius = WeaponManager.instance.fireAxeAttackRadiusU;
+        this.damage = WeaponManager.instance.fireAxeDamageU;
+        this.attackSpeed = WeaponManager.instance.fireAxeAttackSpeedU;
+    }
+
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
+    }
+
+    public float GetDamage()
+    {
+        return this.damage;
+    }
 }

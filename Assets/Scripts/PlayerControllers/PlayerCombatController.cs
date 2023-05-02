@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
+    public PlayerData playerData;
     public float meleeCooldown = 0.5f;
     public float meleeDistance = 1f;
+    public float meleeDamageBase = 1f;
+    float meleeDamage;
     Transform t;
     int layerMask;
     bool meleeOnCooldown = false;
@@ -14,10 +17,14 @@ public class PlayerCombatController : MonoBehaviour
     {
         t = GetComponent<Transform>();
         layerMask = 1 << 3; //Enemy layer
+        meleeDamage = meleeDamageBase;
     }
     
     void Update()
     {
+        //update damage - check for upgrade
+        meleeDamage = meleeDamageBase + playerData.damageBoost;
+
         Debug.DrawRay(t.position, t.TransformDirection(Vector3.right * meleeDistance), Color.white); //debug - roughly visualizes melee attack distance
         if (Input.GetKeyDown(KeyCode.Q) && !meleeOnCooldown)
         {
@@ -35,7 +42,7 @@ public class PlayerCombatController : MonoBehaviour
         {
             print("HIT"); //debug
             print(hit.collider.gameObject); //debug - print whatever object was hit
-            hit.collider.gameObject.GetComponent<EnemyController>().health -= 1; //decrease enemy health; thanks to the enemy layer, the object that was hit is always an enemy and has health attribute
+            hit.collider.gameObject.GetComponent<EnemyController>().health -= meleeDamage; //decrease enemy health; thanks to the enemy layer, the object that was hit is always an enemy and has health attribute
         }
         yield return new WaitForSeconds(meleeCooldown);
         meleeOnCooldown = false;

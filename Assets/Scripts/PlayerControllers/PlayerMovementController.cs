@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] public PlayerData playerData;
-    [SerializeField] public float sprintMaxSpeed = 10f;
-    [SerializeField] public float defaultMaxSpeed = 5f;
+    [SerializeField] public float defaultMaxSpeed;
+    [SerializeField] public float sprintMaxSpeed;
     [SerializeField] public float dashSpeed = 20f;
     [SerializeField] public float dashDistance = 2f;
     [SerializeField] public float dashCooldown = 1f;
@@ -28,6 +28,8 @@ public class PlayerMovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        defaultMaxSpeed = playerData.defaultMaxSpeed;
+        sprintMaxSpeed = 2 * defaultMaxSpeed;
         maxSpeed = defaultMaxSpeed;
         r2d = GetComponent<Rigidbody2D>();
         t = GetComponent<Transform>();
@@ -48,6 +50,7 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         //sprint
+        sprintMaxSpeed = 2 * defaultMaxSpeed;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             maxSpeed = sprintMaxSpeed;

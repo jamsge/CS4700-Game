@@ -31,7 +31,7 @@ public class WaterCannon : Weapon
         this.range = WeaponManager.instance.waterCannonRange;
         this.cooldown = WeaponManager.instance.waterCannonCooldown;
         this.ammoUsage = WeaponManager.instance.waterCannonAmmoUsage;
-        this.knockbackStrength = WeaponManager.instance.waterCannonKnockbackStrenght;
+        this.knockbackStrength = WeaponManager.instance.waterCannonKnockbackStrength;
         this.weaponName = "Water Cannon";
         instanceCount += 1;
     }
@@ -82,5 +82,24 @@ public class WaterCannon : Weapon
     public string GetWeaponName()
     {
         return this.weaponName;
+    }
+
+    public void Upgrade()
+    {
+        this.damage = WeaponManager.instance.waterCannonDamageU;
+        this.range = WeaponManager.instance.waterCannonRangeU;
+        this.cooldown = WeaponManager.instance.waterCannonCooldownU;
+        this.ammoUsage = WeaponManager.instance.waterCannonAmmoUsageU;
+        this.knockbackStrength = WeaponManager.instance.waterCannonKnockbackStrengthU;
+    }
+
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
+    }
+
+    public float GetDamage()
+    {
+        return this.damage;
     }
 }

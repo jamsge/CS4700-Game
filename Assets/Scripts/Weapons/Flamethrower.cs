@@ -86,5 +86,23 @@ only the UseWeapon method different
         {
             return this.weaponName;
         }
+
+        public void Upgrade()
+        {
+            this.damage = WeaponManager.instance.flamethrowerDamageU;
+            this.ammoUsage = WeaponManager.instance.flamethrowerAmmoUsageU;
+            this.cooldown = WeaponManager.instance.flamethrowerCooldownU;
+            this.range = WeaponManager.instance.flamethrowerRangeU;
+        }
+
+        public void SetDamage(float damage)
+        {
+            this.damage = damage;
+        }
+
+        public float GetDamage()
+        {
+            return this.damage;
+        }
     }
 
