@@ -12,4 +12,6 @@ public interface Weapon
     int GetCurrentAmmo();
     string GetWeaponName();
     void Upgrade();
+    void SetDamage(float damage);
+    float GetDamage();
 }

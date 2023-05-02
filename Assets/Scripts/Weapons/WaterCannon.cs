@@ -92,4 +92,14 @@ public class WaterCannon : Weapon
         this.ammoUsage = WeaponManager.instance.waterCannonAmmoUsageU;
         this.knockbackStrength = WeaponManager.instance.waterCannonKnockbackStrengthU;
     }
+
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
+    }
+
+    public float GetDamage()
+    {
+        return this.damage;
+    }
 }

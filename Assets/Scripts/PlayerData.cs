@@ -4,8 +4,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerData : ScriptableObject
 {
-    [SerializeField] private int baseHealth = 3;
+    public int baseHealth = 3;
     public int health;
+    public float defaultMaxSpeed = 5f; //walk speed
+    public float damageBoost = 0;
     public event Action<int> onPlayerHealthSet;
     public event Action onPlayerHit;
     public event Action onPlayerDeath;

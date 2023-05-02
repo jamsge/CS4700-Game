@@ -74,4 +74,14 @@ public class FireAxe : Weapon
         this.damage = WeaponManager.instance.fireAxeDamageU;
         this.attackSpeed = WeaponManager.instance.fireAxeAttackSpeedU;
     }
+
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
+    }
+
+    public float GetDamage()
+    {
+        return this.damage;
+    }
 }

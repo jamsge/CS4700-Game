@@ -203,15 +203,18 @@ public class WeaponManager : MonoBehaviour
         {
             if (w.GetWeaponName() == weaponName)
             {
-                Upgrade(w);
+                //Call weapon's upgrade method
+                w.Upgrade();
                 break;
             }
         }
     }
 
-    //Call weapon's upgrade method
-    private void Upgrade(Weapon weapon)
+    public void UpgradeDamage()
     {
-        weapon.Upgrade();
+        foreach (Weapon w in weapons)
+        {
+            w.SetDamage(w.GetDamage() + playerData.damageBoost);
+        }
     }
 }
