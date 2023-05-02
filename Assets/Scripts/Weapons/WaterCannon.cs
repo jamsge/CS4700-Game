@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WaterCannon : Weapon
 {
@@ -45,7 +46,14 @@ public class WaterCannon : Weapon
             {
                 Debug.Log("HIT"); //debug
                 //damage and ammo use
-                hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                try
+                {
+                    hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                }
+                catch (Exception e)
+                {
+                    hit.collider.gameObject.GetComponent<BossController>().health -= damage;
+                }
                 currentAmmo -= ammoUsage;
                 //knock back enemy
                 Rigidbody2D enemyRB = hit.collider.gameObject.GetComponent<Rigidbody2D>();

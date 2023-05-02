@@ -11,9 +11,9 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public float dashSpeed = 20f;
     [SerializeField] public float dashDistance = 2f;
     [SerializeField] public float dashCooldown = 1f;
+    [SerializeField] public float jumpHeight = 7f;
     public Camera cam;
     private float maxSpeed;
-    private float jumpHeight = 7f;
     private bool dashOnCooldown = false;
 
     float moveDirection = 0;

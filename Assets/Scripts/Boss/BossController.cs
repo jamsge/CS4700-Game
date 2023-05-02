@@ -9,12 +9,18 @@ public class BossController : MonoBehaviour
         First,Second,Third
     } */
 
+    public GameObject player;
+
     public float baseHealth;
     public float health;
+    public float speed;
 
     public FirstPhase phase1;
     public SecondPhase phase2;
     public ThirdPhase phase3;
+
+    Transform t;
+    Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +28,29 @@ public class BossController : MonoBehaviour
         health = baseHealth;
         phase2.enabled = false;
         phase3.enabled = false;
+        t = gameObject.GetComponent<Transform>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    // Update switches boss phases and checks health
+    // Update switches boss phases, checks health, and makes boss move towards player
     void Update()
     {
+        //move towards player
+        Vector3 direction = new Vector3(player.transform.position.x - t.position.x, 0, 0);
+        direction.Normalize();
+        rb.velocity = direction * speed;
+
+        //Face player
+        if (player.transform.position.x > t.position.x)
+        {
+            t.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
+        else
+        {
+            t.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+        }
+
+        //check if transfer to next phase
         if ((health <= (baseHealth * 0.7f)) && (health > (baseHealth * 0.3f)))
         {
             phase1.enabled = false;

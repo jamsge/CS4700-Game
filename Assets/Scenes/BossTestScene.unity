@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 585719113}
   - component: {fileID: 585719112}
   - component: {fileID: 585719111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,6 +770,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40661502eda83a4ab19417da03a8ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 585719110}
+  attackCooldown: 3
+  attackHeight: 2
+  attackRange: 5
+  attackKnockbackStrength: 3
 --- !u!114 &1929933680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,6 +787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b283089ff1d3ff4a8567e4e9a25748f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 585719110}
+  baseHealth: 100
+  health: 0
+  speed: 0.5
   phase1: {fileID: 1929933679}
   phase2: {fileID: 1929933682}
   phase3: {fileID: 1929933681}

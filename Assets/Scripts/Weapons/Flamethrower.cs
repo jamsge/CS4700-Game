@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Windows;
+using System;
 
 /*
 Base weapon: Flamethrower
@@ -60,7 +60,14 @@ only the UseWeapon method different
             if (hit)
             {
                 //deal damage
-                hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                try
+                {
+                    hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                }
+                catch (Exception e)
+                {
+                    hit.collider.gameObject.GetComponent<BossController>().health -= damage;
+                }
                 Debug.Log("HIT"); //debug
             }
             yield return new WaitForSeconds(cooldown);

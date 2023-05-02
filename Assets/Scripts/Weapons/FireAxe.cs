@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class FireAxe : Weapon
 {
@@ -39,7 +40,14 @@ public class FireAxe : Weapon
         if (hit)
         {
             //deal damage
-            hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+            try
+            {
+                hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+            }
+            catch (Exception e)
+            {
+                hit.collider.gameObject.GetComponent<BossController>().health -= damage;
+            }
             Debug.Log("HIT"); //debug
         }
         yield return new WaitForSeconds(10 / attackSpeed); //higher attack speed => lower cooldown, this might be changed later
