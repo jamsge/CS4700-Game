@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 581ce57e74829a743abcc3f45d875b8b, type: 3}
-  m_Name: Item1
+  m_Name: Painkillers
   m_EditorClassIdentifier: 
-  title: Item 1
-  description: The First Item
+  title: Painkillers
+  description: Regenerate Small Amount of Health and Temporarily Increase Defense
   baseCost: 10
