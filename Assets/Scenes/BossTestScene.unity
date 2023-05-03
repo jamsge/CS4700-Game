@@ -157,7 +157,7 @@ MonoBehaviour:
   flamethrower: 1
   fireAxe: 0
   waterCannon: 1
-  taserGun: 0
+  taserGun: 1
   flamethrowerDamage: 3
   flamethrowerRange: 3
   flamethrowerCooldown: 1
@@ -170,9 +170,9 @@ MonoBehaviour:
   taserGunStunDuration: 2
   taserGunCooldown: 3
   taserGunAmmoUsage: 1
-  waterCannonDamage: 0
+  waterCannonDamage: 5
   waterCannonRange: 5
-  waterCannonKnockbackStrength: 0
+  waterCannonKnockbackStrength: 3
   waterCannonCooldown: 3
   waterCannonAmmoUsage: 0
   flamethrowerDamageU: 0
@@ -262,6 +262,7 @@ MonoBehaviour:
   dashSpeed: 20
   dashDistance: 2
   dashCooldown: 1
+  jumpHeight: 20
   cam: {fileID: 1515268889}
 --- !u!61 &585719113
 BoxCollider2D:
@@ -370,7 +371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585719110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.4, y: -1.4, z: 0}
+  m_LocalPosition: {x: -6.26, y: -1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -637,7 +638,7 @@ GameObject:
   - component: {fileID: 1929933679}
   - component: {fileID: 1929933682}
   - component: {fileID: 1929933681}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
