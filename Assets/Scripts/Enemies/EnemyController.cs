@@ -10,7 +10,9 @@ public class EnemyController : MonoBehaviour
     public float damage;
     public float baseHealth;
     public float health;
-    public float detectionDistance;    
+    public float detectionDistance; //might be interpreted differently by different types of enemies
+    public float idleMoveArea;
+
     void Start()
     {
         health = baseHealth;
@@ -34,4 +36,9 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
         //tba maybe item drops
     }   
+
+    public void Idle()
+    {
+
+    }
 }
