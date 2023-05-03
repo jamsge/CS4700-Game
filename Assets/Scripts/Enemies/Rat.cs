@@ -10,7 +10,7 @@ public class Rat : MonoBehaviour
     public float attackCooldown;
     bool playerDetected;
 
-    //[HideInInspector]
+    [HideInInspector]
     public Transform t;
     [HideInInspector]
     public Rigidbody2D rb;

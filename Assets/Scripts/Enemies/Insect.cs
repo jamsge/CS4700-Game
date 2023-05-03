@@ -11,7 +11,7 @@ public class Insect : Rat
         moveDirection.Normalize();
         rb.velocity = (Vector2)moveDirection * ec.speed;
 
-        //add facing player
+        RotateTowardsPlayer();
     }
 
     public override IEnumerator Attack()
@@ -34,6 +34,15 @@ public class Insect : Rat
         }
         yield return new WaitForSeconds(attackCooldown);
         attacking = false;
+    }
+
+    void RotateTowardsPlayer()
+    {
+        var offset = 90f;
+        Vector2 direction = player.transform.position - t.position;
+        direction.Normalize();
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;       
+        t.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
     }
 
     public override void OnDrawGizmos()
