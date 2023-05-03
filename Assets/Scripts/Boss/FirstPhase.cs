@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FirstPhase : MonoBehaviour
 {   
-    public GameObject player;
-    public PlayerData playerData;
+    GameObject player;
+    PlayerData playerData;
     public float attackCooldown; 
     public float attackPrepareTime;
     public float attackHeight;
@@ -19,6 +19,8 @@ public class FirstPhase : MonoBehaviour
 
     void Start()
     {
+        player = gameObject.GetComponent<BossController>().player;
+        playerData = gameObject.GetComponent<BossController>().playerData;
         t = gameObject.GetComponent<Transform>();
         rb = gameObject.GetComponent<Rigidbody2D>();
     }

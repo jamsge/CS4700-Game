@@ -10,6 +10,7 @@ public class BossController : MonoBehaviour
     } */
 
     public GameObject player;
+    public PlayerData playerData;
 
     public float baseHealth;
     public float health;
@@ -36,9 +37,10 @@ public class BossController : MonoBehaviour
     void Update()
     {
         //move towards player
-        Vector3 direction = new Vector3(player.transform.position.x - t.position.x, 0, 0);
-        direction.Normalize();
-        rb.velocity = direction * speed;
+/*         Vector3 direction = new Vector3(player.transform.position.x - t.position.x, 0, 0);
+        direction.Normalize(); */
+        t.Translate(Vector3.right * speed * Time.deltaTime);
+
 
         //Face player
         if (player.transform.position.x > t.position.x)
@@ -51,9 +53,9 @@ public class BossController : MonoBehaviour
         }
 
         //check if transfer to next phase
-        if ((health <= (baseHealth * 0.7f)) && (health > (baseHealth * 0.3f)))
+/*         if ((health <= (baseHealth * 0.7f)) && (health > (baseHealth * 0.3f)))
         {
-            phase1.enabled = false;
+            phase1.enabled = true;
             phase2.enabled = true;
             phase3.enabled = false;
         }
@@ -68,7 +70,7 @@ public class BossController : MonoBehaviour
             phase1.enabled = true;
             phase2.enabled = false;
             phase3.enabled = false;
-        }
+        } */
 
         if (health <= 0)
         {
@@ -78,6 +80,6 @@ public class BossController : MonoBehaviour
 
     void OnDeath()
     {
-        //TBA
+        
     }
 }

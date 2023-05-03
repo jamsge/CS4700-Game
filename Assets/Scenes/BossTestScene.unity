@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 1103018511}
   - component: {fileID: 1103018510}
   - component: {fileID: 1103018509}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,11 +771,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40661502eda83a4ab19417da03a8ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 585719110}
   attackCooldown: 3
-  attackHeight: 2
-  attackRange: 5
+  attackPrepareTime: 1
+  attackHeight: 3
+  attackRange: 10
   attackKnockbackStrength: 3
+  attackDamage: 1
+  playerMovementDisableDuration: 0.5
 --- !u!114 &1929933680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 585719110}
+  playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
   baseHealth: 100
   health: 0
   speed: 0.5
