@@ -42,7 +42,7 @@ public class FireAxe : Weapon
             //deal damage
             try
             {
-                hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                hit.collider.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
             }
             catch (Exception e)
             {

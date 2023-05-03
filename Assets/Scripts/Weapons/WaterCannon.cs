@@ -48,7 +48,7 @@ public class WaterCannon : Weapon
                 //damage and ammo use
                 try
                 {
-                    hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                    hit.collider.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
                 }
                 catch (Exception e)
                 {
