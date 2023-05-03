@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 1103018511}
   - component: {fileID: 1103018510}
   - component: {fileID: 1103018509}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -752,7 +752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929933674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.858014, y: -0.14211, z: 0}
+  m_LocalPosition: {x: -0.858014, y: -0.52, z: 0}
   m_LocalScale: {x: 2.7413, y: 2.7413, z: 2.7413}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -766,16 +766,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929933674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e40661502eda83a4ab19417da03a8ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 585719110}
   attackCooldown: 3
-  attackHeight: 2
-  attackRange: 5
+  attackPrepareTime: 1
+  attackHeight: 3
+  attackRange: 10
   attackKnockbackStrength: 3
+  attackDamage: 1
+  playerMovementDisableDuration: 0.5
 --- !u!114 &1929933680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 585719110}
+  playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
   baseHealth: 100
   health: 0
   speed: 0.5
@@ -802,7 +805,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929933674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26df9df373728774aaea1d7897517826, type: 3}
   m_Name: 
@@ -819,3 +822,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bea508f9830bc54689d55d44edfa991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpHeight: 10
+  attackRange: 0
+  attackHeight: 0
+  attackDamage: 0
+  attackLaunchStrength: 0
+  attackCooldown: 5
+  playerMovementDisableDuration: 0
