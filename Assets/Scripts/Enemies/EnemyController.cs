@@ -9,7 +9,8 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public float damage;
     public float baseHealth;
-    public float health;    
+    public float health;
+    public float detectionDistance;    
     void Start()
     {
         health = baseHealth;

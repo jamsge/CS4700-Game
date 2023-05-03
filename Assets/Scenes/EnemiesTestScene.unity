@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 1468001017}
   - component: {fileID: 1468001016}
   - component: {fileID: 1468001015}
+  - component: {fileID: 1468001019}
   m_Layer: 3
   m_Name: Rat
   m_TagString: Untagged
@@ -706,6 +707,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1468001019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468001014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e1ccc94e931db4a8a356343bedec86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 467995626}
+  playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
+  speed: 0
+  damage: 0
+  baseHealth: 0
+  health: 0
 --- !u!1 &1664725346
 GameObject:
   m_ObjectHideFlags: 0
