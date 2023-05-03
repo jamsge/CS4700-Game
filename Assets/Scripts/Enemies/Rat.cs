@@ -9,12 +9,19 @@ public class Rat : MonoBehaviour
     public float attackRange;
     public float attackCooldown;
     bool playerDetected;
-    Transform t;
-    Rigidbody2D rb;
-    GameObject player;
-    PlayerData playerData;
-    float positionDiff; //difference in positions of player and this enemy\
-    bool attacking = false;
+
+    //[HideInInspector]
+    public Transform t;
+    [HideInInspector]
+    public Rigidbody2D rb;
+    [HideInInspector]
+    public GameObject player;
+    [HideInInspector]
+    public PlayerData playerData;
+    [HideInInspector]
+    public float positionDiff; //difference in positions of player and this enemy
+    [HideInInspector]
+    public bool attacking = false;
     void Start()
     {
         t = ec.gameObject.GetComponent<Transform>();
@@ -26,7 +33,7 @@ public class Rat : MonoBehaviour
     void Update()
     {
         //check if player detected
-        positionDiff = Mathf.Abs(player.transform.position.x - t.position.x);
+        positionDiff = Vector3.Distance(player.transform.position, t.position);
         if (positionDiff <= ec.detectionDistance)
         {
             playerDetected = true;
@@ -39,6 +46,10 @@ public class Rat : MonoBehaviour
         if (playerDetected)
         {
             OnDetection();
+        }
+        else
+        {
+            ec.Idle();
         }
     }
 
@@ -56,7 +67,7 @@ public class Rat : MonoBehaviour
         }
     }
 
-    void MoveTowardsPlayer()
+    public virtual void MoveTowardsPlayer()
     {
         Vector3 moveDirection = player.transform.position - t.position;
         moveDirection.y = 0;
@@ -74,7 +85,7 @@ public class Rat : MonoBehaviour
         }
     }
 
-    IEnumerator Attack()
+    public virtual IEnumerator Attack()
     {
         attacking = true;
         //quick attack to the side
@@ -82,6 +93,7 @@ public class Rat : MonoBehaviour
         print("RAT ATTACKS"); //debug
         if (hit)
         {
+            print("PLAYER HIT"); //debug
             playerData.takeHit((int)attackDamage);
         }
         yield return new WaitForSeconds(attackCooldown);
@@ -89,7 +101,7 @@ public class Rat : MonoBehaviour
     }
 
     //visualize attack range
-    void OnDrawGizmos()
+    public virtual void OnDrawGizmos()
     {
         if (t != null)
             Gizmos.DrawLine(t.position, t.position + t.TransformDirection(new Vector3(attackRange, 0, 0)));

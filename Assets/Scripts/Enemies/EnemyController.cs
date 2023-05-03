@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     public float baseHealth;
     public float health;
     public float detectionDistance; //might be interpreted differently by different types of enemies
-    public float idleMoveArea;
+    public float idleMoveAreaBounds;
 
     void Start()
     {
@@ -39,6 +39,7 @@ public class EnemyController : MonoBehaviour
 
     public void Idle()
     {
-
+        //TEMPORARY
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0,0,0);
     }
 }
