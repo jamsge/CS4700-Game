@@ -263,7 +263,6 @@ MonoBehaviour:
   dashDistance: 2
   dashCooldown: 1
   jumpHeight: 20
-  cam: {fileID: 1515268889}
 --- !u!61 &585719113
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -500,6 +499,7 @@ GameObject:
   - component: {fileID: 1515268890}
   - component: {fileID: 1515268889}
   - component: {fileID: 1515268888}
+  - component: {fileID: 1515268891}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -573,6 +573,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1515268891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515268887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f01e21abeb0c84681c3a469f4eb165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 585719110}
 --- !u!1 &1818954522
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +651,7 @@ GameObject:
   - component: {fileID: 1929933679}
   - component: {fileID: 1929933682}
   - component: {fileID: 1929933681}
+  - component: {fileID: 1929933683}
   m_Layer: 3
   m_Name: Boss
   m_TagString: Untagged
@@ -823,9 +837,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 10
-  attackRange: 0
-  attackHeight: 0
-  attackDamage: 0
-  attackLaunchStrength: 0
+  attackRange: 5
+  attackHeight: 2
+  attackDamage: 2
+  attackLaunchStrength: 10
   attackCooldown: 5
-  playerMovementDisableDuration: 0
+--- !u!114 &1929933683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929933674}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7610de738b8744585bad570072395b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

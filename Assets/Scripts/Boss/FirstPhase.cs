@@ -49,7 +49,7 @@ public class FirstPhase : MonoBehaviour
         if (hit)
         {
             playerData.takeHit(attackDamage); //damage player
-            Rigidbody2D playerRB = hit.collider.gameObject.GetComponent<Rigidbody2D>(); //get player's rigidbody
+            Rigidbody2D playerRB = player.GetComponent<Rigidbody2D>(); //get player's rigidbody
             print("BOSS HIT PLAYER"); //debug
             player.GetComponent<PlayerMovementController>().enabled = false; //disable player movement during knockback
             playerRB.velocity = (Vector2)t.TransformDirection(Vector3.right) * attackKnockbackStrength; //knock back player
