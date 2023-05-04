@@ -500,6 +500,8 @@ GameObject:
   - component: {fileID: 818106034}
   - component: {fileID: 818106033}
   - component: {fileID: 818106032}
+  - component: {fileID: 818106037}
+  - component: {fileID: 818106036}
   m_Layer: 3
   m_Name: Survivor
   m_TagString: Untagged
@@ -621,6 +623,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &818106036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818106031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4294fe76f3df6b94d8b7afaceb9b865f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ec: {fileID: 818106037}
+  attackDamage: 0
+  attackRange: 0
+  attackCooldown: 3
+  chaseSpeed: 5
+  chaseTime: 2
+--- !u!114 &818106037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818106031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e1ccc94e931db4a8a356343bedec86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerData: {fileID: 0}
+  idleSpeed: 2
+  baseHealth: 10
+  health: 0
+  detectionDistance: 5
+  idleMoveAreaBounds: 1
+  t: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &930480991
 GameObject:
   m_ObjectHideFlags: 0

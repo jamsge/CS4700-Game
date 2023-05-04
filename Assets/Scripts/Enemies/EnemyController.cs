@@ -8,7 +8,6 @@ public class EnemyController : MonoBehaviour
     public GameObject player;
     public PlayerData playerData;
     public float idleSpeed;
-    public float damage;
     public float baseHealth;
     public float health;
     public float detectionDistance; //might be interpreted differently by different types of enemies
