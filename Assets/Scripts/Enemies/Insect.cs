@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Inherits from rat because of similar behavior
 public class Insect : Rat
 {
     public float attackPrepareTime;
@@ -9,7 +11,7 @@ public class Insect : Rat
     {
         Vector3 moveDirection = player.transform.position - t.position;
         moveDirection.Normalize();
-        rb.velocity = (Vector2)moveDirection * ec.speed;
+        rb.velocity = (Vector2)moveDirection * chaseSpeed;
 
         RotateTowardsPlayer();
     }

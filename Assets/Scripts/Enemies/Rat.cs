@@ -8,6 +8,7 @@ public class Rat : MonoBehaviour
     public float attackDamage;
     public float attackRange;
     public float attackCooldown;
+    public float chaseSpeed;
     bool playerDetected;
 
     [HideInInspector]
@@ -24,8 +25,8 @@ public class Rat : MonoBehaviour
     public bool attacking = false;
     void Start()
     {
-        t = ec.gameObject.GetComponent<Transform>();
-        rb = ec.gameObject.GetComponent<Rigidbody2D>();
+        t = ec.t;
+        rb = ec.rb;
         player = ec.player;
         playerData = ec.playerData;
     }
@@ -72,7 +73,7 @@ public class Rat : MonoBehaviour
         Vector3 moveDirection = player.transform.position - t.position;
         moveDirection.y = 0;
         moveDirection.Normalize();
-        rb.velocity = (Vector2)moveDirection * ec.speed;
+        rb.velocity = (Vector2)moveDirection * chaseSpeed;
 
         //face player
         if (moveDirection.x == 1)
