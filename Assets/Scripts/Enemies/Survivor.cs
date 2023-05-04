@@ -54,6 +54,7 @@ public class Survivor : MonoBehaviour
 
     void OnDetection()
     {
+        Attack();
         MoveTowardsPlayer();
         if (!onCooldown)
         {
@@ -86,6 +87,15 @@ public class Survivor : MonoBehaviour
         else
         {
             t.rotation = Quaternion.Euler(new Vector3(0,180,0));
+        }
+    }
+
+    void Attack()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(t.position, attackRange, t.TransformDirection(Vector3.right), 0, 1 << 6);
+        if (hit)
+        {
+            print("PLAYER HIT"); //debug
         }
     }
 
