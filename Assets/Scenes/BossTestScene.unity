@@ -824,6 +824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26df9df373728774aaea1d7897517826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUntilNextSpawn: 10
+  waterMonster: {fileID: 8999295674020570093, guid: 34fb5b970ca742241b1da897ec08012b, type: 3}
+  spawnLocation: {x: 1.96, y: -1.36, z: 0}
 --- !u!114 &1929933682
 MonoBehaviour:
   m_ObjectHideFlags: 0
