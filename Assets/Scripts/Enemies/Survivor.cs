@@ -10,8 +10,10 @@ public class Survivor : MonoBehaviour
     public float attackCooldown;
     public float chaseSpeed;
     public float chaseTime;
+    public float playerStunDuration;
     Transform t;
     Rigidbody2D rb;
+    Collider2D coll;
     GameObject player;
     PlayerData playerData;
     bool playerDetected;
@@ -23,6 +25,7 @@ public class Survivor : MonoBehaviour
     {
         t = ec.t;
         rb = ec.rb;
+        coll = gameObject.GetComponent<Collider2D>();
         player = ec.player;
         playerData = ec.playerData;
     }
@@ -54,10 +57,10 @@ public class Survivor : MonoBehaviour
 
     void OnDetection()
     {
-        Attack();
-        MoveTowardsPlayer();
+        StartCoroutine(Attack());
         if (!onCooldown)
         {
+            MoveTowardsPlayer();
             StartCoroutine(Cooldown());
         }
     }
@@ -90,20 +93,26 @@ public class Survivor : MonoBehaviour
         }
     }
 
-    void Attack()
+    IEnumerator Attack()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(t.position, attackRange, t.TransformDirection(Vector3.right), 0, 1 << 6);
-        if (hit)
+        Vector2 originLeft = new Vector2(t.position.x - coll.bounds.extents.x, t.position.y);
+        Vector2 originRight = new Vector2(t.position.x + coll.bounds.extents.x, t.position.y);
+        RaycastHit2D hitLeft = Physics2D.CircleCast(originLeft, attackRange/2, t.TransformDirection(Vector3.left), 0, 1 << 6);
+        RaycastHit2D hitRight = Physics2D.CircleCast(originRight, attackRange/2, t.TransformDirection(Vector3.right), 0, 1 << 6);
+        if (hitLeft || hitRight)
         {
-            print("PLAYER HIT"); //debug
+            print("PLAYER HIT");
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            yield return new WaitForSeconds(playerStunDuration);
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         }
     }
 
     IEnumerator Cooldown()
     {
         onCooldown = true;
-        playerDetected = false;
         yield return new WaitForSeconds(attackCooldown);
+        playerDetected = false;
         onCooldown = false;
     }
 }
