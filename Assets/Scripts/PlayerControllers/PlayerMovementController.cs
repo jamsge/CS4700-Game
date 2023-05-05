@@ -13,7 +13,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public float dashCooldown = 1f;
     public Camera cam;
     private float maxSpeed;
-    private float jumpHeight = 7f;
+    private float jumpHeight = 10f;
     private bool dashOnCooldown = false;
 
     float moveDirection = 0;
@@ -24,7 +24,7 @@ public class PlayerMovementController : MonoBehaviour
     Transform t;
     Transform ct;
     bool dashing = false;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +45,9 @@ public class PlayerMovementController : MonoBehaviour
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
-        } else {
+        }
+        else
+        {
             moveDirection = 0;
         }
 
