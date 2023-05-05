@@ -101,8 +101,9 @@ public class Survivor : MonoBehaviour
         RaycastHit2D hitRight = Physics2D.CircleCast(originRight, attackRange/2, t.TransformDirection(Vector3.right), 0, 1 << 6);
         if (hitLeft || hitRight)
         {
-            print("PLAYER HIT");
+            print("PLAYER HIT"); //debug
             player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            playerData.takeHit((int)attackDamage);
             yield return new WaitForSeconds(playerStunDuration);
             player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         }

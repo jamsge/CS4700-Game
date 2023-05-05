@@ -3,16 +3,112 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterMonster : MonoBehaviour
-{
-    // Start is called before the first frame update
+{    
+    public EnemyController ec;
+    public float meleeAttackDamage;
+    public float meleeAttackCooldown;
+    public float meleeAttackRange;
+    public float rangedAttackDamage;
+    public float rangedAttackCooldown;
+    public float rangeAttackRange;
+    public float chaseSpeed;
+    Transform t;
+    Rigidbody2D rb;
+    Collider2D coll;
+    GameObject player;
+    PlayerData playerData;
+    bool playerDetected;
+    bool attackingMelee;
+    bool attackingRanged;
+    float positionDiff;
+
     void Start()
     {
-        
+        t = ec.t;
+        rb = ec.rb;
+        coll = gameObject.GetComponent<Collider2D>();
+        player = ec.player;
+        playerData = ec.playerData;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        positionDiff = Vector3.Distance(player.transform.position, t.position);
+        //check if player detected
+        positionDiff = Vector3.Distance(player.transform.position, t.position);
+        if (positionDiff <= ec.detectionDistance)
+        {
+            playerDetected = true;
+        }
+        else
+        {
+            playerDetected = false;
+        }
+
+        if (playerDetected)
+        {
+            OnDetection();
+        }
+        else
+        {
+            ec.Idle();
+        }
+    }
+
+    void OnDetection()
+    {
+        bool inMeleeAttackRange = positionDiff <= meleeAttackRange;
+        bool inRangedAttackRange = positionDiff <= rangeAttackRange;
+        if (inMeleeAttackRange && !attackingMelee)
+        {
+            StartCoroutine(MeleeAttack());
+        }
+        else if (inRangedAttackRange && !attackingRanged)
+        {
+            //StartCoroutine();
+        }
+        else if (!(attackingMelee || attackingRanged))
+        {
+            MoveTowardsPlayer();
+        }
+    }
+
+    void MoveTowardsPlayer()
+    {
+        Vector3 moveDirection = player.transform.position - t.position;
+        moveDirection.y = 0;
+        moveDirection.Normalize();
+        rb.velocity = (Vector2)moveDirection * chaseSpeed;
+
+        //face player
+        if (moveDirection.x == 1)
+        {
+            t.rotation = Quaternion.Euler(new Vector3(0,0,0));
+        }
+        else
+        {
+            t.rotation = Quaternion.Euler(new Vector3(0,180,0));
+        }
+    }
+
+    IEnumerator MeleeAttack()
+    {
+        attackingMelee = true;
+        //high damage attack to the side
+        Vector2 origin = t.position + t.TransformDirection(Vector2.right * meleeAttackRange / 2);
+        print("Attacking melee"); //debug
+        RaycastHit2D hit = Physics2D.CircleCast(origin, meleeAttackRange, t.TransformDirection(Vector2.right), 0, 1 << 6);
+        if (hit)
+        {
+            print("PLAYER HIT"); //debug
+            playerData.takeHit((int)meleeAttackDamage);
+        }
+        yield return new WaitForSeconds(meleeAttackCooldown);
+        attackingMelee = false;
+    }
+
+    IEnumerator RangedAttack()
+    {
+        yield return 0; //tba
     }
 }
