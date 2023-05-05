@@ -9,7 +9,7 @@ public class ShopManager : MonoBehaviour
 
     public int ooze;
     public TMP_Text oozeUI;
-    public ShopItemSO[] purchasableItems;
+    public ItemSO[] purchasableItems;
     public GameObject[] shopItemPanelsGameObject;
     public ShopTemplate[] shopItemPanels;
     public Button[] purchaseItemButtons;
