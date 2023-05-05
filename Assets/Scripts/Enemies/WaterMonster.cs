@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class WaterMonster : MonoBehaviour
 {    
+    public static float waterBallDamage; //static so player scripts can access this damage
     public EnemyController ec;
     public float meleeAttackDamage;
     public float meleeAttackCooldown;
     public float meleeAttackRange;
     public float rangedAttackDamage;
     public float rangedAttackCooldown;
-    public float rangeAttackRange;
+    public float rangedAttackRange;
+    public GameObject rangedAttackObject;
+    public float rangedAttackObjectSpeed;
     public float chaseSpeed;
     Transform t;
     Rigidbody2D rb;
@@ -24,6 +27,8 @@ public class WaterMonster : MonoBehaviour
 
     void Start()
     {
+        waterBallDamage = rangedAttackDamage;
+
         t = ec.t;
         rb = ec.rb;
         coll = gameObject.GetComponent<Collider2D>();
@@ -58,14 +63,14 @@ public class WaterMonster : MonoBehaviour
     void OnDetection()
     {
         bool inMeleeAttackRange = positionDiff <= meleeAttackRange;
-        bool inRangedAttackRange = positionDiff <= rangeAttackRange;
-        if (inMeleeAttackRange && !attackingMelee)
+        bool inRangedAttackRange = positionDiff <= rangedAttackRange;
+        if (inMeleeAttackRange && !(attackingMelee || attackingRanged))
         {
             StartCoroutine(MeleeAttack());
         }
-        else if (inRangedAttackRange && !attackingRanged)
+        else if (inRangedAttackRange && !(attackingRanged || attackingMelee))
         {
-            //StartCoroutine();
+            StartCoroutine(RangedAttack());
         }
         else if (!(attackingMelee || attackingRanged))
         {
@@ -109,6 +114,9 @@ public class WaterMonster : MonoBehaviour
 
     IEnumerator RangedAttack()
     {
-        yield return 0; //tba
+        attackingRanged = true;
+        Instantiate(rangedAttackObject, t.position, Quaternion.Euler(new Vector3(0,0,0)));
+        yield return new WaitForSeconds(rangedAttackCooldown);
+        attackingRanged = false;
     }
 }

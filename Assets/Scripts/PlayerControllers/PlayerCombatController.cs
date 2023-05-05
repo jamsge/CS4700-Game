@@ -56,4 +56,14 @@ public class PlayerCombatController : MonoBehaviour
         yield return new WaitForSeconds(meleeCooldown);
         meleeOnCooldown = false;
     }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.name == "WaterBall(Clone)")
+        {
+            print("PLAYER HIT BY WATERBALL"); //debug
+            Destroy(coll.gameObject);
+            playerData.takeHit((int)WaterMonster.waterBallDamage);
+        }
+    }
 }
