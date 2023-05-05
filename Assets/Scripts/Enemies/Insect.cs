@@ -49,6 +49,9 @@ public class Insect : Rat
 
     public override void OnDrawGizmos()
     {
-        //add gizmo later
+        if (t != null)
+        {
+            Gizmos.DrawLine(t.position, player.transform.position);
+        }
     }
 }

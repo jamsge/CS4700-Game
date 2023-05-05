@@ -149,12 +149,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
-  speed: 2
-  damage: 0
+  idleSpeed: 0
   baseHealth: 10
   health: 0
   detectionDistance: 5
   idleMoveAreaBounds: 0
+  t: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &9202851482886898205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +172,7 @@ MonoBehaviour:
   attackDamage: 2
   attackRange: 2
   attackCooldown: 0
+  chaseSpeed: 0
   t: {fileID: 0}
   rb: {fileID: 0}
   player: {fileID: 0}
