@@ -11,4 +11,5 @@ public class ItemSO : ScriptableObject
     public int baseCost;
     public int count;
     public Image image;
+    public bool inUse;
 }

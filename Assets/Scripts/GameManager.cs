@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public PlayerData playerData;
-    public GameManager instance;
+    public static GameManager instance;
     public int healthUpgradeCount = 0;
     public bool speedUpgraded = false;
     public bool damageUpgraded = false;
