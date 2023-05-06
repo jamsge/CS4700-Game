@@ -575,8 +575,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -86.3, y: 175.1}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 175.1}
+  m_SizeDelta: {x: 386.3, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8469084615182680844
 CanvasRenderer:
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -169.18674, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.17958069, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -808,6 +808,7 @@ GameObject:
   - component: {fileID: 8469084615441217929}
   - component: {fileID: 8469084615441217943}
   - component: {fileID: 8469084615441217942}
+  - component: {fileID: 3778317770376806298}
   m_Layer: 5
   m_Name: Shop Weapon
   m_TagString: Untagged
@@ -880,6 +881,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3778317770376806298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8469084615441217928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8d3d84e36c2cc438528869a83b7639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleTxt: {fileID: 8469084615182680847}
+  costTxt: {fileID: 8317127690241423687}
+  Icon: {fileID: 8469084616281758318}
+  damageTxt: {fileID: 2836012653994827726}
+  rangeTxt: {fileID: 509324026888909950}
+  cooldownTxt: {fileID: 1664206064511437651}
+  buttonTxt: {fileID: 8469084614833886174}
 --- !u!1 &8469084616281758304
 GameObject:
   m_ObjectHideFlags: 0

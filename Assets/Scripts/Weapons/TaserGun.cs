@@ -92,6 +92,7 @@ public class TaserGun : Weapon
         this.range = WeaponManager.instance.taserGunRangeU;
         this.stunDuration = WeaponManager.instance.taserGunStunDurationU;
         this.ammoUsage = WeaponManager.instance.taserGunAmmoUsageU;
+        WeaponManager.instance.taserGunUpgraded = true;
     }
 
     public void SetDamage(float damage)

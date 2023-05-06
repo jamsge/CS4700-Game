@@ -20,6 +20,12 @@ public class WeaponManager : MonoBehaviour
     public bool waterCannon;
     public bool taserGun;
 
+    [Header("Weapon Upgraded")]
+    public bool flamethrowerUpgraded = false;
+    public bool fireAxeUpgraded = false;
+    public bool waterCannonUpgraded = false;
+    public bool taserGunUpgraded = false;
+
     //Weapon stats - can be modified in unity
     //FLAMETHROWER
     [Header("Flamethrower Stats")]
