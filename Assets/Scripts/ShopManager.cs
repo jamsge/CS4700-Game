@@ -11,7 +11,7 @@ public class ShopManager : MonoBehaviour
     public TMP_Text oozeUI;
     public ItemSO[] purchasableItems;
     public GameObject[] shopItemPanelsGameObject;
-    public ShopTemplate[] shopItemPanels;
+    public ShopItemTemplate[] shopItemPanels;
     public Button[] purchaseItemButtons;
 
     // Start is called before the first frame update
@@ -64,11 +64,13 @@ public class ShopManager : MonoBehaviour
 
     public void PurchaseItem(int btn)
     {
+        print("purchased");
         for (int i = 0; i < purchasableItems.Length; i++)
         {
             if(ooze >= purchasableItems[btn].baseCost)
             {
                 ooze = ooze - purchasableItems[btn].baseCost;
+                purchasableItems[btn].count++;
                 oozeUI.text = "Ooze: " + ooze.ToString();
                 CheckAffordableItems();
 
