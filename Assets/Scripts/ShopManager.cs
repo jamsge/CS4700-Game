@@ -21,7 +21,15 @@ public class ShopManager : MonoBehaviour
     public Image taserGunImage;
     public Image waterCannonImage;
 
+    public int playerUpgradeCost;
+    public TMP_Text playerUpgradeText;
+    public Button healthUpgradeButton;
+    public Button damageUpgradeButton;
+    public Button speedUpgradeButton;
+
     public int weaponCost;
+    public float damageBoostAmount;
+    public float speedBoostAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +55,7 @@ public class ShopManager : MonoBehaviour
             weaponPanels[3].titleTxt.text = "Water Cannon";
         }
 
+        playerUpgradeText.text = "Player Upgrades (" + playerUpgradeCost + " Ooze):";
 
         oozeUI.text = "Ooze: " + ooze.ToString();
         LoadPanels();
@@ -295,13 +304,95 @@ public class ShopManager : MonoBehaviour
                 purchaseItemButtons[i].interactable = false;
         }
 
-        for (int i = 0; i < weaponButtons.Length; i++)
-        {
-            if (ooze >= weaponCost)
-                weaponButtons[i].interactable = true;
+        WeaponManager weaponMgr = WeaponManager.instance;
+        if (ooze >= weaponCost) {
+            if (weaponMgr.flamethrowerUpgraded)
+                weaponButtons[0].interactable = false;
             else
-                weaponButtons[i].interactable = false;
+                weaponButtons[0].interactable = true;
+
+            if (weaponMgr.fireAxeUpgraded)
+                weaponButtons[1].interactable = false;
+            else
+                weaponButtons[1].interactable = true;
+
+            if (weaponMgr.taserGunUpgraded)
+                weaponButtons[2].interactable = false;
+            else
+                weaponButtons[2].interactable = true;
+
+            if (weaponMgr.waterCannonUpgraded)
+                weaponButtons[3].interactable = false;
+            else
+                weaponButtons[3].interactable = true;
         }
+        else
+        {
+            for (int i = 0; i < weaponButtons.Length; i++)
+            {
+                weaponButtons[i].interactable = false;
+            }
+        }
+
+        GameManager gm = GameManager.instance;
+
+        if(ooze >= playerUpgradeCost)
+        {
+            if(gm.damageUpgraded)
+                damageUpgradeButton.interactable = false;
+            else
+                damageUpgradeButton.interactable = true;
+
+            if(gm.healthUpgradeCount >= 3)
+                healthUpgradeButton.interactable = false;
+            else
+                healthUpgradeButton.interactable = true;
+
+            if (gm.speedUpgraded)
+                speedUpgradeButton.interactable = false;
+            else
+                speedUpgradeButton.interactable = true;
+        }
+        else
+        {
+            healthUpgradeButton.interactable = false;
+            damageUpgradeButton.interactable = false;
+            speedUpgradeButton.interactable = false;
+        }
+
+    }
+
+    public void UpgradeHealth()
+    {
+        ooze -= playerUpgradeCost;
+        oozeUI.text = "Ooze: " + ooze.ToString();
+
+        GameManager gm = GameManager.instance;
+        gm.UpgradeHealth(gm.playerData.baseHealth + 1);
+
+        CheckAffordableItems();
+    }
+
+    public void UpgradeDamage()
+    {
+        ooze -= playerUpgradeCost;
+        oozeUI.text = "Ooze: " + ooze.ToString();
+
+        GameManager gm = GameManager.instance;
+        gm.UpgradeDamage(damageBoostAmount);
+
+        CheckAffordableItems();
+    }
+
+    public void UpgradeSpeed()
+    {
+        ooze -= playerUpgradeCost;
+        oozeUI.text = "Ooze: " + ooze.ToString();
+
+        GameManager gm = GameManager.instance;
+        gm.UpgradeSpeed(speedBoostAmount);
+
+        CheckAffordableItems();
     }
 
     public void PurchaseItem(int btn)

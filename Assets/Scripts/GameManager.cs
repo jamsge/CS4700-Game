@@ -48,11 +48,13 @@ public class GameManager : MonoBehaviour
     public void UpgradeSpeed(float newSpeed)
     {
         playerData.defaultMaxSpeed = newSpeed;
+        speedUpgraded = true;
     }
 
     //call to upgrade player overall damage
     public void UpgradeDamage(float damageBoostAmount)
     {
         playerData.damageBoost = damageBoostAmount;
+        damageUpgraded = true;
     }
 }
