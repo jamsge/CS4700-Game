@@ -15,3 +15,5 @@ MonoBehaviour:
   title: Bacon
   description: Temporarily Boost Attack Damage
   baseCost: 10
+  count: 2
+  image: {fileID: 0}
