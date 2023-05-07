@@ -11,9 +11,9 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public float dashSpeed = 20f;
     [SerializeField] public float dashDistance = 2f;
     [SerializeField] public float dashCooldown = 1f;
-    public Camera cam;
+    [SerializeField] public float jumpHeight = 7f;
+    //public Camera cam;
     private float maxSpeed;
-    private float jumpHeight = 7f;
     private bool dashOnCooldown = false;
 
     float moveDirection = 0;
@@ -22,7 +22,6 @@ public class PlayerMovementController : MonoBehaviour
     BoxCollider2D mainCollider;
     Rigidbody2D r2d;
     Transform t;
-    Transform ct;
     bool dashing = false;
     
     // Start is called before the first frame update
@@ -35,7 +34,6 @@ public class PlayerMovementController : MonoBehaviour
         t = GetComponent<Transform>();
         g = GetComponentInChildren<BoxCollider2D>();
         mainCollider = GetComponent<BoxCollider2D>();
-        ct = cam.GetComponent<Transform>();
         print(g);
     }
 
@@ -84,9 +82,6 @@ public class PlayerMovementController : MonoBehaviour
         {
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         }
-
-        //keep camera focued on player
-        ct.position = new Vector3(t.position.x, t.position.y, -10f);
     }
 
     void FixedUpdate()

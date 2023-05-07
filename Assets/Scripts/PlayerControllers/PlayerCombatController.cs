@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerCombatController : MonoBehaviour
 {
@@ -42,9 +43,27 @@ public class PlayerCombatController : MonoBehaviour
         {
             print("HIT"); //debug
             print(hit.collider.gameObject); //debug - print whatever object was hit
-            hit.collider.gameObject.GetComponent<EnemyController>().health -= meleeDamage; //decrease enemy health; thanks to the enemy layer, the object that was hit is always an enemy and has health attribute
+            //hit.collider.gameObject.GetComponent<EnemyController>().health -= meleeDamage; //decrease enemy health; thanks to the enemy layer, the object that was hit is always an enemy and has health attribute
+            try
+            {
+                hit.collider.gameObject.GetComponent<EnemyController>().health -= meleeDamage;
+            }
+            catch (Exception e)
+            {
+                hit.collider.gameObject.GetComponent<BossController>().health -= meleeDamage;
+            }
         }
         yield return new WaitForSeconds(meleeCooldown);
         meleeOnCooldown = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.name == "WaterBall(Clone)")
+        {
+            print("PLAYER HIT BY WATERBALL"); //debug
+            Destroy(coll.gameObject);
+            playerData.takeHit((int)WaterMonster.waterBallDamage);
+        }
     }
 }
