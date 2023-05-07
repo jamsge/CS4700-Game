@@ -90,7 +90,7 @@ public class Rat : MonoBehaviour
     {
         attacking = true;
         //quick attack to the side
-        RaycastHit2D hit = Physics2D.Raycast(t.position, Vector3.right, attackRange, 1 << 6); //6 is player layer
+        RaycastHit2D hit = Physics2D.Raycast(t.position, t.TransformDirection(Vector3.right), attackRange, 1 << 6); //6 is player layer
         print("RAT ATTACKS"); //debug
         if (hit)
         {
