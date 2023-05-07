@@ -787,7 +787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7694088769786998950, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7694088769786998970, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
       propertyPath: m_RootOrder
@@ -837,6 +837,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 467995626}
+    - target: {fileID: 7694088769786998972, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: idleSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694088769786998972, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: idleMoveAreaBounds
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694088769786998973, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: chaseTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694088769786998973, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694088769786998973, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: attackDamage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
 --- !u!1001 &9202851483824309109
@@ -852,7 +872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9202851482886898194, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9202851482886898200, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
       propertyPath: m_RootOrder
