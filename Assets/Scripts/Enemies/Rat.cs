@@ -60,6 +60,7 @@ public class Rat : MonoBehaviour
         //check if in attack range, if not, move towards player
         if (inAttackRange && !attacking)
         {
+            rb.velocity = new Vector3(0,0,0);
             StartCoroutine(Attack());
         }
         else if (!attacking)
