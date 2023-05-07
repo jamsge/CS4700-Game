@@ -63,7 +63,6 @@ public class ItemManager : MonoBehaviour
             // bacon
             case (1):
                 // increase attack here
-                GameManager.instance.UpgradeDamage(1.5f);
                 break;
             //bandages
             case (2):
@@ -72,7 +71,6 @@ public class ItemManager : MonoBehaviour
             // coffee
             case (3):
                 // increase speed here
-                GameManager.instance.UpgradeSpeed(1.5f);
                 break;
             // painkillers
             case (4):
