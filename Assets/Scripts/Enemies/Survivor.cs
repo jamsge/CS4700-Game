@@ -20,9 +20,12 @@ public class Survivor : MonoBehaviour
     float positionDiff;
     bool onCooldown = false;
     Vector3 chaseDirection;
+    public float initAttackRange;
+    bool damageDealt = false;
 
     void Start()
     {
+        initAttackRange = attackRange;
         t = ec.t;
         rb = ec.rb;
         coll = gameObject.GetComponent<Collider2D>();
@@ -32,6 +35,7 @@ public class Survivor : MonoBehaviour
 
     void Update()
     {
+        SetAttackRange();
         //check if player detected
         positionDiff = Vector3.Distance(player.transform.position, t.position);
         if (positionDiff <= ec.detectionDistance)
@@ -103,8 +107,13 @@ public class Survivor : MonoBehaviour
         {
             print("PLAYER HIT"); //debug
             player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-            playerData.takeHit((int)attackDamage);
+            if (!damageDealt)
+            {
+                playerData.takeHit((int)attackDamage);
+                damageDealt = true;
+            }
             yield return new WaitForSeconds(playerStunDuration);
+            damageDealt = false;
             player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         }
     }
@@ -115,5 +124,17 @@ public class Survivor : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         playerDetected = false;
         onCooldown = false;
+    }
+
+    void SetAttackRange()
+    {
+        if (Mathf.Abs(rb.velocity.x) > ec.idleSpeed)
+        {
+            attackRange = initAttackRange;
+        }
+        else
+        {
+            attackRange = 0;
+        }
     }
 }

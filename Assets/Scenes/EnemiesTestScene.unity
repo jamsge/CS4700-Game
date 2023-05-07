@@ -523,6 +523,10 @@ MonoBehaviour:
   fireAxe: 0
   waterCannon: 1
   taserGun: 1
+  flamethrowerUpgraded: 0
+  fireAxeUpgraded: 0
+  waterCannonUpgraded: 0
+  taserGunUpgraded: 0
   flamethrowerDamage: 3
   flamethrowerRange: 3
   flamethrowerCooldown: 1
@@ -602,7 +606,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
-  instance: {fileID: 0}
   healthUpgradeCount: 0
   speedUpgraded: 0
   damageUpgraded: 0
@@ -634,7 +637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2334352672893438002, guid: 7824dbf636c4ff747a20cfa2c2a9db7f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2334352672893438006, guid: 7824dbf636c4ff747a20cfa2c2a9db7f, type: 3}
       propertyPath: m_RootOrder
@@ -705,6 +708,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 467995626}
+    - target: {fileID: 6393993716809601098, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
+      propertyPath: idleSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393993716809601098, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
+      propertyPath: idleMoveAreaBounds
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393993716809601099, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -749,6 +760,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6393993716809601101, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
+      propertyPath: chaseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393993716809601101, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393993716809601101, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
+      propertyPath: attackDamage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
 --- !u!1001 &7694088770059681289
@@ -764,7 +787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7694088769786998950, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7694088769786998970, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
       propertyPath: m_RootOrder
@@ -814,6 +837,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 467995626}
+    - target: {fileID: 7694088769786998972, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: idleSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694088769786998972, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: idleMoveAreaBounds
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694088769786998973, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: chaseTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694088769786998973, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694088769786998973, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: attackDamage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
 --- !u!1001 &9202851483824309109
@@ -879,5 +922,33 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 467995626}
+    - target: {fileID: 9202851482886898204, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
+      propertyPath: idleSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202851482886898204, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
+      propertyPath: idleMoveAreaBounds
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202851482886898205, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
+      propertyPath: chaseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202851482886898205, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202851482886898205, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
+      propertyPath: attackCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202851482886898206, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202851482886898207, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
