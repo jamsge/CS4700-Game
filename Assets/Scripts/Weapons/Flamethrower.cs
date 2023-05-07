@@ -93,6 +93,7 @@ only the UseWeapon method different
             this.ammoUsage = WeaponManager.instance.flamethrowerAmmoUsageU;
             this.cooldown = WeaponManager.instance.flamethrowerCooldownU;
             this.range = WeaponManager.instance.flamethrowerRangeU;
+            WeaponManager.instance.flamethrowerUpgraded = true;
         }
 
         public void SetDamage(float damage)

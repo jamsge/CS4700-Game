@@ -91,6 +91,7 @@ public class WaterCannon : Weapon
         this.cooldown = WeaponManager.instance.waterCannonCooldownU;
         this.ammoUsage = WeaponManager.instance.waterCannonAmmoUsageU;
         this.knockbackStrength = WeaponManager.instance.waterCannonKnockbackStrengthU;
+        WeaponManager.instance.waterCannonUpgraded = true;
     }
 
     public void SetDamage(float damage)

@@ -73,6 +73,7 @@ public class FireAxe : Weapon
         this.attackRadius = WeaponManager.instance.fireAxeAttackRadiusU;
         this.damage = WeaponManager.instance.fireAxeDamageU;
         this.attackSpeed = WeaponManager.instance.fireAxeAttackSpeedU;
+        WeaponManager.instance.fireAxeUpgraded = true;
     }
 
     public void SetDamage(float damage)
