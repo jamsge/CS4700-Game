@@ -64,6 +64,7 @@ public class WaterMonster : MonoBehaviour
     {
         bool inMeleeAttackRange = positionDiff <= meleeAttackRange;
         bool inRangedAttackRange = positionDiff <= rangedAttackRange;
+
         if (inMeleeAttackRange && !(attackingMelee || attackingRanged))
         {
             StartCoroutine(MeleeAttack());
@@ -72,9 +73,14 @@ public class WaterMonster : MonoBehaviour
         {
             StartCoroutine(RangedAttack());
         }
-        else if (!(attackingMelee || attackingRanged))
+        
+        if (!inMeleeAttackRange)
         {
             MoveTowardsPlayer();
+        }
+        else
+        {
+            rb.velocity = new Vector3(0,0,0);
         }
     }
 
