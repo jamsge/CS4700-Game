@@ -6,6 +6,7 @@ using TMPro;
 
 public class ItemManager : MonoBehaviour
 {
+    public PlayerData playerData;
     public ItemSO[] inventoryItems;
     public GameObject[] inventoryItemObjects;
     public InventoryTemplate[] inventoryButtons;
@@ -25,7 +26,7 @@ public class ItemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckUsable();
     }
 
     public void LoadInventory()
@@ -43,7 +44,7 @@ public class ItemManager : MonoBehaviour
         for(int i = 0; i < inventoryItems.Length; i++)
         {
             inventoryButtons[i].count.text = inventoryItems[i].count.ToString();
-            if (inventoryItems[i].count > 0)
+            if (inventoryItems[i].count > 0 && !inventoryItems[i].inUse)
             {
                 useItemButtons[i].interactable = true;
             }
@@ -54,27 +55,35 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    // 0 = Bacon, 1 = Bandages, 3 = coffee, 4 = painkillers
+    // 0 = Bacon, 1 = Bandages, 2 = coffee, 3 = painkillers
     public void UseItem(int itemNo)
     {
         
         switch (itemNo)
         {
             // bacon
-            case (1):
-                // increase attack here
+            case (0):
+                StartCoroutine(UseBacon());
                 break;
             //bandages
-            case (2):
-                // increase health here
+            case (1):
+                playerData.setHealth(playerData.health += inventoryItems[1].healAmount);
+                if (playerData.health > playerData.baseHealth)
+                    playerData.setHealth(playerData.baseHealth);
                 break;
             // coffee
-            case (3):
+            case (2):
                 // increase speed here
+                StartCoroutine(UseCoffee());
                 break;
             // painkillers
-            case (4):
+            case (3):
                 // increase health and defense here
+                playerData.setHealth(playerData.health += inventoryItems[3].healAmount);
+                if (playerData.health > playerData.baseHealth)
+                    playerData.setHealth(playerData.baseHealth);
+                StartCoroutine(UsePainkillers());
+                //increase defense here
                 break;
             default:
                 break;
@@ -83,5 +92,34 @@ public class ItemManager : MonoBehaviour
         inventoryItems[itemNo].count--;
         CheckUsable();
 
+    }
+
+    IEnumerator UseBacon()
+    {
+        float damageBoost = playerData.damageBoost;
+        playerData.damageBoost += inventoryItems[0].damageBoostValue;
+        inventoryItems[0].inUse = true;
+        yield return new WaitForSeconds(inventoryItems[0].itemBoostDuration);
+        inventoryItems[0].inUse = false;
+        playerData.damageBoost = damageBoost;
+    }
+
+    IEnumerator UseCoffee()
+    {
+        float initSpeed = playerData.defaultMaxSpeed;
+        playerData.defaultMaxSpeed += inventoryItems[2].speedBoostValue;
+        inventoryItems[2].inUse = true;
+        yield return new WaitForSeconds(inventoryItems[2].itemBoostDuration);
+        inventoryItems[2].inUse = false;
+        playerData.defaultMaxSpeed = initSpeed;
+    }
+
+    IEnumerator UsePainkillers()
+    {
+        playerData.defenseBoost = true;
+        inventoryItems[3].inUse = true;
+        yield return new WaitForSeconds(inventoryItems[3].itemBoostDuration);
+        inventoryItems[3].inUse = false;
+        playerData.defenseBoost = false;
     }
 }
