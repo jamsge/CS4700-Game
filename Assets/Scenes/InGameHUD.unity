@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 189655226}
   - component: {fileID: 189655228}
   - component: {fileID: 189655227}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CurrentAmmoCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 733509545}
   - component: {fileID: 733509547}
   - component: {fileID: 733509546}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: WeaponName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 813073046}
   - component: {fileID: 813073047}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HUDManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 1082053739}
   - component: {fileID: 1082053741}
   - component: {fileID: 1082053740}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HealthCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 1455372869}
   - component: {fileID: 1455372871}
   - component: {fileID: 1455372870}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: WeaponMaxAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 1668209115}
   - component: {fileID: 1668209114}
   - component: {fileID: 1668209113}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
