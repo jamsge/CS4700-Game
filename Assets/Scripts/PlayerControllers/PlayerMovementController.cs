@@ -46,7 +46,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
-            if (!walkingSoundPlaying)
+            if (!walkingSoundPlaying && walkingSoundEffect != null)
             {
                 walkingSoundEffect.Play();
                 walkingSoundPlaying = true;
@@ -54,7 +54,8 @@ public class PlayerMovementController : MonoBehaviour
                 
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
         } else {
-            walkingSoundEffect.Stop();
+            if(walkingSoundEffect != null)
+                walkingSoundEffect.Stop();
             walkingSoundPlaying = false;
             moveDirection = 0;
         }
@@ -125,7 +126,8 @@ public class PlayerMovementController : MonoBehaviour
 
     IEnumerator Dash()
     {
-        dashSoundEffect.Play();
+        if(dashSoundEffect != null)
+            dashSoundEffect.Play();
         float dashTime = dashDistance / 10; //dashDistance determines how long this coroutine waits before returning to base velocity
         Vector2 oldVelocity = r2d.velocity;
         r2d.velocity = r2d.velocity.normalized * dashSpeed;
