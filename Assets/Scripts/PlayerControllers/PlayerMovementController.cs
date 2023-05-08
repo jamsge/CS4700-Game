@@ -44,6 +44,8 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        defaultMaxSpeed = playerData.defaultMaxSpeed; //update speed in case boost is used
+
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
             if (!walkingSoundPlaying && walkingSoundEffect != null)

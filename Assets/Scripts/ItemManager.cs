@@ -7,7 +7,6 @@ using TMPro;
 public class ItemManager : MonoBehaviour
 {
     public PlayerData playerData;
-    public float itemBoostDuration;
     public ItemSO[] inventoryItems;
     public GameObject[] inventoryItemObjects;
     public InventoryTemplate[] inventoryButtons;
@@ -68,7 +67,9 @@ public class ItemManager : MonoBehaviour
                 break;
             //bandages
             case (1):
-                // increase health here
+                playerData.setHealth(playerData.health += inventoryItems[1].healAmount);
+                if (playerData.health > playerData.baseHealth)
+                    playerData.setHealth(playerData.baseHealth);
                 break;
             // coffee
             case (2):
@@ -92,8 +93,9 @@ public class ItemManager : MonoBehaviour
         float damageBoost = playerData.damageBoost;
         playerData.damageBoost += 2;
         inventoryItems[0].inUse = true;
-        yield return new WaitForSeconds(itemBoostDuration);
+        yield return new WaitForSeconds(inventoryItems[0].itemBoostDuration);
         inventoryItems[0].inUse = false;
         playerData.damageBoost = damageBoost;
     }
+
 }
