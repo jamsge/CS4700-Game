@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FirstPhase : MonoBehaviour
 {   
+    BossController bc;
     GameObject player;
     PlayerData playerData;
     public float attackCooldown; 
@@ -16,9 +17,12 @@ public class FirstPhase : MonoBehaviour
     bool attacking = false;
     Transform t;
     Rigidbody2D rb;
+    //[HideInInspector]
+    public int attackCounter = 0; //for phase transitions
 
     void Start()
     {
+        bc = gameObject.GetComponent<BossController>();
         player = gameObject.GetComponent<BossController>().player;
         playerData = gameObject.GetComponent<BossController>().playerData;
         t = gameObject.GetComponent<Transform>();
@@ -27,6 +31,13 @@ public class FirstPhase : MonoBehaviour
 
     void Update()
     {
+        if ((attackCounter >= 3) && (bc.health <= (bc.baseHealth * 0.7f)) && (bc.health > (bc.baseHealth * 0.3f)))
+        {
+            attackCounter = 0;
+            gameObject.GetComponent<SecondPhase>().enabled = true;
+            gameObject.GetComponent<FirstPhase>().enabled = false;
+        }
+
         if (!attacking)
         {
             StartCoroutine(Attack());
@@ -60,7 +71,10 @@ public class FirstPhase : MonoBehaviour
         yield return new WaitForSeconds(1);
         rb.constraints = RigidbodyConstraints2D.None; //resume movement
 
+        attackCounter++;
+
         yield return new WaitForSeconds(attackCooldown); //cooldown
+
         attacking = false;
     }
 
