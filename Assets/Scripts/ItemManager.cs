@@ -74,6 +74,7 @@ public class ItemManager : MonoBehaviour
             // coffee
             case (2):
                 // increase speed here
+                StartCoroutine(UseCoffee());
                 break;
             // painkillers
             case (3):
@@ -91,11 +92,21 @@ public class ItemManager : MonoBehaviour
     IEnumerator UseBacon()
     {
         float damageBoost = playerData.damageBoost;
-        playerData.damageBoost += 2;
+        playerData.damageBoost += inventoryItems[0].damageBoostValue;
         inventoryItems[0].inUse = true;
         yield return new WaitForSeconds(inventoryItems[0].itemBoostDuration);
         inventoryItems[0].inUse = false;
         playerData.damageBoost = damageBoost;
+    }
+
+    IEnumerator UseCoffee()
+    {
+        float initSpeed = playerData.defaultMaxSpeed;
+        playerData.defaultMaxSpeed += inventoryItems[2].speedBoostValue;
+        inventoryItems[2].inUse = true;
+        yield return new WaitForSeconds(inventoryItems[2].itemBoostDuration);
+        inventoryItems[2].inUse = false;
+        playerData.defaultMaxSpeed = initSpeed;
     }
 
 }

@@ -13,5 +13,7 @@ public class ItemSO : ScriptableObject
     public Image image;
     public bool inUse;
     public int healAmount; // for bandages and painkillers
+    public float speedBoostValue; //for coffee
+    public int damageBoostValue;
     public float itemBoostDuration; // for bacon, coffee, and painkillers
 }
