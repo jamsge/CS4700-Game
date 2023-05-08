@@ -15,6 +15,7 @@ public class SecondPhase : MonoBehaviour
     Transform t;
     Rigidbody2D rb;
     Collider2D coll;
+    public int attackCounter = 0;
 
     void Start()
     {
@@ -25,10 +26,19 @@ public class SecondPhase : MonoBehaviour
 
     void Update()
     {
-        CheckGrounded();
-        if (isGrounded && !attacking)
+        if (attackCounter < 3)
         {
-            StartCoroutine(Attack());
+            CheckGrounded();
+            if (isGrounded && !attacking)
+            {
+                StartCoroutine(Attack());
+            }
+        }
+        else
+        {
+            attackCounter = 0;
+            gameObject.GetComponent<FirstPhase>().enabled = true;
+            gameObject.GetComponent<SecondPhase>().enabled = false;
         }
     }
 

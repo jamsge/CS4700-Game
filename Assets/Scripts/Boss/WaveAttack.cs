@@ -6,6 +6,7 @@ public class WaveAttack : MonoBehaviour
 {    
     GameObject player;
     PlayerData playerData;
+    SecondPhase s;
     float attackRange;
     float attackHeight;
     float attackDamage;
@@ -17,7 +18,7 @@ public class WaveAttack : MonoBehaviour
     {
         player = gameObject.GetComponent<BossController>().player;
         playerData = gameObject.GetComponent<BossController>().playerData;
-        SecondPhase s = gameObject.GetComponent<SecondPhase>();
+        s = gameObject.GetComponent<SecondPhase>();
         attackDamage = s.attackDamage;
         attackHeight = s.attackHeight;
         attackRange = s.attackRange;
@@ -44,6 +45,7 @@ public class WaveAttack : MonoBehaviour
                 playerRB.velocity = Vector3.up * attackLaunchStrength;
                 playerData.takeHit((int)attackDamage);
             }
+            s.attackCounter++;
             gameObject.GetComponent<WaveAttack>().enabled = false;
         }
     }

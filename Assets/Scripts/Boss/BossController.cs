@@ -27,6 +27,7 @@ public class BossController : MonoBehaviour
     void Start()
     {
         health = baseHealth;
+        phase1.enabled = true;
         phase2.enabled = false;
         phase3.enabled = false;
         t = gameObject.GetComponent<Transform>();
@@ -52,29 +53,15 @@ public class BossController : MonoBehaviour
             t.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
 
-        //check if transfer to next phase
-/*         if ((health <= (baseHealth * 0.7f)) && (health > (baseHealth * 0.3f)))
-        {
-            phase1.enabled = true;
-            phase2.enabled = true;
-            phase3.enabled = false;
-        }
-        else if (health <= (baseHealth * 0.3f))
-        {
-            phase1.enabled = false;
-            phase2.enabled = false;
-            phase3.enabled = true;
-        }
-        else
-        {
-            phase1.enabled = true;
-            phase2.enabled = false;
-            phase3.enabled = false;
-        } */
-
         if (health <= 0)
         {
             OnDeath();
+        }
+
+        //check for phase 3
+        if (health <= (baseHealth * 0.3f))
+        {
+            phase3.enabled = true;
         }
     }
 
