@@ -14,6 +14,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public float jumpHeight = 7f;
     //public Camera cam;
     private float maxSpeed;
+    private float jumpHeight = 10f;
+
     private bool dashOnCooldown = false;
 
     float moveDirection = 0;
@@ -23,7 +25,6 @@ public class PlayerMovementController : MonoBehaviour
     Rigidbody2D r2d;
     Transform t;
     bool dashing = false;
-
     [SerializeField] private AudioSource walkingSoundEffect;
     [SerializeField] private AudioSource dashSoundEffect;
     bool walkingSoundPlaying = false;
@@ -53,7 +54,9 @@ public class PlayerMovementController : MonoBehaviour
             }
                 
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
-        } else {
+
+        }
+        else {
             if(walkingSoundEffect != null)
                 walkingSoundEffect.Stop();
             walkingSoundPlaying = false;
