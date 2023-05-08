@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TaserGun : Weapon
 {
@@ -41,7 +42,14 @@ public class TaserGun : Weapon
             {
                 Debug.Log("HIT"); //debug
                 // deal damage
-                hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                try
+                {
+                    hit.collider.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
+                }
+                catch (Exception e)
+                {
+                    hit.collider.gameObject.GetComponent<BossController>().health -= damage;
+                }
                 //stun enemy
                 WeaponManager.instance.StartCoroutine(StunEnemy(hit)); //tba
                 // put on cooldonw
@@ -59,10 +67,13 @@ public class TaserGun : Weapon
     //enemy stun
     private IEnumerator StunEnemy(RaycastHit2D hit)
     {
-        Rigidbody2D enemyRB = hit.collider.gameObject.GetComponent<Rigidbody2D>();
-        enemyRB.constraints = RigidbodyConstraints2D.FreezeAll; //freeze enemy position and rotation (only movement for now)
-        yield return new WaitForSeconds(stunDuration);
-        enemyRB.constraints = RigidbodyConstraints2D.None;
+        if (hit.collider.gameObject.GetComponent<BossController>() == null) //check if not boss - stun doesn't work on the boss
+        {
+            Rigidbody2D enemyRB = hit.collider.gameObject.GetComponent<Rigidbody2D>();
+            enemyRB.constraints = RigidbodyConstraints2D.FreezeAll; //freeze enemy position and rotation (only movement for now)
+            yield return new WaitForSeconds(stunDuration);
+            enemyRB.constraints = RigidbodyConstraints2D.None;
+        }
     }
 
 
@@ -92,6 +103,7 @@ public class TaserGun : Weapon
         this.range = WeaponManager.instance.taserGunRangeU;
         this.stunDuration = WeaponManager.instance.taserGunStunDurationU;
         this.ammoUsage = WeaponManager.instance.taserGunAmmoUsageU;
+        WeaponManager.instance.taserGunUpgraded = true;
     }
 
     public void SetDamage(float damage)

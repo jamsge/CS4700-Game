@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public PlayerData playerData;
-    public GameManager instance;
+    public static GameManager instance;
     public int healthUpgradeCount = 0;
     public bool speedUpgraded = false;
     public bool damageUpgraded = false;
@@ -48,11 +48,13 @@ public class GameManager : MonoBehaviour
     public void UpgradeSpeed(float newSpeed)
     {
         playerData.defaultMaxSpeed = newSpeed;
+        speedUpgraded = true;
     }
 
     //call to upgrade player overall damage
     public void UpgradeDamage(float damageBoostAmount)
     {
         playerData.damageBoost = damageBoostAmount;
+        damageUpgraded = true;
     }
 }

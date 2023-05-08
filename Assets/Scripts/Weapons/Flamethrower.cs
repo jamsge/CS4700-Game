@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Windows;
+using System;
 
 /*
 Base weapon: Flamethrower
@@ -41,7 +41,6 @@ only the UseWeapon method different
             // stops when button released
             if (Input.GetKey(KeyCode.Mouse0) && (currentAmmo > 0))
             {
-                Debug.Log("using flamethrower"); //debug
                 //cast a circle from in front of the player while button is being held down
                 RaycastHit2D hit = Physics2D.CircleCast(new Vector2(playerTransform.position.x + 1, playerTransform.position.y), 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
                 if (!onCooldown)
@@ -60,7 +59,14 @@ only the UseWeapon method different
             if (hit)
             {
                 //deal damage
-                hit.collider.gameObject.GetComponent<EnemyController>().health -= damage;
+                try
+                {
+                    hit.collider.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
+                }
+                catch (Exception e)
+                {
+                    hit.collider.gameObject.GetComponent<BossController>().health -= damage;
+                }
                 Debug.Log("HIT"); //debug
             }
             yield return new WaitForSeconds(cooldown);
@@ -93,6 +99,7 @@ only the UseWeapon method different
             this.ammoUsage = WeaponManager.instance.flamethrowerAmmoUsageU;
             this.cooldown = WeaponManager.instance.flamethrowerCooldownU;
             this.range = WeaponManager.instance.flamethrowerRangeU;
+            WeaponManager.instance.flamethrowerUpgraded = true;
         }
 
         public void SetDamage(float damage)
