@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9202851482886898207}
   - component: {fileID: 9202851482886898204}
   - component: {fileID: 9202851482886898205}
+  - component: {fileID: -8519422755252646151}
   m_Layer: 3
   m_Name: Insect
   m_TagString: Untagged
@@ -180,3 +181,15 @@ MonoBehaviour:
   positionDiff: 0
   attacking: 0
   attackPrepareTime: 1
+--- !u!114 &-8519422755252646151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9202851482886898194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e533a901db51b4b994eeea1ff052c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
