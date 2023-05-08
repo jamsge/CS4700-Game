@@ -26,6 +26,7 @@ public class SecondPhase : MonoBehaviour
 
     void Update()
     {
+        //check attack counter and either attack again or switch to phase 1 attack
         if (attackCounter < 3)
         {
             CheckGrounded();
@@ -48,7 +49,7 @@ public class SecondPhase : MonoBehaviour
         print("Attacking"); //debug
         rb.velocity = new Vector2(0, jumpHeight);
         yield return new WaitForSeconds(0.1f);
-        gameObject.GetComponent<WaveAttack>().enabled = true;
+        gameObject.GetComponent<WaveAttack>().enabled = true; //separate script for wave attack
         yield return new WaitForSeconds(attackCooldown);
         attacking = false;
     }

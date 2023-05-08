@@ -17,8 +17,7 @@ public class FirstPhase : MonoBehaviour
     bool attacking = false;
     Transform t;
     Rigidbody2D rb;
-    //[HideInInspector]
-    public int attackCounter = 0; //for phase transitions
+    int attackCounter = 0; //for phase transitions
 
     void Start()
     {
@@ -42,8 +41,6 @@ public class FirstPhase : MonoBehaviour
         {
             StartCoroutine(Attack());
         }
-
-        //debug
     }
 
     IEnumerator Attack()
@@ -77,9 +74,4 @@ public class FirstPhase : MonoBehaviour
 
         attacking = false;
     }
-
-/*     void OnDrawGizmos()
-    {
-
-    } */
 }

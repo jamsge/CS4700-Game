@@ -37,11 +37,7 @@ public class BossController : MonoBehaviour
     // Update switches boss phases, checks health, and makes boss move towards player
     void Update()
     {
-        //move towards player
-/*         Vector3 direction = new Vector3(player.transform.position.x - t.position.x, 0, 0);
-        direction.Normalize(); */
         t.Translate(Vector3.right * speed * Time.deltaTime);
-
 
         //Face player
         if (player.transform.position.x > t.position.x)
@@ -67,6 +63,6 @@ public class BossController : MonoBehaviour
 
     void OnDeath()
     {
-        
+        Destroy(gameObject);
     }
 }
