@@ -23,7 +23,11 @@ public class PlayerMovementController : MonoBehaviour
     Rigidbody2D r2d;
     Transform t;
     bool dashing = false;
-    
+
+    [SerializeField] private AudioSource walkingSoundEffect;
+    [SerializeField] private AudioSource dashSoundEffect;
+    bool walkingSoundPlaying = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,8 +46,17 @@ public class PlayerMovementController : MonoBehaviour
     {
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
+            if (!walkingSoundPlaying && walkingSoundEffect != null)
+            {
+                walkingSoundEffect.Play();
+                walkingSoundPlaying = true;
+            }
+                
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
         } else {
+            if(walkingSoundEffect != null)
+                walkingSoundEffect.Stop();
+            walkingSoundPlaying = false;
             moveDirection = 0;
         }
 
@@ -51,10 +64,12 @@ public class PlayerMovementController : MonoBehaviour
         sprintMaxSpeed = 2 * defaultMaxSpeed;
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            walkingSoundEffect.pitch = 1.2f;
             maxSpeed = sprintMaxSpeed;
         }
         else
         {
+            walkingSoundEffect.pitch = 1.0f;
             maxSpeed = defaultMaxSpeed;
         }
 
@@ -111,6 +126,8 @@ public class PlayerMovementController : MonoBehaviour
 
     IEnumerator Dash()
     {
+        if(dashSoundEffect != null)
+            dashSoundEffect.Play();
         float dashTime = dashDistance / 10; //dashDistance determines how long this coroutine waits before returning to base velocity
         Vector2 oldVelocity = r2d.velocity;
         r2d.velocity = r2d.velocity.normalized * dashSpeed;
