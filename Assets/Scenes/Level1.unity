@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    - target: {fileID: 4609497530279323829, guid: ebb84515c5c21ac48b89812607bbc0ef, type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
     - target: {fileID: 4609497530279323983, guid: ebb84515c5c21ac48b89812607bbc0ef, type: 3}
       propertyPath: m_Name
       value: Player
@@ -616,7 +620,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
-  instance: {fileID: 0}
   healthUpgradeCount: 0
   speedUpgraded: 0
   damageUpgraded: 0

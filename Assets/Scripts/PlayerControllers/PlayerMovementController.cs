@@ -14,7 +14,6 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public float jumpHeight = 7f;
     //public Camera cam;
     private float maxSpeed;
-    private float jumpHeight = 10f;
 
     private bool dashOnCooldown = false;
 
