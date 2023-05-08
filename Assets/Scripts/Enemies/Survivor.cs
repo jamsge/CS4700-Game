@@ -35,6 +35,10 @@ public class Survivor : MonoBehaviour
 
     void Update()
     {
+        float chaseDirectionX = player.transform.position.x - t.position.x;
+        chaseDirection = new Vector3(chaseDirectionX, 0, 0);
+        chaseDirection.Normalize();
+
         SetAttackRange();
         //check if player detected
         positionDiff = Vector3.Distance(player.transform.position, t.position);
@@ -53,8 +57,6 @@ public class Survivor : MonoBehaviour
         }
         else
         {
-            chaseDirection = (player.transform.position - t.position).normalized;
-            chaseDirection = new Vector3(chaseDirection.x, 0, 0);
             ec.Idle();
         }
     }
@@ -87,7 +89,7 @@ public class Survivor : MonoBehaviour
         rb.velocity = (Vector2)chaseDirection * chaseSpeed;
 
         //face player
-        if (chaseDirection.x == 1)
+        if (chaseDirection.x == 1f)
         {
             t.rotation = Quaternion.Euler(new Vector3(0,0,0));
         }

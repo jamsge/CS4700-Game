@@ -35,6 +35,11 @@ public class EnemyController : MonoBehaviour
         {
             OnDeath();
         }
+
+        if (gameObject.GetComponent<EnemyCollisionDetection>().enabled == false)
+        {
+            StartCoroutine(CollisionDetectionOn());
+        }
     }
 
     public void TakeDamage(float damageAmount)
@@ -73,5 +78,11 @@ public class EnemyController : MonoBehaviour
             t.rotation = Quaternion.Euler(new Vector3(0,0,0));
         }
         rb.velocity = (Vector2)t.TransformDirection(Vector3.right) * idleSpeed;
+    }
+
+    IEnumerator CollisionDetectionOn()
+    {
+        yield return new WaitForSeconds(0.1f);
+        gameObject.GetComponent<EnemyCollisionDetection>().enabled = true;
     }
 }
