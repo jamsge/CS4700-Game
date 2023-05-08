@@ -23,6 +23,8 @@ public class Survivor : MonoBehaviour
     public float initAttackRange;
     bool damageDealt = false;
 
+    [SerializeField] private AudioSource runSoundEffect;
+
     void Start()
     {
         initAttackRange = attackRange;
@@ -64,6 +66,7 @@ public class Survivor : MonoBehaviour
         StartCoroutine(Attack());
         if (!onCooldown)
         {
+            runSoundEffect.Play();
             MoveTowardsPlayer();
             StartCoroutine(Cooldown());
         }

@@ -25,6 +25,10 @@ public class WaterMonster : MonoBehaviour
     bool attackingRanged;
     float positionDiff;
 
+    [SerializeField] private AudioSource detectSoundEffect;
+
+    float soundTimer = 0;
+    bool soundPlayed = false;
     void Start()
     {
         waterBallDamage = rangedAttackDamage;
@@ -50,6 +54,11 @@ public class WaterMonster : MonoBehaviour
             playerDetected = false;
         }
 
+        if (soundPlayed)
+        {
+            soundTimer += Time.deltaTime;
+        }
+        
         if (playerDetected)
         {
             OnDetection();
@@ -62,6 +71,8 @@ public class WaterMonster : MonoBehaviour
 
     void OnDetection()
     {
+
+        
         bool inMeleeAttackRange = positionDiff <= meleeAttackRange;
         bool inRangedAttackRange = positionDiff <= rangedAttackRange;
 
@@ -120,6 +131,12 @@ public class WaterMonster : MonoBehaviour
 
     IEnumerator RangedAttack()
     {
+        if (detectSoundEffect != null && (soundTimer >= 15 || !soundPlayed))
+        {
+            soundPlayed = true;
+            soundTimer = 0;
+            detectSoundEffect.Play();
+        }
         attackingRanged = true;
         Instantiate(rangedAttackObject, t.position, Quaternion.Euler(new Vector3(0,0,0)));
         yield return new WaitForSeconds(rangedAttackCooldown);

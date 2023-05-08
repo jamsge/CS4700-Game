@@ -16,7 +16,9 @@ public class EnemyController : MonoBehaviour
     public Transform t;
     public Rigidbody2D rb;
     Vector3 initialPosition;
-//    bool returnedToInitialPosition = false;
+    //    bool returnedToInitialPosition = false;
+
+    [SerializeField] private AudioSource deathSoundEffect;
 
     void Awake()
     {
@@ -44,6 +46,10 @@ public class EnemyController : MonoBehaviour
 
     void OnDeath()
     {
+        if (deathSoundEffect != null)
+        {
+            deathSoundEffect.Play();
+        }
         Destroy(gameObject);
         //tba maybe item drops
     }   
