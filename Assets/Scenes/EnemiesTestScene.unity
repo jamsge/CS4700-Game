@@ -903,7 +903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2334352672893438002, guid: 7824dbf636c4ff747a20cfa2c2a9db7f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2334352672893438004, guid: 7824dbf636c4ff747a20cfa2c2a9db7f, type: 3}
       propertyPath: m_GravityScale
@@ -972,7 +972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6393993716809601095, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6393993716809601098, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
       propertyPath: player
