@@ -6,6 +6,8 @@ using TMPro;
 
 public class ItemManager : MonoBehaviour
 {
+    public PlayerData playerData;
+    public float itemBoostDuration;
     public ItemSO[] inventoryItems;
     public GameObject[] inventoryItemObjects;
     public InventoryTemplate[] inventoryButtons;
@@ -25,7 +27,7 @@ public class ItemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckUsable();
     }
 
     public void LoadInventory()
@@ -43,7 +45,7 @@ public class ItemManager : MonoBehaviour
         for(int i = 0; i < inventoryItems.Length; i++)
         {
             inventoryButtons[i].count.text = inventoryItems[i].count.ToString();
-            if (inventoryItems[i].count > 0)
+            if (inventoryItems[i].count > 0 && !inventoryItems[i].inUse)
             {
                 useItemButtons[i].interactable = true;
             }
@@ -61,19 +63,19 @@ public class ItemManager : MonoBehaviour
         switch (itemNo)
         {
             // bacon
-            case (1):
-                // increase attack here
+            case (0):
+                StartCoroutine(UseBacon());
                 break;
             //bandages
-            case (2):
+            case (1):
                 // increase health here
                 break;
             // coffee
-            case (3):
+            case (2):
                 // increase speed here
                 break;
             // painkillers
-            case (4):
+            case (3):
                 // increase health and defense here
                 break;
             default:
@@ -83,5 +85,15 @@ public class ItemManager : MonoBehaviour
         inventoryItems[itemNo].count--;
         CheckUsable();
 
+    }
+
+    IEnumerator UseBacon()
+    {
+        float damageBoost = playerData.damageBoost;
+        playerData.damageBoost += 2;
+        inventoryItems[0].inUse = true;
+        yield return new WaitForSeconds(itemBoostDuration);
+        inventoryItems[0].inUse = false;
+        playerData.damageBoost = damageBoost;
     }
 }
