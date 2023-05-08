@@ -55,7 +55,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    // 0 = Bacon, 1 = Bandages, 3 = coffee, 4 = painkillers
+    // 0 = Bacon, 1 = Bandages, 2 = coffee, 3 = painkillers
     public void UseItem(int itemNo)
     {
         
@@ -79,6 +79,11 @@ public class ItemManager : MonoBehaviour
             // painkillers
             case (3):
                 // increase health and defense here
+                playerData.setHealth(playerData.health += inventoryItems[3].healAmount);
+                if (playerData.health > playerData.baseHealth)
+                    playerData.setHealth(playerData.baseHealth);
+                StartCoroutine(UsePainkillers());
+                //increase defense here
                 break;
             default:
                 break;
@@ -109,4 +114,12 @@ public class ItemManager : MonoBehaviour
         playerData.defaultMaxSpeed = initSpeed;
     }
 
+    IEnumerator UsePainkillers()
+    {
+        playerData.defenseBoost = true;
+        inventoryItems[3].inUse = true;
+        yield return new WaitForSeconds(inventoryItems[3].itemBoostDuration);
+        inventoryItems[3].inUse = false;
+        playerData.defenseBoost = false;
+    }
 }
