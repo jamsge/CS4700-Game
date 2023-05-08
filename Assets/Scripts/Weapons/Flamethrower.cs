@@ -41,7 +41,6 @@ only the UseWeapon method different
             // stops when button released
             if (Input.GetKey(KeyCode.Mouse0) && (currentAmmo > 0))
             {
-                Debug.Log("using flamethrower"); //debug
                 //cast a circle from in front of the player while button is being held down
                 RaycastHit2D hit = Physics2D.CircleCast(new Vector2(playerTransform.position.x + 1, playerTransform.position.y), 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
                 if (!onCooldown)
