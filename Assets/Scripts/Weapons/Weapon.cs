@@ -6,7 +6,7 @@ Interface for weapon objects
 */
 public interface Weapon
 {
-    void UseWeapon(Transform playerTransform);
+    void UseWeapon(Transform playerTransform, AudioSource sound);
     int GetMaxAmmo();
     void SetCurrentAmmo(int ammo);
     int GetCurrentAmmo();

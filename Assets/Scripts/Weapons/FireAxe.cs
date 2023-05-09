@@ -23,11 +23,12 @@ public class FireAxe : Weapon
         instanceCount += 1;
     }
 
-    public void UseWeapon(Transform playerTransform)
+    public void UseWeapon(Transform playerTransform, AudioSource sound)
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && (!onCooldown))
         {
             WeaponManager.instance.StartCoroutine(Use(playerTransform));
+            sound.Play();
         }
     }
     private IEnumerator Use(Transform t)

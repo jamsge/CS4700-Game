@@ -36,7 +36,13 @@ public class WeaponStatsEditor : Editor
                 break;
         }
 
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrowerSoundEffect"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("fireAxeSoundEffect"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("taserGunSoundEffect"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("waterCannonSoundEffect"));
+
         serializedObject.ApplyModifiedProperties();
+
     }
 
     void DisplayBaseInfo()

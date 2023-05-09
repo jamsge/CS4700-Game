@@ -9,8 +9,8 @@ other weapon classes might look pretty much the same with
 only the UseWeapon method different
 */
 
-    public class Flamethrower : Weapon
-    {
+public class Flamethrower : Weapon
+{
         //make sure never more than 1
         public static int instanceCount = 0;
         
@@ -25,6 +25,8 @@ only the UseWeapon method different
 
         private bool onCooldown = false;
 
+    private bool soundPlaying = false;
+
         public Flamethrower(){
             this.weaponName = "Flamethrower";
             this.currentAmmo = this.MAX_AMMO;
@@ -33,25 +35,37 @@ only the UseWeapon method different
             this.cooldown = WeaponManager.instance.flamethrowerCooldown; //get cooldown from WeaponManager
             this.ammoUsage = WeaponManager.instance.flamethrowerAmmoUsage;
             instanceCount += 1;
-        } 
-        public void UseWeapon(Transform playerTransform)
-        {
-            // Used when holding left mouse button
-            // deals damage OVER TIME (some damage every interval)
-            // stops when button released
-            if (Input.GetKey(KeyCode.Mouse0) && (currentAmmo > 0))
-            {
-                //cast a circle from in front of the player while button is being held down
-                RaycastHit2D hit = Physics2D.CircleCast(new Vector2(playerTransform.position.x + 1, playerTransform.position.y), 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
-                if (!onCooldown)
-                {
-                    WeaponManager.instance.StartCoroutine(DealDamage(hit));
-                }
-            }
         }
+    public void UseWeapon(Transform playerTransform, AudioSource sound)
+    {
+        // Used when holding left mouse button
+        // deals damage OVER TIME (some damage every interval)
+        // stops when button released
+        if (Input.GetKey(KeyCode.Mouse0) && (currentAmmo > 0))
+        {
+            if (!soundPlaying)
+            {
+                sound.Play();
+                soundPlaying = true;
+            }
+            
+            //cast a circle from in front of the player while button is being held down
+            RaycastHit2D hit = Physics2D.CircleCast(new Vector2(playerTransform.position.x + 1, playerTransform.position.y), 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
+            if (!onCooldown)
+            {
+                WeaponManager.instance.StartCoroutine(DealDamage(hit));
+            }
+            
+        }
+        else
+        {
+            soundPlaying = false;
+            sound.Stop();
+        }
+    }
 
-        //deal damage then wait till damaging again
-        private IEnumerator DealDamage(RaycastHit2D hit)
+    //deal damage then wait till damaging again
+    private IEnumerator DealDamage(RaycastHit2D hit)
         {
             onCooldown = true;
             //ammo usage 
@@ -111,5 +125,5 @@ only the UseWeapon method different
         {
             return this.damage;
         }
-    }
+}
 

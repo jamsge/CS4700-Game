@@ -37,10 +37,12 @@ public class WaterCannon : Weapon
         instanceCount += 1;
     }
 
-    public void UseWeapon(Transform playerTransform)
+    public void UseWeapon(Transform playerTransform, AudioSource sound)
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && !onCooldown)
         {
+            sound.Play();
+            currentAmmo -= ammoUsage;
             RaycastHit2D hit = Physics2D.CircleCast(playerTransform.position + Vector3.right, 1f, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
             if (hit)
             {
@@ -54,7 +56,6 @@ public class WaterCannon : Weapon
                 {
                     hit.collider.gameObject.GetComponent<BossController>().health -= damage;
                 }
-                currentAmmo -= ammoUsage;
                 //knock back enemy
                 Rigidbody2D enemyRB = hit.collider.gameObject.GetComponent<Rigidbody2D>();
                 Vector3 knockbackDirection = playerTransform.TransformDirection(Vector3.right);
