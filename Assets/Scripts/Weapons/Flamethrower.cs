@@ -43,6 +43,9 @@ public class Flamethrower : Weapon
         // stops when button released
         if (Input.GetKey(KeyCode.Mouse0) && (currentAmmo > 0))
         {
+            WeaponManager.instance.weaponAnimator.SetBool("usingFlamethrower", true);
+            WeaponManager.instance.playerAnimator.SetBool("usingWeapon", true);
+
             if (!soundPlaying)
             {
                 sound.Play();
@@ -59,6 +62,8 @@ public class Flamethrower : Weapon
         }
         else
         {
+            WeaponManager.instance.weaponAnimator.SetBool("usingFlamethrower", false);
+            WeaponManager.instance.playerAnimator.SetBool("usingWeapon", false);
             soundPlaying = false;
             sound.Stop();
         }

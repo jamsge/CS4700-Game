@@ -13,6 +13,8 @@ public class WeaponManager : MonoBehaviour
     public event Action onWeaponSwitch;
     public event Action onWeaponUse;
     public Animator playerAnimator;
+    public GameObject weaponEffect;
+    public Animator weaponAnimator;
     Transform playerT; //player's transform
 
     public float weaponReloadTime;
@@ -118,6 +120,10 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
+        //Move weapon effect object
+        weaponEffect.transform.position = playerT.position + playerT.TransformDirection(new Vector3(2.5f, 0.5f, 0));
+        weaponEffect.transform.rotation = playerT.rotation;
+
         //Check animation
         if (currentWeapon != null)
         {
