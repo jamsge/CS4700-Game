@@ -14,6 +14,8 @@ public class WeaponManager : MonoBehaviour
     public event Action onWeaponUse;
     Transform playerT; //player's transform
 
+    public float weaponReloadTime;
+
     [Header("Weapon Avaiability")]
     public bool flamethrower;
     public bool fireAxe;
@@ -257,7 +259,7 @@ public class WeaponManager : MonoBehaviour
     //Reload weapon
     IEnumerator Reload()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(weaponReloadTime);
         currentWeapon.SetCurrentAmmo(currentWeapon.GetMaxAmmo());
     }
 }

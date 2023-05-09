@@ -22,6 +22,10 @@ public class WeaponStatsEditor : Editor
 
         EditorGUILayout.Space();
 
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponReloadTime"));
+
+        EditorGUILayout.Space();      
+
         categoryToDisplay = (DisplayCategory)EditorGUILayout.EnumPopup("Display Stats", categoryToDisplay);
 
         EditorGUILayout.Space();
