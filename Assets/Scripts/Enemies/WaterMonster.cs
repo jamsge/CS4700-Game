@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterMonster : MonoBehaviour
-{    
+{   
+    public Sprite idleSprite;
+    public Sprite attackSprite;
     public static float waterBallDamage; //static so player scripts can access this damage
     public EnemyController ec;
     public float meleeAttackDamage;
@@ -18,6 +20,7 @@ public class WaterMonster : MonoBehaviour
     Transform t;
     Rigidbody2D rb;
     Collider2D coll;
+    SpriteRenderer rend;
     GameObject player;
     PlayerData playerData;
     bool playerDetected;
@@ -32,7 +35,7 @@ public class WaterMonster : MonoBehaviour
     void Start()
     {
         waterBallDamage = rangedAttackDamage;
-
+        rend = gameObject.GetComponent<SpriteRenderer>();
         t = ec.t;
         rb = ec.rb;
         coll = gameObject.GetComponent<Collider2D>();
@@ -115,6 +118,7 @@ public class WaterMonster : MonoBehaviour
 
     IEnumerator MeleeAttack()
     {
+        rend.sprite = attackSprite;
         attackingMelee = true;
         //high damage attack to the side
         Vector2 origin = t.position + t.TransformDirection(Vector2.right * meleeAttackRange / 2);
@@ -125,12 +129,15 @@ public class WaterMonster : MonoBehaviour
             print("PLAYER HIT"); //debug
             playerData.takeHit((int)meleeAttackDamage);
         }
+        yield return new WaitForSeconds(0.5f);
+        rend.sprite = idleSprite;
         yield return new WaitForSeconds(meleeAttackCooldown);
         attackingMelee = false;
     }
 
     IEnumerator RangedAttack()
     {
+        rend.sprite = attackSprite;
         if (detectSoundEffect != null && (soundTimer >= 15 || !soundPlayed))
         {
             soundPlayed = true;
@@ -139,6 +146,8 @@ public class WaterMonster : MonoBehaviour
         }
         attackingRanged = true;
         Instantiate(rangedAttackObject, t.position, Quaternion.Euler(new Vector3(0,0,0)));
+        yield return new WaitForSeconds(0.5f);
+        rend.sprite = idleSprite;
         yield return new WaitForSeconds(rangedAttackCooldown);
         attackingRanged = false;
     }

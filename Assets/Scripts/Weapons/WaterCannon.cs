@@ -62,6 +62,7 @@ public class WaterCannon : Weapon
                 enemyRB.velocity = knockbackDirection * knockbackStrength;
                 //put on cooldown
             }
+            WeaponManager.instance.StartCoroutine(EnableAnimation());
             WeaponManager.instance.StartCoroutine(PutOnCooldown());
         }
     }
@@ -111,5 +112,14 @@ public class WaterCannon : Weapon
     public float GetDamage()
     {
         return this.damage;
+    }
+
+    IEnumerator EnableAnimation()
+    {
+        WeaponManager.instance.weaponAnimator.SetBool("usingWaterCannon", true);
+        WeaponManager.instance.playerAnimator.SetBool("usingWeapon", true);
+        yield return new WaitForSeconds(0.5f);
+        WeaponManager.instance.weaponAnimator.SetBool("usingWaterCannon", false);
+        WeaponManager.instance.playerAnimator.SetBool("usingWeapon", false);
     }
 }
