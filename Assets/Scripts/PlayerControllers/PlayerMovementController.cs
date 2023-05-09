@@ -50,8 +50,10 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (!walkingSoundPlaying && walkingSoundEffect != null)
             {
-                walkingSoundEffect.Play();
-                walkingSoundPlaying = true;
+                if (isGrounded) {
+                    walkingSoundEffect.Play();
+                    walkingSoundPlaying = true;
+                }
             }
                 
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
@@ -62,6 +64,12 @@ public class PlayerMovementController : MonoBehaviour
                 walkingSoundEffect.Stop();
             walkingSoundPlaying = false;
             moveDirection = 0;
+        }
+
+        if (!isGrounded) {
+            if (walkingSoundEffect != null)
+                walkingSoundEffect.Stop();
+            walkingSoundPlaying = false;
         }
 
         //sprint
