@@ -6,7 +6,6 @@ using UnityEngine;
 //Inherits from rat because of similar behavior
 public class Insect : Rat
 {
-    public Animator animator;
     Vector3 moveDirection;
     SpriteRenderer rend;
     public float attackPrepareTime;

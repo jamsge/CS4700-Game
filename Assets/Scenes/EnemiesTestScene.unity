@@ -933,6 +933,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Insect
       objectReference: {fileID: 0}
+    - target: {fileID: 9202851482886898194, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9202851482886898200, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -7249,10 +7253,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat
       objectReference: {fileID: 0}
-    - target: {fileID: 6393993716809601095, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6393993716809601098, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
       propertyPath: player
       value: 
@@ -7271,7 +7271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6393993716809601099, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.37
+      value: -1.52
       objectReference: {fileID: 0}
     - target: {fileID: 6393993716809601099, guid: d93218d88ea281b44bda8cdb08649609, type: 3}
       propertyPath: m_LocalPosition.z

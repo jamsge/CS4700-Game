@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rat : MonoBehaviour
 {
+    public Animator animator;
     public EnemyController ec;
     public float attackDamage;
     public float attackRange;
@@ -33,6 +34,8 @@ public class Rat : MonoBehaviour
 
     void Update()
     {
+        CheckAnimation();
+
         //check if player detected
         positionDiff = Vector3.Distance(player.transform.position, t.position);
         if (positionDiff <= ec.detectionDistance)
@@ -107,6 +110,25 @@ public class Rat : MonoBehaviour
     {
         if (t != null)
             Gizmos.DrawLine(t.position, t.position + t.TransformDirection(new Vector3(attackRange, 0, 0)));
+    }
+
+    void CheckAnimation()
+    {
+        if (!playerDetected && rb.velocity.x != 0)
+        {
+            animator.SetBool("walking", true);
+            animator.SetBool("running", false);
+        }
+        else if (playerDetected && rb.velocity.x != 0)
+        {
+            animator.SetBool("walking", false);
+            animator.SetBool("running", true);   
+        }
+        else
+        {  
+            animator.SetBool("walking", false);
+            animator.SetBool("running", false);
+        }
     }
 
 }
