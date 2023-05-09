@@ -20,6 +20,7 @@ public class TaserGun : Weapon
 
     private bool onCooldown = false;
 
+
     public TaserGun()
     {
         this.weaponName = "Taser Gun";
@@ -31,30 +32,35 @@ public class TaserGun : Weapon
         instanceCount += 1;
     }
 
-    public void UseWeapon(Transform playerTransform)
+    public void UseWeapon(Transform playerTransform, AudioSource sound)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && (!onCooldown))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !onCooldown && GetCurrentAmmo() > 0)
         {
-            currentAmmo -= ammoUsage;
-            //cast a long ray
-            RaycastHit2D hit = Physics2D.Raycast(playerTransform.position, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
-            if (hit)
-            {
-                Debug.Log("HIT"); //debug
-                // deal damage
-                try
+            
+                sound.Play();
+            
+                currentAmmo -= ammoUsage;
+                //cast a long ray
+                RaycastHit2D hit = Physics2D.Raycast(playerTransform.position, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
+                if (hit)
                 {
-                    hit.collider.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
+                    Debug.Log("HIT"); //debug
+                                      // deal damage
+                    try
+                    {
+                        hit.collider.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
+                    }
+                    catch (Exception e)
+                    {
+                        hit.collider.gameObject.GetComponent<BossController>().health -= damage;
+                    }
+                    //stun enemy
+                    WeaponManager.instance.StartCoroutine(StunEnemy(hit)); //tba
+                                                                           // put on cooldonw
+                    WeaponManager.instance.StartCoroutine(PutOnCooldown());
                 }
-                catch (Exception e)
-                {
-                    hit.collider.gameObject.GetComponent<BossController>().health -= damage;
-                }
-                //stun enemy
-                WeaponManager.instance.StartCoroutine(StunEnemy(hit)); //tba
-                // put on cooldonw
-                WeaponManager.instance.StartCoroutine(PutOnCooldown());
-            }
+            
+            
         }
     }
     private IEnumerator PutOnCooldown()

@@ -56,6 +56,12 @@ public class WeaponManager : MonoBehaviour
     public int waterCannonCooldown;
     public int waterCannonAmmoUsage;
 
+    [Header("Audio")]
+    [SerializeField] public AudioSource flamethrowerSoundEffect;
+    [SerializeField] public AudioSource fireAxeSoundEffect;
+    [SerializeField] public AudioSource taserGunSoundEffect;
+    [SerializeField] public AudioSource waterCannonSoundEffect;
+
     //UPGRADE STATS
     [Header("Flamethrower Upgraded Stats")]
     public float flamethrowerDamageU;
@@ -80,7 +86,10 @@ public class WeaponManager : MonoBehaviour
     public float waterCannonRangeU;
     public float waterCannonKnockbackStrengthU;
     public int waterCannonCooldownU;
-    public int waterCannonAmmoUsageU; 
+    public int waterCannonAmmoUsageU;
+
+
+    
 
     void Awake()
     {   //This makes sure there is always one instance of WeaponManager
@@ -147,7 +156,22 @@ public class WeaponManager : MonoBehaviour
     void UseWeapon(){
         if (currentWeapon != null)
         {
-            currentWeapon.UseWeapon(playerT);
+            if (currentWeapon.GetWeaponName() == "Flamethrower")
+            {
+                currentWeapon.UseWeapon(playerT, flamethrowerSoundEffect);
+            }
+            else if (currentWeapon.GetWeaponName() == "Fire Axe")
+            {
+                currentWeapon.UseWeapon(playerT, fireAxeSoundEffect);
+            }
+            else if (currentWeapon.GetWeaponName() == "Taser Gun")
+            {
+                currentWeapon.UseWeapon(playerT, taserGunSoundEffect);
+            }
+            else if (currentWeapon.GetWeaponName() == "Water Cannon")
+            {
+                currentWeapon.UseWeapon(playerT, waterCannonSoundEffect);
+            }
             onWeaponUse?.Invoke();
         }
     }
