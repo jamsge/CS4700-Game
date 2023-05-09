@@ -125,7 +125,8 @@ public class WeaponManager : MonoBehaviour
         float input = Input.GetAxis("Mouse ScrollWheel");  //switch weapons with scroll
         if (input != 0)
         {
-            SwitchWeapon(input);
+            if (!BackgroundPause.isPaused)
+                SwitchWeapon(input);
         }
 
         UseWeapon(); //keeps calling UseWeapon, input will be checked in each weapon's class as it might differ among different weapons
@@ -162,7 +163,7 @@ public class WeaponManager : MonoBehaviour
 
     //This method calls the current weapon's UseWeapon method
     void UseWeapon(){
-        if (currentWeapon != null)
+        if (currentWeapon != null && !BackgroundPause.isPaused)
         {
             if (currentWeapon.GetWeaponName() == "Flamethrower")
             {
