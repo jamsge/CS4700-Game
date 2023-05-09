@@ -23,7 +23,7 @@ public class WaterBall : MonoBehaviour
         playerData = ec.playerData;
         initialPosition = transform.position;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        rb.velocity = waterMonster.transform.TransformDirection(Vector2.right) * wm.rangedAttackObjectSpeed;
+        StartCoroutine(Shoot());
     }
    
     void Update()
@@ -32,5 +32,11 @@ public class WaterBall : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator Shoot()
+    {
+        yield return new WaitForSeconds(0.1f);
+        rb.velocity = waterMonster.transform.TransformDirection(Vector2.right) * wm.rangedAttackObjectSpeed;
     }
 }
