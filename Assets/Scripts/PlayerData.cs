@@ -31,4 +31,12 @@ public class PlayerData : ScriptableObject
             onPlayerDeath?.Invoke();
         }
     }
+
+    public void takeHit(int damage){
+        this.health -= damage;
+        onPlayerHit?.Invoke();
+        if (this.health <= 0){
+            onPlayerDeath?.Invoke();
+        }
+    }
 }

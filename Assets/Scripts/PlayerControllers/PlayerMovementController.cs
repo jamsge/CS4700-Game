@@ -11,9 +11,11 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public float dashSpeed = 20f;
     [SerializeField] public float dashDistance = 2f;
     [SerializeField] public float dashCooldown = 1f;
-    public Camera cam;
+    [SerializeField] public float jumpHeight = 7f;
+    //public Camera cam;
     private float maxSpeed;
     private float jumpHeight = 10f;
+
     private bool dashOnCooldown = false;
 
     float moveDirection = 0;
@@ -22,8 +24,10 @@ public class PlayerMovementController : MonoBehaviour
     BoxCollider2D mainCollider;
     Rigidbody2D r2d;
     Transform t;
-    Transform ct;
     bool dashing = false;
+    [SerializeField] private AudioSource walkingSoundEffect;
+    [SerializeField] private AudioSource dashSoundEffect;
+    bool walkingSoundPlaying = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +39,6 @@ public class PlayerMovementController : MonoBehaviour
         t = GetComponent<Transform>();
         g = GetComponentInChildren<BoxCollider2D>();
         mainCollider = GetComponent<BoxCollider2D>();
-        ct = cam.GetComponent<Transform>();
         print(g);
     }
 
@@ -44,10 +47,19 @@ public class PlayerMovementController : MonoBehaviour
     {
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
+            if (!walkingSoundPlaying && walkingSoundEffect != null)
+            {
+                walkingSoundEffect.Play();
+                walkingSoundPlaying = true;
+            }
+                
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
+
         }
-        else
-        {
+        else {
+            if(walkingSoundEffect != null)
+                walkingSoundEffect.Stop();
+            walkingSoundPlaying = false;
             moveDirection = 0;
         }
 
@@ -55,10 +67,12 @@ public class PlayerMovementController : MonoBehaviour
         sprintMaxSpeed = 2 * defaultMaxSpeed;
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            walkingSoundEffect.pitch = 1.2f;
             maxSpeed = sprintMaxSpeed;
         }
         else
         {
+            walkingSoundEffect.pitch = 1.0f;
             maxSpeed = defaultMaxSpeed;
         }
 
@@ -86,9 +100,6 @@ public class PlayerMovementController : MonoBehaviour
         {
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         }
-
-        //keep camera focued on player
-        ct.position = new Vector3(t.position.x, t.position.y, -10f);
     }
 
     void FixedUpdate()
@@ -118,6 +129,8 @@ public class PlayerMovementController : MonoBehaviour
 
     IEnumerator Dash()
     {
+        if(dashSoundEffect != null)
+            dashSoundEffect.Play();
         float dashTime = dashDistance / 10; //dashDistance determines how long this coroutine waits before returning to base velocity
         Vector2 oldVelocity = r2d.velocity;
         r2d.velocity = r2d.velocity.normalized * dashSpeed;
