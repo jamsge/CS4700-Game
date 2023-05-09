@@ -11,9 +11,13 @@ public class BackgroundPause : MonoBehaviour
     public AudioSource fa;
     public AudioSource tg;
     public AudioSource wc;
+    public GameObject shopButton;
+    public GameObject invButton;
+    GameObject hudCanvas;
     void Start()
     {
        isPaused = false;
+       hudCanvas = GameObject.Find("HUDCanvas");
     }
 
     void Update()
@@ -28,6 +32,9 @@ public class BackgroundPause : MonoBehaviour
             fa.Stop();
             tg.Stop();
             wc.Stop();
+            shopButton.active = false;
+            invButton.active = false;
+            hudCanvas.active = false;
         }
         else
         {
@@ -35,6 +42,9 @@ public class BackgroundPause : MonoBehaviour
             Time.timeScale = 1.0f;
             player.GetComponent<PlayerMovementController>().enabled = true;
             player.GetComponent<PlayerCombatController>().enabled = true;
+            shopButton.active = true;
+            invButton.active = true;
+            hudCanvas.active = true;
         }
     }
 }
