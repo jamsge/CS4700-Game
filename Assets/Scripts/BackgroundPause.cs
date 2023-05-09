@@ -11,6 +11,8 @@ public class BackgroundPause : MonoBehaviour
     public AudioSource fa;
     public AudioSource tg;
     public AudioSource wc;
+    public GameObject shopButton;
+    public GameObject invButton;
     void Start()
     {
        isPaused = false;
@@ -28,6 +30,8 @@ public class BackgroundPause : MonoBehaviour
             fa.Stop();
             tg.Stop();
             wc.Stop();
+            shopButton.active = false;
+            invButton.active = false;
         }
         else
         {
@@ -35,6 +39,8 @@ public class BackgroundPause : MonoBehaviour
             Time.timeScale = 1.0f;
             player.GetComponent<PlayerMovementController>().enabled = true;
             player.GetComponent<PlayerCombatController>().enabled = true;
+            shopButton.active = true;
+            invButton.active = true;
         }
     }
 }

@@ -3584,6 +3584,8 @@ MonoBehaviour:
   fa: {fileID: 2146284906}
   tg: {fileID: 1560687348}
   wc: {fileID: 814208732}
+  shopButton: {fileID: 2024117956}
+  invButton: {fileID: 340652099}
 --- !u!4 &743994300
 Transform:
   m_ObjectHideFlags: 0
