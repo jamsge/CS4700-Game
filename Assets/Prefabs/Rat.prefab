@@ -150,11 +150,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
-  idleSpeed: 0
+  idleSpeed: 1
   baseHealth: 10
   health: 0
   detectionDistance: 5
-  idleMoveAreaBounds: 0
+  idleMoveAreaBounds: 1
   t: {fileID: 0}
   rb: {fileID: 0}
   deathSoundEffect: {fileID: 0}
@@ -171,10 +171,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ec: {fileID: 6393993716809601098}
-  attackDamage: 0
-  attackRange: 2
+  attackDamage: 1
+  attackRange: 1
   attackCooldown: 3
-  chaseSpeed: 0
+  chaseSpeed: 2
   t: {fileID: 0}
   rb: {fileID: 0}
   player: {fileID: 0}

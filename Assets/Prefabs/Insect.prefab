@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9202851482886898200
 Transform:
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.21133333}
@@ -150,13 +150,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
-  idleSpeed: 0
+  idleSpeed: 1
   baseHealth: 10
   health: 0
   detectionDistance: 5
-  idleMoveAreaBounds: 0
+  idleMoveAreaBounds: 1
   t: {fileID: 0}
   rb: {fileID: 0}
+  deathSoundEffect: {fileID: 0}
 --- !u!114 &9202851482886898205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,9 +172,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ec: {fileID: 9202851482886898204}
   attackDamage: 2
-  attackRange: 2
-  attackCooldown: 0
-  chaseSpeed: 0
+  attackRange: 1
+  attackCooldown: 2
+  chaseSpeed: 2
   t: {fileID: 0}
   rb: {fileID: 0}
   player: {fileID: 0}
