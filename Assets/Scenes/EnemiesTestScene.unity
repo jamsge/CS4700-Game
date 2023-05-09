@@ -3873,11 +3873,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
   player: {fileID: 0}
+  playerAnimator: {fileID: 1344814816}
   weaponReloadTime: 0
   flamethrower: 1
   fireAxe: 1
-  waterCannon: 1
-  taserGun: 1
+  waterCannon: 0
+  taserGun: 0
   flamethrowerUpgraded: 0
   fireAxeUpgraded: 0
   waterCannonUpgraded: 0
@@ -6261,6 +6262,11 @@ Transform:
 --- !u!1 &1344814807 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4609497530279323983, guid: ebb84515c5c21ac48b89812607bbc0ef, type: 3}
+  m_PrefabInstance: {fileID: 490527428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1344814816 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1344814816, guid: ebb84515c5c21ac48b89812607bbc0ef, type: 3}
   m_PrefabInstance: {fileID: 490527428}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1396429196

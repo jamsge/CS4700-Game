@@ -13,6 +13,10 @@ public class WeaponStatsEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("playerAnimator"));
+
+        EditorGUILayout.Space();
+
         EditorGUILayout.PropertyField(serializedObject.FindProperty("playerData"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("player"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("flamethrower"));

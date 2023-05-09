@@ -12,6 +12,7 @@ public class WeaponManager : MonoBehaviour
     public GameObject player;
     public event Action onWeaponSwitch;
     public event Action onWeaponUse;
+    public Animator playerAnimator;
     Transform playerT; //player's transform
 
     public float weaponReloadTime;
@@ -117,6 +118,21 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
+        //Check animation
+        if (currentWeapon != null)
+        {
+            if (currentWeapon.GetWeaponName() == "Fire Axe")
+            {
+                playerAnimator.SetBool("hasWeapon", false);
+                playerAnimator.SetBool("hasAxe", true);
+            }
+            else
+            {
+                playerAnimator.SetBool("hasWeapon", true);
+                playerAnimator.SetBool("hasAxe", false);
+            }
+        }
+
         //check available weapons
         CheckWeaponAvailability();
 
