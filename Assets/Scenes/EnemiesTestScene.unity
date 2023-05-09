@@ -3878,8 +3878,8 @@ MonoBehaviour:
   weaponAnimator: {fileID: 1171839089}
   weaponReloadTime: 0
   flamethrower: 1
-  fireAxe: 1
-  waterCannon: 0
+  fireAxe: 0
+  waterCannon: 1
   taserGun: 0
   flamethrowerUpgraded: 0
   fireAxeUpgraded: 0
@@ -5635,7 +5635,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.0416667, y: 1.4166666}
+  m_Size: {x: 2.125, y: 2.2291667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

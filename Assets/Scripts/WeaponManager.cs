@@ -121,9 +121,16 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         //Move weapon effect object
-        weaponEffect.transform.position = playerT.position + playerT.TransformDirection(new Vector3(2.5f, 0.5f, 0));
-        weaponEffect.transform.rotation = playerT.rotation;
-
+        if (currentWeapon.GetWeaponName() == "Flamethrower")
+        {
+            weaponEffect.transform.position = playerT.position + playerT.TransformDirection(new Vector3(2.5f, 0.5f, 0));
+            weaponEffect.transform.rotation = playerT.rotation;
+        }
+        else if (currentWeapon.GetWeaponName() == "Water Cannon")
+        {
+            weaponEffect.transform.position = playerT.position + playerT.TransformDirection(new Vector3(2.5f, 0, 0));
+            weaponEffect.transform.rotation = Quaternion.Euler(playerT.eulerAngles + new Vector3(0,0,270));
+        }
         //Check animation
         if (currentWeapon != null)
         {
