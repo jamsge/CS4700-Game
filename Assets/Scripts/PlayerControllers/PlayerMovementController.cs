@@ -33,6 +33,7 @@ public class PlayerMovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerData.onPlayerHit += ChangeColor;
         defaultMaxSpeed = playerData.defaultMaxSpeed;
         sprintMaxSpeed = 2 * defaultMaxSpeed;
         maxSpeed = defaultMaxSpeed;
@@ -47,6 +48,7 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rend = gameObject.GetComponent<SpriteRenderer>();
         //flip sprite to face correct direction
         if (moveDirection == -1)
         {
@@ -169,6 +171,18 @@ public class PlayerMovementController : MonoBehaviour
         dashOnCooldown = true;
         yield return new WaitForSeconds(dashCooldown);
         dashOnCooldown = false;
+    }
+
+    void ChangeColor()
+    {
+        StartCoroutine(TurnRed());
+    }
+
+    IEnumerator TurnRed()
+    {
+        rend.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        rend.color = Color.white;
     }
 
 /*     void CheckAnimation()
