@@ -11,11 +11,13 @@ public class WaterBall : MonoBehaviour
     PlayerData playerData;
     Vector3 initialPosition;
     Rigidbody2D rb;
+    SpriteRenderer rend;
     void Awake()
     {
         waterMonster = GameObject.Find("WaterMonster");
         ec = waterMonster.GetComponent<EnemyController>();
         wm = waterMonster.GetComponent<WaterMonster>();
+        rend = gameObject.GetComponent<SpriteRenderer>();
     }
     void Start()
     {
@@ -23,6 +25,7 @@ public class WaterBall : MonoBehaviour
         playerData = ec.playerData;
         initialPosition = transform.position;
         rb = gameObject.GetComponent<Rigidbody2D>();
+        gameObject.transform.rotation = wm.transform.rotation;
         StartCoroutine(Shoot());
     }
    

@@ -137,6 +137,7 @@ public class WaterMonster : MonoBehaviour
 
     IEnumerator RangedAttack()
     {
+        rend.sprite = attackSprite;
         if (detectSoundEffect != null && (soundTimer >= 15 || !soundPlayed))
         {
             soundPlayed = true;
@@ -145,6 +146,8 @@ public class WaterMonster : MonoBehaviour
         }
         attackingRanged = true;
         Instantiate(rangedAttackObject, t.position, Quaternion.Euler(new Vector3(0,0,0)));
+        yield return new WaitForSeconds(0.5f);
+        rend.sprite = idleSprite;
         yield return new WaitForSeconds(rangedAttackCooldown);
         attackingRanged = false;
     }
