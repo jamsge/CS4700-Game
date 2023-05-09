@@ -127,6 +127,12 @@ public class WeaponManager : MonoBehaviour
         }
 
         UseWeapon(); //keeps calling UseWeapon, input will be checked in each weapon's class as it might differ among different weapons
+
+        //input for weapon reload
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(Reload());
+        }
     }
 
     //Switch weapons with scroll
@@ -246,5 +252,12 @@ public class WeaponManager : MonoBehaviour
         {
             w.SetDamage(w.GetDamage() + playerData.damageBoost);
         }
+    }
+
+    //Reload weapon
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(1f);
+        currentWeapon.SetCurrentAmmo(currentWeapon.GetMaxAmmo());
     }
 }

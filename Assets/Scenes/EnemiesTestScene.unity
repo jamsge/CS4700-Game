@@ -4298,8 +4298,8 @@ MonoBehaviour:
   player: {fileID: 467995626}
   flamethrower: 1
   fireAxe: 1
-  waterCannon: 0
-  taserGun: 0
+  waterCannon: 1
+  taserGun: 1
   flamethrowerUpgraded: 0
   fireAxeUpgraded: 0
   waterCannonUpgraded: 0
