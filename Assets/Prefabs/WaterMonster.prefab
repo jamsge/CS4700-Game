@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2334352672893438002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.65, y: -1.21, z: 0}
+  m_LocalPosition: {x: 4.65, y: -1.21, z: -1}
   m_LocalScale: {x: 0.14263, y: 0.14263, z: 0.14263}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,12 +148,12 @@ MonoBehaviour:
   idleSprite: {fileID: 21300000, guid: af17cfdcb793f6d45be2088dae34b112, type: 3}
   attackSprite: {fileID: 21300000, guid: be88694cbca759a4bbe11705a25f6f57, type: 3}
   ec: {fileID: 2334352672893438007}
-  meleeAttackDamage: 10
+  meleeAttackDamage: 5
   meleeAttackCooldown: 3
   meleeAttackRange: 3
-  rangedAttackDamage: 2
+  rangedAttackDamage: 1
   rangedAttackCooldown: 3
-  rangedAttackRange: 6
+  rangedAttackRange: 10
   rangedAttackObject: {fileID: 7271063262490693702, guid: 08cb0369afd02ae47b63869772da6e39, type: 3}
   rangedAttackObjectSpeed: 6
   chaseSpeed: 2

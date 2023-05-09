@@ -598,7 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2334352672893438002, guid: 7824dbf636c4ff747a20cfa2c2a9db7f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2334352672893438005, guid: 7824dbf636c4ff747a20cfa2c2a9db7f, type: 3}
       propertyPath: m_Sprite
@@ -732,6 +732,10 @@ PrefabInstance:
     - target: {fileID: 7694088769786998950, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
       propertyPath: m_Name
       value: Survivor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694088769786998950, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694088769786998970, guid: 41d8402dc8bf4fa4fa576629797c8788, type: 3}
       propertyPath: m_RootOrder
@@ -935,11 +939,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9202851482886898200, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.29
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 9202851482886898200, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.13
+      value: -0.14775
       objectReference: {fileID: 0}
     - target: {fileID: 9202851482886898200, guid: 79c68428de23e8049a5420d3c4bdae7d, type: 3}
       propertyPath: m_LocalPosition.z
