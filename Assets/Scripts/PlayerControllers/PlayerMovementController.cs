@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    public Animator animator;
     [SerializeField] public PlayerData playerData;
     [SerializeField] public float defaultMaxSpeed;
     [SerializeField] public float sprintMaxSpeed;
@@ -23,6 +24,7 @@ public class PlayerMovementController : MonoBehaviour
     BoxCollider2D mainCollider;
     Rigidbody2D r2d;
     Transform t;
+    SpriteRenderer rend;
     bool dashing = false;
     [SerializeField] private AudioSource walkingSoundEffect;
     [SerializeField] private AudioSource dashSoundEffect;
@@ -39,11 +41,22 @@ public class PlayerMovementController : MonoBehaviour
         g = GetComponentInChildren<BoxCollider2D>();
         mainCollider = GetComponent<BoxCollider2D>();
         print(g);
+        rend = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //flip sprite to face correct direction
+        if (moveDirection == -1)
+        {
+            rend.flipX = true;
+        }
+        else if (moveDirection == 1)
+        {
+            rend.flipX = false;
+        }
+
         defaultMaxSpeed = playerData.defaultMaxSpeed; //update speed in case boost is used
 
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
@@ -58,12 +71,15 @@ public class PlayerMovementController : MonoBehaviour
                 
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
 
+            animator.SetBool("walking", true);
+
         }
         else {
             if(walkingSoundEffect != null)
                 walkingSoundEffect.Stop();
             walkingSoundPlaying = false;
             moveDirection = 0;
+            animator.SetBool("walking", false);
         }
 
         if (!isGrounded) {
@@ -78,11 +94,14 @@ public class PlayerMovementController : MonoBehaviour
         {
             walkingSoundEffect.pitch = 1.2f;
             maxSpeed = sprintMaxSpeed;
+            if (r2d.velocity.x > 0)
+                animator.SetBool("sprinting", true);
         }
         else
         {
             walkingSoundEffect.pitch = 1.0f;
             maxSpeed = defaultMaxSpeed;
+            animator.SetBool("sprinting", false);
         }
 
         //dash
@@ -151,4 +170,23 @@ public class PlayerMovementController : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         dashOnCooldown = false;
     }
+
+/*     void CheckAnimation()
+    {
+        if (Mathf.Abs(r2d.velocity.x) >= (sprintMaxSpeed))
+        {
+            animator.SetBool("sprinting", true);
+            animator.SetBool("walking", false);
+        }
+        else if (Mathf.Abs(r2d.velocity.x) > 0)
+        {
+            animator.SetBool("sprinting", false);
+            animator.SetBool("walking", true);
+        }
+        else
+        {
+            animator.SetBool("sprinting", false);
+            animator.SetBool("walking", false);
+        }
+    } */
 }
