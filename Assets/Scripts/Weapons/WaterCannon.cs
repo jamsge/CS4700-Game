@@ -61,8 +61,8 @@ public class WaterCannon : Weapon
                 Vector3 knockbackDirection = playerTransform.TransformDirection(Vector3.right);
                 enemyRB.velocity = knockbackDirection * knockbackStrength;
                 //put on cooldown
-                WeaponManager.instance.StartCoroutine(PutOnCooldown());
             }
+            WeaponManager.instance.StartCoroutine(PutOnCooldown());
         }
     }
 

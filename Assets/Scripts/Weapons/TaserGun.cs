@@ -29,6 +29,7 @@ public class TaserGun : Weapon
         this.range = WeaponManager.instance.taserGunRange;
         this.stunDuration = WeaponManager.instance.taserGunStunDuration;
         this.ammoUsage = WeaponManager.instance.taserGunAmmoUsage;
+        this.cooldown = WeaponManager.instance.taserGunCooldown;
         instanceCount += 1;
     }
 
@@ -57,8 +58,8 @@ public class TaserGun : Weapon
                     //stun enemy
                     WeaponManager.instance.StartCoroutine(StunEnemy(hit)); //tba
                                                                            // put on cooldonw
-                    WeaponManager.instance.StartCoroutine(PutOnCooldown());
                 }
+                WeaponManager.instance.StartCoroutine(PutOnCooldown());
             
             
         }
@@ -109,6 +110,7 @@ public class TaserGun : Weapon
         this.range = WeaponManager.instance.taserGunRangeU;
         this.stunDuration = WeaponManager.instance.taserGunStunDurationU;
         this.ammoUsage = WeaponManager.instance.taserGunAmmoUsageU;
+        this.cooldown = WeaponManager.instance.taserGunCooldownU;
         WeaponManager.instance.taserGunUpgraded = true;
     }
 

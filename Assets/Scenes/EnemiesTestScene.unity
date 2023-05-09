@@ -2158,7 +2158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
-  itemBoostDuration: 0
   inventoryItems:
   - {fileID: 11400000, guid: 321726092217b2543a9bc9e356713206, type: 2}
   - {fileID: 11400000, guid: 81c727a1da5ee6f4ab38bdd27d075f49, type: 2}
@@ -4296,11 +4295,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
-  player: {fileID: 0}
+  player: {fileID: 467995626}
   flamethrower: 1
   fireAxe: 1
-  waterCannon: 1
-  taserGun: 1
+  waterCannon: 0
+  taserGun: 0
   flamethrowerUpgraded: 0
   fireAxeUpgraded: 0
   waterCannonUpgraded: 0
@@ -4315,7 +4314,7 @@ MonoBehaviour:
   taserGunDamage: 1
   taserGunRange: 5
   taserGunStunDuration: 2
-  taserGunCooldown: 3
+  taserGunCooldown: 2
   taserGunAmmoUsage: 1
   waterCannonDamage: 5
   waterCannonRange: 5
