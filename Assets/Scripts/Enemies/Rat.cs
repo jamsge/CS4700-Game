@@ -112,7 +112,7 @@ public class Rat : MonoBehaviour
             Gizmos.DrawLine(t.position, t.position + t.TransformDirection(new Vector3(attackRange, 0, 0)));
     }
 
-    void CheckAnimation()
+    public virtual void CheckAnimation()
     {
         if (!playerDetected && rb.velocity.x != 0)
         {

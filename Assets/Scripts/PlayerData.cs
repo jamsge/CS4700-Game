@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerData : ScriptableObject
 {
-    public int baseHealth = 10;
+    public int ooze;
+    public int baseHealth = 100;
     public int health;
     public float defaultMaxSpeed = 5f; //walk speed
     public float damageBoost = 0;
@@ -15,8 +16,11 @@ public class PlayerData : ScriptableObject
 
     // Resets health value to base health when game is started
     private void OnEnable(){
+        this.ooze = 0;
         this.defenseBoost = false;
+        this.baseHealth = 100;
         this.health = baseHealth;
+        this.damageBoost = 0;
     }
 
     // Change health value directly, used for initializing HUD or increasing health. Triggers set health event

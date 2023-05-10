@@ -254,7 +254,7 @@ public class WeaponManager : MonoBehaviour
             //taser gun hitbox(approximate)
             else if (currentWeapon.GetWeaponName() == "Taser Gun")
             {
-                Gizmos.DrawLine(playerT.position, playerT.position + playerT.TransformDirection(taserGunRange,0,0));
+                Gizmos.DrawLine(playerT.position - new Vector3(0,0.3f,0), playerT.position - new Vector3(0,0.3f,0) + playerT.TransformDirection(taserGunRange,0,0));
             }
             //water cannon hitbox (approximate)
             else if (currentWeapon.GetWeaponName() == "Water Cannon")

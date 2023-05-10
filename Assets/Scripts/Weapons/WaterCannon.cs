@@ -59,7 +59,7 @@ public class WaterCannon : Weapon
                 //knock back enemy
                 Rigidbody2D enemyRB = hit.collider.gameObject.GetComponent<Rigidbody2D>();
                 Vector3 knockbackDirection = playerTransform.TransformDirection(Vector3.right);
-                enemyRB.velocity = knockbackDirection * knockbackStrength;
+                enemyRB.AddForce(knockbackDirection * knockbackStrength * 100);
                 //put on cooldown
             }
             WeaponManager.instance.StartCoroutine(EnableAnimation());

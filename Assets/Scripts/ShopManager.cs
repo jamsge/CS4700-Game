@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-
+    public PlayerData playerData;
     public int ooze;
     public TMP_Text oozeUI;
     public ItemSO[] purchasableItems;
@@ -57,6 +57,7 @@ public class ShopManager : MonoBehaviour
 
         playerUpgradeText.text = "Player Upgrades (" + playerUpgradeCost + " Ooze):";
 
+        ooze = playerData.ooze;
         oozeUI.text = "Ooze: " + ooze.ToString();
         LoadPanels();
         LoadWeaponPanels();
@@ -66,7 +67,9 @@ public class ShopManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ooze = playerData.ooze;
+        oozeUI.text = "Ooze: " + ooze.ToString();
+        CheckAffordableItems();
     }
 
     public void AddOoze()
@@ -232,7 +235,7 @@ public class ShopManager : MonoBehaviour
     public void UpgradeWeapon(string id)
     {
         WeaponManager weaponMgr = WeaponManager.instance;
-        ooze -= weaponCost;
+        playerData.ooze -= weaponCost;
         oozeUI.text = "Ooze: " + ooze.ToString();
         if (id == "Flamethrower")
         {
@@ -364,18 +367,18 @@ public class ShopManager : MonoBehaviour
 
     public void UpgradeHealth()
     {
-        ooze -= playerUpgradeCost;
+        playerData.ooze -= playerUpgradeCost;
         oozeUI.text = "Ooze: " + ooze.ToString();
 
         GameManager gm = GameManager.instance;
-        gm.UpgradeHealth(gm.playerData.baseHealth + 1);
+        gm.UpgradeHealth(gm.playerData.baseHealth + 10);
 
         CheckAffordableItems();
     }
 
     public void UpgradeDamage()
     {
-        ooze -= playerUpgradeCost;
+        playerData.ooze -= playerUpgradeCost;
         oozeUI.text = "Ooze: " + ooze.ToString();
 
         GameManager gm = GameManager.instance;
@@ -386,11 +389,11 @@ public class ShopManager : MonoBehaviour
 
     public void UpgradeSpeed()
     {
-        ooze -= playerUpgradeCost;
+        playerData.ooze -= playerUpgradeCost;
         oozeUI.text = "Ooze: " + ooze.ToString();
 
         GameManager gm = GameManager.instance;
-        gm.UpgradeSpeed(speedBoostAmount);
+        gm.UpgradeSpeed(gm.playerData.defaultMaxSpeed + speedBoostAmount);
 
         CheckAffordableItems();
     }
@@ -398,11 +401,11 @@ public class ShopManager : MonoBehaviour
     public void PurchaseItem(int btn)
     {
         print("purchased");
-        for (int i = 0; i < purchasableItems.Length; i++)
-        {
             if(ooze >= purchasableItems[btn].baseCost)
             {
-                ooze = ooze - purchasableItems[btn].baseCost;
+                playerData.ooze = playerData.ooze - purchasableItems[btn].baseCost;
+                ooze = playerData.ooze; //
+                print(btn + " purchased");
                 purchasableItems[btn].count++;
                 oozeUI.text = "Ooze: " + ooze.ToString();
                 CheckAffordableItems();
@@ -410,7 +413,6 @@ public class ShopManager : MonoBehaviour
                 // add item to inventory (use purchaseableItems.title as a key)
 
             }
-        }
     }
 
 }

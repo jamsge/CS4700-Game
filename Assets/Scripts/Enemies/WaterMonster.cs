@@ -45,10 +45,9 @@ public class WaterMonster : MonoBehaviour
 
     void Update()
     {
-        positionDiff = Vector3.Distance(player.transform.position, t.position);
         //check if player detected
-        positionDiff = Vector3.Distance(player.transform.position, t.position);
-        if (positionDiff <= ec.detectionDistance)
+        positionDiff = Mathf.Abs(player.transform.position.x - t.position.x);
+        if (positionDiff <= ec.detectionDistance && (Mathf.Abs(player.transform.position.y - t.position.y) <= 1))
         {
             playerDetected = true;
         }
