@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-
+    public PlayerData playerData;
     public int ooze;
     public TMP_Text oozeUI;
     public ItemSO[] purchasableItems;
@@ -57,6 +57,7 @@ public class ShopManager : MonoBehaviour
 
         playerUpgradeText.text = "Player Upgrades (" + playerUpgradeCost + " Ooze):";
 
+        ooze = playerData.ooze;
         oozeUI.text = "Ooze: " + ooze.ToString();
         LoadPanels();
         LoadWeaponPanels();
@@ -66,7 +67,9 @@ public class ShopManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ooze = playerData.ooze;
+        oozeUI.text = "Ooze: " + ooze.ToString();
+        CheckAffordableItems();
     }
 
     public void AddOoze()
@@ -232,7 +235,7 @@ public class ShopManager : MonoBehaviour
     public void UpgradeWeapon(string id)
     {
         WeaponManager weaponMgr = WeaponManager.instance;
-        ooze -= weaponCost;
+        playerData.ooze -= weaponCost;
         oozeUI.text = "Ooze: " + ooze.ToString();
         if (id == "Flamethrower")
         {
@@ -364,7 +367,7 @@ public class ShopManager : MonoBehaviour
 
     public void UpgradeHealth()
     {
-        ooze -= playerUpgradeCost;
+        playerData.ooze -= playerUpgradeCost;
         oozeUI.text = "Ooze: " + ooze.ToString();
 
         GameManager gm = GameManager.instance;
@@ -375,7 +378,7 @@ public class ShopManager : MonoBehaviour
 
     public void UpgradeDamage()
     {
-        ooze -= playerUpgradeCost;
+        playerData.ooze -= playerUpgradeCost;
         oozeUI.text = "Ooze: " + ooze.ToString();
 
         GameManager gm = GameManager.instance;
@@ -386,7 +389,7 @@ public class ShopManager : MonoBehaviour
 
     public void UpgradeSpeed()
     {
-        ooze -= playerUpgradeCost;
+        playerData.ooze -= playerUpgradeCost;
         oozeUI.text = "Ooze: " + ooze.ToString();
 
         GameManager gm = GameManager.instance;
@@ -402,7 +405,7 @@ public class ShopManager : MonoBehaviour
         {
             if(ooze >= purchasableItems[btn].baseCost)
             {
-                ooze = ooze - purchasableItems[btn].baseCost;
+                playerData.ooze = playerData.ooze - purchasableItems[btn].baseCost;
                 purchasableItems[btn].count++;
                 oozeUI.text = "Ooze: " + ooze.ToString();
                 CheckAffordableItems();

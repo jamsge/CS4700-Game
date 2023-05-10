@@ -58,6 +58,7 @@ public class EnemyController : MonoBehaviour
         {
             deathSoundEffect.Play();
         }
+        playerData.ooze += 20; //add ooze
         Destroy(gameObject);
         //tba maybe item drops
     }   
