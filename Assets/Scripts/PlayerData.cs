@@ -20,10 +20,12 @@ public class PlayerData : ScriptableObject
     }
 
     // Change health value directly, used for initializing HUD or increasing health. Triggers set health event
-    public void setHealth (int health){
-        this.health = health;
-        onPlayerHealthSet?.Invoke(this.health);
-    }
+    public void setHealth(int health)
+{
+    this.health = health;
+    onPlayerHealthSet?.Invoke(this.health);
+}
+
 
     // Player takes a hit, remove health and trigger hit event
     public void takeHit(){

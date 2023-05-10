@@ -10,32 +10,39 @@ public class HUDManager : MonoBehaviour
     public TextMeshProUGUI currentAmmoText;
     public TextMeshProUGUI maxAmmoText;
     public TextMeshProUGUI weaponNameText;
+    [SerializeField] private RectTransform fillRectTransform;
 
-
-    void Start(){
-        // subscribe to health events with corresponding functions
-        playerData.onPlayerHealthSet += updateHealth;
-        playerData.onPlayerHit += updateHealth;
-        WeaponManager.instance.onWeaponSwitch += updateWeaponData;
-        WeaponManager.instance.onWeaponUse += updateWeaponData;
+    void Start()
+    {
+        // Subscribe to health events with corresponding functions
+        playerData.onPlayerHealthSet += OnPlayerHealthSet;
+        playerData.onPlayerHit += OnPlayerHealthChange;
+        WeaponManager.instance.onWeaponSwitch += UpdateWeaponData;
+        WeaponManager.instance.onWeaponUse += UpdateWeaponData;
 
         // Initialize HUD text values
-        updateHealth(playerData.health);
-        updateWeaponData();
+        OnPlayerHealthSet(playerData.health);
+        UpdateWeaponData();
     }
 
-    void updateHealth(int health){
-        healthText.text = health.ToString();
-    }
-    
-    void updateHealth(){
-        healthText.text = playerData.health.ToString();
-    }
-
-    void updateWeaponData()
+    void OnPlayerHealthSet(int health)
     {
-        currentAmmoText.text = WeaponManager.instance.currentWeapon.GetCurrentAmmo()+"";
-        maxAmmoText.text = "/ " + WeaponManager.instance.currentWeapon.GetMaxAmmo();
+        healthText.text = health.ToString();
+
+        // Adjust fill amount based on health percentage
+        float fillAmount = (float)health / playerData.baseHealth;
+        fillRectTransform.localScale = new Vector3(fillAmount, 1f, 1f);
+    }
+
+    void OnPlayerHealthChange()
+    {
+        OnPlayerHealthSet(playerData.health);
+    }
+
+    void UpdateWeaponData()
+    {
+        currentAmmoText.text = WeaponManager.instance.currentWeapon.GetCurrentAmmo().ToString();
+        maxAmmoText.text = "/ " + WeaponManager.instance.currentWeapon.GetMaxAmmo().ToString();
         weaponNameText.text = WeaponManager.instance.currentWeapon.GetWeaponName();
     }
 }
