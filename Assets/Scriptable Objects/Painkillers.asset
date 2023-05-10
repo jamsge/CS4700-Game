@@ -15,3 +15,10 @@ MonoBehaviour:
   title: Painkillers
   description: Regenerate Small Amount of Health and Temporarily Increase Defense
   baseCost: 10
+  count: 0
+  image: {fileID: 0}
+  inUse: 0
+  healAmount: 10
+  speedBoostValue: 0
+  damageBoostValue: 0
+  itemBoostDuration: 10

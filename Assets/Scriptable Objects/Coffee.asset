@@ -15,3 +15,10 @@ MonoBehaviour:
   title: Coffee
   description: Temporarily Boost Speed
   baseCost: 10
+  count: 0
+  image: {fileID: 0}
+  inUse: 0
+  healAmount: 0
+  speedBoostValue: 2
+  damageBoostValue: 0
+  itemBoostDuration: 10

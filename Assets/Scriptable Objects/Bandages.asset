@@ -15,3 +15,10 @@ MonoBehaviour:
   title: Bandages
   description: Instantly Regenerate Health
   baseCost: 10
+  count: 0
+  image: {fileID: 0}
+  inUse: 0
+  healAmount: 10
+  speedBoostValue: 0
+  damageBoostValue: 0
+  itemBoostDuration: 0

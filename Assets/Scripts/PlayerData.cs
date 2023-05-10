@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     public int ooze;
-    public int baseHealth = 100;
+    public int baseHealth;
     public int health;
     public float defaultMaxSpeed = 5f; //walk speed
     public float damageBoost = 0;
@@ -18,7 +18,6 @@ public class PlayerData : ScriptableObject
     private void OnEnable(){
         this.ooze = 0;
         this.defenseBoost = false;
-        this.baseHealth = 100;
         this.health = baseHealth;
         this.damageBoost = 0;
     }
