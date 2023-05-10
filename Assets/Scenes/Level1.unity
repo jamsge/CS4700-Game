@@ -7879,7 +7879,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 103356563}
   weaponEffect: {fileID: 544611220}
   weaponAnimator: {fileID: 544611221}
-  weaponReloadTime: 0
+  weaponReloadTime: 2
   flamethrower: 1
   fireAxe: 0
   waterCannon: 0
