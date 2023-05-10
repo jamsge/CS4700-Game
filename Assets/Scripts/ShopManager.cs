@@ -401,11 +401,11 @@ public class ShopManager : MonoBehaviour
     public void PurchaseItem(int btn)
     {
         print("purchased");
-        for (int i = 0; i < purchasableItems.Length; i++)
-        {
             if(ooze >= purchasableItems[btn].baseCost)
             {
                 playerData.ooze = playerData.ooze - purchasableItems[btn].baseCost;
+                ooze = playerData.ooze; //
+                print(btn + " purchased");
                 purchasableItems[btn].count++;
                 oozeUI.text = "Ooze: " + ooze.ToString();
                 CheckAffordableItems();
@@ -413,7 +413,6 @@ public class ShopManager : MonoBehaviour
                 // add item to inventory (use purchaseableItems.title as a key)
 
             }
-        }
     }
 
 }
