@@ -62,4 +62,9 @@ public class Insect : Rat
             Gizmos.DrawLine(t.position, player.transform.position);
         }
     }
+
+    public override void CheckAnimation()
+    {
+        
+    }
 }
