@@ -624,11 +624,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1344814816, guid: ebb84515c5c21ac48b89812607bbc0ef, type: 3}
   m_PrefabInstance: {fileID: 470536009}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &103356571 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4609497530279323826, guid: ebb84515c5c21ac48b89812607bbc0ef, type: 3}
-  m_PrefabInstance: {fileID: 470536009}
-  m_PrefabAsset: {fileID: 0}
 --- !u!50 &103356577 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4609497530279323824, guid: ebb84515c5c21ac48b89812607bbc0ef, type: 3}
@@ -3361,13 +3356,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 927663489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910e7f22d2902f345b77c1b2af13daba, type: 3}
+  m_Script: {fileID: 11500000, guid: 51f01e21abeb0c84681c3a469f4eb165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowSpeed: 10
-  xOffset: 6
-  yOffset: 4
-  target: {fileID: 103356571}
+  player: {fileID: 103356562}
 --- !u!1 &971366435
 GameObject:
   m_ObjectHideFlags: 0
