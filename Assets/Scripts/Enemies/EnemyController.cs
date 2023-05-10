@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
 
     public Transform t;
     public Rigidbody2D rb;
+    SpriteRenderer rend;
     Vector3 initialPosition;
     //    bool returnedToInitialPosition = false;
 
@@ -24,6 +25,7 @@ public class EnemyController : MonoBehaviour
     {
         t = gameObject.GetComponent<Transform>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        rend = gameObject.GetComponent<SpriteRenderer>();
     }
     void Start()
     {
@@ -47,6 +49,7 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
+        ChangeColor();
     }
 
     void OnDeath()
@@ -90,5 +93,17 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         gameObject.GetComponent<EnemyCollisionDetection>().enabled = true;
+    }
+
+    void ChangeColor()
+    {
+        StartCoroutine(TurnRed());
+    }
+
+    IEnumerator TurnRed()
+    {
+        rend.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        rend.color = Color.white;
     }
 }

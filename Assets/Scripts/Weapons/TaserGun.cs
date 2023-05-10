@@ -42,7 +42,7 @@ public class TaserGun : Weapon
             
                 currentAmmo -= ammoUsage;
                 //cast a long ray
-                RaycastHit2D hit = Physics2D.Raycast(playerTransform.position, playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
+                RaycastHit2D hit = Physics2D.Raycast(playerTransform.position - new Vector3(0,0.3f,0), playerTransform.TransformDirection(Vector2.right), range, 1 << 3);
                 if (hit)
                 {
                     Debug.Log("HIT"); //debug
