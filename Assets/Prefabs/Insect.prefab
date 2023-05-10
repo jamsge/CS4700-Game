@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9202851482886898194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.29, y: 2.13, z: 0}
+  m_LocalPosition: {x: -0.29, y: 2.13, z: -1}
   m_LocalScale: {x: 2.3789, y: 2.3789, z: 2.3789}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4506b89efd0f2264faf455dc5df60f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 584691445}
   ec: {fileID: 9202851482886898204}
   attackDamage: 10
   attackRange: 1
@@ -182,7 +183,6 @@ MonoBehaviour:
   playerData: {fileID: 0}
   positionDiff: 0
   attacking: 0
-  animator: {fileID: 584691445}
   attackPrepareTime: 1
 --- !u!114 &-8519422755252646151
 MonoBehaviour:
