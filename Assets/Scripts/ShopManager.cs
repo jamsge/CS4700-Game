@@ -368,7 +368,7 @@ public class ShopManager : MonoBehaviour
         oozeUI.text = "Ooze: " + ooze.ToString();
 
         GameManager gm = GameManager.instance;
-        gm.UpgradeHealth(gm.playerData.baseHealth + 1);
+        gm.UpgradeHealth(gm.playerData.baseHealth + 10);
 
         CheckAffordableItems();
     }
@@ -390,7 +390,7 @@ public class ShopManager : MonoBehaviour
         oozeUI.text = "Ooze: " + ooze.ToString();
 
         GameManager gm = GameManager.instance;
-        gm.UpgradeSpeed(speedBoostAmount);
+        gm.UpgradeSpeed(gm.playerData.defaultMaxSpeed + speedBoostAmount);
 
         CheckAffordableItems();
     }
