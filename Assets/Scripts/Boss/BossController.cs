@@ -54,11 +54,11 @@ public class BossController : MonoBehaviour
             OnDeath();
         }
 
-        //check for phase 3
+/*         //check for phase 3
         if (health <= (baseHealth * 0.3f))
         {
             phase3.enabled = true;
-        }
+        } */
     }
 
     void OnDeath()

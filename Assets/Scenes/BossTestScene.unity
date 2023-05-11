@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 626447481}
   playerData: {fileID: 11400000, guid: e826257afbab4db4392b13863a7dc6ea, type: 2}
-  baseHealth: 200
+  baseHealth: 150
   health: 0
   speed: 0.5
   phase1: {fileID: 1929933679}
